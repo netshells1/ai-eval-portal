@@ -1,0 +1,123 @@
+/* Inquiry cover and catalogue masthead share the portal's existing type and colour tokens. */
+.inquiry-cover,
+.library-mast {
+  position: relative;
+  isolation: isolate;
+  color: var(--paper);
+  background: var(--ink-2);
+}
+.inquiry-cover {
+  padding: calc(var(--hd) + 58px) var(--pad) clamp(28px, 4vw, 64px);
+  background: linear-gradient(115deg, #20251d 30%, #2d3627);
+}
+.inquiry-cover .crumb,
+.library-mast .crumb { margin-bottom: clamp(18px, 3vw, 40px); }
+.inquiry-spread {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(340px, .88fr);
+  align-items: center;
+  gap: clamp(28px, 7vw, 124px);
+}
+.inquiry-kicker { color: #d4d8cc; font-size: 14px; font-weight: 600; }
+.inquiry-kicker span { color: var(--lime); padding-inline: .5em; }
+.inquiry-intro h1 {
+  margin: 12px 0 18px;
+  font-size: clamp(44px, 5.6vw, 88px);
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: -.055em;
+}
+.inquiry-intro > p:last-of-type {
+  max-width: 34em;
+  color: #c4c9bc;
+  font-size: clamp(15px, 1.25vw, 19px);
+  line-height: 1.85;
+}
+.inquiry-intro .btn { margin-top: 24px; }
+.quote-sheet {
+  padding: clamp(22px, 2.5vw, 44px);
+  border-top: 5px solid var(--lime);
+  background: #f0f0e6;
+  color: #262c22;
+  box-shadow: 0 12px 28px #12170f30;
+}
+.quote-sheet header { display: flex; justify-content: space-between; gap: 12px; color: #53604c; font-size: 13px; }
+.quote-sheet h2 { margin: 20px 0 2px; font-size: clamp(24px, 2.35vw, 39px); line-height: 1.2; }
+.quote-model { margin-bottom: 22px; color: #535b4e; font-size: 14px; }
+.quote-model strong { font-family: var(--lat); }
+#featuredQuotes a {
+  display: flex;
+  gap: 6px;
+  align-items: baseline;
+  padding: 8px 0;
+  border-top: 1px solid #bdc1b4;
+  font-size: 14px;
+}
+#featuredQuotes a:hover strong { text-decoration: underline; text-underline-offset: 4px; }
+#featuredQuotes a:focus-visible { outline-color: #3d512a; }
+#featuredQuotes a strong {
+  margin-left: auto;
+  font: 750 clamp(23px, 2.2vw, 37px)/1.4 var(--lat);
+  letter-spacing: -.045em;
+  font-variant-numeric: tabular-nums;
+}
+#featuredQuotes a small { color: #4d5646; }
+.quote-foot { padding-top: 12px; border-top: 1px solid #bdc1b4; font-size: 12px; color: #596151; }
+.inquiry-metrics {
+  display: flex;
+  gap: clamp(25px, 5vw, 85px);
+  border-top: 1px solid #ffffff36;
+  margin-top: clamp(28px, 3.8vw, 60px);
+  padding-top: 16px;
+}
+.inquiry-metrics div { display: flex; align-items: baseline; gap: 10px; }
+.inquiry-metrics dt { order: 1; font-size: 13px; color: #bec4b6; }
+.inquiry-metrics dd { font: 720 clamp(23px, 2vw, 33px)/1.2 var(--lat); }
+.library-mast { padding: calc(var(--hd) + 46px) var(--pad) clamp(25px, 3vw, 44px); overflow: hidden; }
+.library-mast::before {
+  position: absolute;
+  content: "";
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(90deg, #20241d 16%, #20241dee 42%, #20241d44 82%),
+              linear-gradient(180deg, #171c168a, transparent 90%), url(database.jpg) center 47% / cover;
+}
+.library-mast .crumb { margin-bottom: 12px; }
+.library-mast h1 { font-size: clamp(40px, 4.8vw, 72px); line-height: 1.08; font-weight: 900; letter-spacing: -.04em; }
+.library-mast h1 + p { color: #d0d5c9; margin-top: 12px; font-size: 15px; }
+.standards-mast::before {
+  background: linear-gradient(90deg, #1d241cf2 0%, #1e241ddc 40%, #1e241d73 72%, #1e241dcc),
+              linear-gradient(0deg, #1b221adb, transparent 75%), url(service.jpg) center 51% / cover;
+}
+.standards-mast-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+}
+.standards-mast-meta { flex: none; }
+.standards-mast-meta dl { display: flex; gap: clamp(16px, 2.4vw, 44px); }
+.standards-mast-meta dl > div { display: flex; gap: 8px; align-items: baseline; }
+.standards-mast-meta dt { font-size: 13px; color: #d2d6ca; }
+.standards-mast-meta dd {
+  order: -1;
+  font: 720 clamp(27px, 2.5vw, 40px)/1 var(--lat);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.045em;
+}
+/* On the catalogue, keep floating presentation hints clear of the record controls. */
+body:has(.view.on[data-page="standards"]) #hint { display: none; }
+@media (max-width: 760px) {
+  body:has(.view.on[data-page="standards"]) .pg { display: none; }
+  .standards-mast-row { align-items: flex-start; flex-direction: column; gap: 18px; }
+  .standards-mast-meta dd { font-size: 22px; }
+}
+#library-case-entry { scroll-margin-top: calc(var(--hd) + 12px); }
+@media (max-width: 760px) {
+  .inquiry-cover, .library-mast { padding-top: calc(var(--hd) + 50px); }
+  .inquiry-spread { grid-template-columns: 1fr; gap: 26px; }
+  .inquiry-metrics { justify-content: space-between; gap: 10px; }
+  .inquiry-metrics div { flex-direction: column-reverse; align-items: flex-start; gap: 4px; }
+  .inquiry-metrics dt { order: 0; }
+  .inquiry-metrics dd { font-size: 25px; }
+}

@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>区级人工智能项目评估平台</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta name="description" content="专注AI项目立项评估、造价核定与企业匹配。">
 <link rel="preload" as="image" href="assets/hero.jpg">
 <!-- 网络字体异步加载：内网打不开时自动回退到系统字体，不会卡住页面 -->
@@ -395,46 +396,6 @@ ul{list-style:none}
 @media (max-width:1000px){.cases{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:620px){.cases{grid-template-columns:1fr}}
 
-/* ---------- database ---------- */
-.db-rows{margin-top:36px}
-.db-row{display:grid;grid-template-columns:clamp(190px,17vw,270px) 1fr;gap:24px;align-items:baseline;padding:20px 0;border-top:1px solid var(--line-d)}
-.db-row .num{font-size:clamp(54px,5vw,84px);line-height:1}
-.db-row .num small{font-family:var(--cn);font-size:16px;font-weight:500;margin-left:6px;color:rgba(244,243,241,.6);font-stretch:normal}
-.db-row b{display:block;font-size:19px}
-.db-row p{font-size:14px;color:rgba(244,243,241,.6)}
-.db-note{font-size:12px;color:rgba(244,243,241,.5);margin-top:10px}
-.mq{overflow:hidden;border-top:1px solid var(--line-d);padding:22px 0;background:var(--ink-2)}
-.mq+.mq{border-top:0;padding-top:0}
-.mq-track{display:flex;width:max-content;animation:marq 60s linear infinite}
-.mq.rev .mq-track{animation-direction:reverse;animation-duration:72s}
-.mq span{font-size:clamp(24px,2.6vw,44px);font-weight:900;letter-spacing:-.02em;white-space:nowrap;padding-right:.9em;display:flex;align-items:center}
-.mq span::after{content:"";width:.24em;height:.24em;border-radius:50%;background:var(--lime);margin-left:.9em}
-.mq.rev span{color:transparent;-webkit-text-stroke:1px rgba(244,243,241,.5)}
-.mq.rev span::after{background:rgba(244,243,241,.3)}
-
-/* ---------- service ---------- */
-.service{position:relative;overflow:hidden;background:var(--ink-2);color:var(--paper)}
-.service-bg{position:absolute;inset:0}
-.service-bg img{width:100%;height:100%;object-fit:cover;filter:saturate(.8) brightness(.55)}
-.service-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,var(--ink-2) 0%,rgba(30,33,26,.35) 30%,rgba(30,33,26,.4) 64%,var(--ink-2) 100%)}
-.service .wrap{position:relative;z-index:2}
-.svc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.6vw,24px)}
-.svc{background:rgba(30,33,26,.6);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid var(--line-d);border-radius:4px;padding:clamp(24px,2.4vw,36px)}
-.svc h3{font-size:clamp(22px,1.8vw,28px);font-weight:900;letter-spacing:-.01em}
-.svc p{font-size:15px;color:rgba(244,243,241,.75);margin-top:12px;line-height:1.8}
-.svc .num{font-size:clamp(40px,3.4vw,56px);line-height:1;display:block;margin-bottom:18px;color:rgba(244,243,241,.9)}
-.svc .num small{font-family:var(--cn);font-size:14px;font-weight:500;margin-left:6px;color:rgba(244,243,241,.6);font-stretch:normal}
-.phases{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-top:clamp(64px,9vh,108px)}
-.phases::before{content:"";position:absolute;left:0;right:0;top:7px;height:1px;background:rgba(244,243,241,.25)}
-.phase{position:relative;padding-right:24px}
-.phase i{display:block;width:15px;height:15px;border-radius:50%;background:var(--ink-2);border:2px solid rgba(244,243,241,.45);margin-bottom:24px}
-.phase.now i{background:var(--lime);border-color:var(--lime)}
-.phase span{font-size:13px;color:rgba(244,243,241,.6)}
-.phase.now span{color:var(--paper)}
-.phase h3{font-size:clamp(26px,2.4vw,40px);font-weight:900;letter-spacing:-.02em;color:rgba(244,243,241,.55);margin-top:4px}
-.phase.now h3{color:var(--paper)}
-.phase p{font-size:14px;color:rgba(244,243,241,.6);margin-top:6px;max-width:22em}
-@media (max-width:1000px){.svc-grid,.phases{grid-template-columns:1fr}.phases{row-gap:36px}.phases::before{display:none}}
 
 /* ---------- news ---------- */
 .news{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(32px,4.4vw,80px)}
@@ -455,31 +416,13 @@ ul{list-style:none}
 @media (max-width:1000px){.news{grid-template-columns:1fr}}
 @media (max-width:620px){.news-feat{grid-template-columns:1fr}}
 
-/* ---------- footer (layout A) ---------- */
-.foot{position:relative;overflow:hidden;background:var(--ink-2);color:var(--paper);padding:clamp(120px,18vh,200px) var(--pad) 32px}
-.foot-bg{position:absolute;inset:0}
-.foot-bg img{width:100%;height:100%;object-fit:cover;filter:saturate(.7) brightness(.42)}
-.foot-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,var(--ink-2) 0%,rgba(30,33,26,.3) 32%,rgba(30,33,26,.55) 70%,var(--ink-2) 100%)}
-.foot .wrap{position:relative;z-index:2}
-.foot-slogan{font-size:clamp(64px,11.6vw,224px);font-weight:900;line-height:1.02;letter-spacing:-.05em}
-.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.1fr;gap:32px;margin-top:clamp(72px,11vh,132px);padding-top:32px;border-top:1px solid var(--line-d);font-size:14px}
-.foot-grid h5{font-size:13px;font-weight:500;color:rgba(244,243,241,.5);margin-bottom:12px}
-.foot-grid li{padding:3px 0;color:rgba(244,243,241,.82)}
-.foot-grid a:hover{color:var(--lime)}
-.foot-grid kbd{margin-right:8px}
-.foot-brand p{color:rgba(244,243,241,.6);margin-top:12px;max-width:22em}
-.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:56px;font-size:12px;color:rgba(244,243,241,.45)}
-@media (max-width:1000px){.foot-grid{grid-template-columns:1fr 1fr}}
-
-
 /* ---------- pages ---------- */
 .view{display:none}
 .view.on{display:block}
 
 /* page banner (layout B, every inner page) */
 .pb{position:relative;min-height:clamp(560px,86vh,920px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,620px);align-items:end;padding:calc(var(--hd) + 96px) var(--pad) clamp(64px,11vh,120px);overflow:hidden;background:var(--ink-2);color:var(--paper)}
-.pb .lb-media img{transform:scale(1.1);transition:transform 2.2s var(--ease)}
-.view.shown .pb .lb-media img{transform:none}
+.pb .lb-media img{transform:none}
 .pb .cap{position:absolute;left:var(--pad);bottom:30px;z-index:2}
 .pb-text{grid-column:2;position:relative;z-index:2}
 .pb-text .en{color:rgba(244,243,241,.5)}
@@ -490,21 +433,16 @@ ul{list-style:none}
 .pb .lead{margin-top:28px;max-width:30em}
 @media (max-width:900px){.pb{grid-template-columns:1fr;min-height:88vh}.pb-text{grid-column:1}.pb .lb-media img{width:100%}.pb .lb-shade{background:linear-gradient(to bottom,rgba(30,33,26,.25),var(--ink-2) 72%)}}
 
-/* page transition wipe */
-.pt{position:fixed;inset:0;z-index:85;background:var(--ink-2);color:var(--paper);display:grid;place-items:center;clip-path:inset(100% 0 0 0);visibility:hidden;pointer-events:none}
-.pt.cover{visibility:visible;clip-path:inset(0 0 0 0);transition:clip-path .75s cubic-bezier(.76,0,.24,1)}
-.pt.lift{visibility:visible;clip-path:inset(0 0 100% 0);transition:clip-path .85s cubic-bezier(.76,0,.24,1)}
-.pt-in{text-align:center}
-.pt-in .en{color:rgba(244,243,241,.5);opacity:0;transition:opacity .5s .3s}
-.pt.cover .pt-in .en{opacity:1}
-.pt-t{font-size:clamp(64px,10vw,190px);font-weight:900;letter-spacing:-.045em;line-height:1.08;margin:12px 0 22px}
-.js .pt .ln>span{transform:translateY(110%);transition:transform .9s var(--ease) .18s}
-.js .pt.cover .ln>span{transform:none}
-.js .pt.lift .ln>span{transform:translateY(-40%);opacity:0;transition:transform .7s var(--ease),opacity .45s}
-.js .pt:not(.cover):not(.lift) .ln>span{transition:none}
-.pt-idx{font-size:15px;color:rgba(244,243,241,.5);letter-spacing:.08em}
-.pt-bar{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(36px,7vh,72px);height:2px;background:var(--lime);transform:scaleX(0);transform-origin:left}
-.pt.cover .pt-bar{transform:scaleX(1);transition:transform 1s cubic-bezier(.65,0,.35,1) .1s}
+/* Let the next heading be readable as soon as the route changes. */
+.js .view.on :is(.pb,.hero) .ln>span,.js .view.on :is(.pb,.hero) .rv{transform:none;opacity:1;transition:none}
+@media (prefers-reduced-motion:no-preference){
+  .view.on{animation:route-appear .24s ease-out}
+  .view.on :is(.pb-text,.hero-in){animation:route-heading .28s var(--ease)}
+  .view.on .pb .lb-media img{animation:route-image .42s var(--ease)}
+}
+@keyframes route-appear{from{opacity:.78}to{opacity:1}}
+@keyframes route-heading{from{transform:translateY(8px)}to{transform:translateY(0)}}
+@keyframes route-image{from{transform:scale(1.025)}to{transform:scale(1)}}
 
 /* home: section index with floating preview */
 .idx-sec{overflow:hidden}
@@ -525,26 +463,10 @@ ul{list-style:none}
 .idx-float img.on{opacity:1;transform:none}
 @media (max-width:900px){.idx a{grid-template-columns:1fr 32px}.idx .en,.idx p{display:none}}
 
-/* database page */
-.db-sec{padding:clamp(80px,12vh,140px) 0 0}
-.db-sec .wrap{padding:0 var(--pad);max-width:calc(var(--maxw) + var(--pad) * 2)}
-.db-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line-d)}
-.db-cell{padding:30px 24px 0 0}
-.db-cell .num{font-size:clamp(64px,7vw,128px);line-height:.95;display:block}
-.db-cell .num small{font-family:var(--cn);font-size:18px;font-weight:500;margin-left:8px;color:rgba(244,243,241,.6);font-stretch:normal}
-.db-cell b{display:block;font-size:20px;margin-top:16px}
-.db-cell p{font-size:14px;color:rgba(244,243,241,.6)}
-.db-sec .db-note{margin:28px 0 clamp(56px,9vh,96px)}
-.fields{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:0 24px}
-.field{border-top:2px solid var(--ink);padding-top:20px}
-.field h3{font-size:clamp(20px,1.6vw,24px);font-weight:900}
-.field p{font-size:13px;color:var(--mute);margin:4px 0 14px}
-.field li{font-size:14.5px;padding:8px 0;border-top:1px solid var(--line-l)}
-@media (max-width:1000px){.db-grid{grid-template-columns:1fr}.fields{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:32px}}
 .duel{margin-bottom:0}
 
 /* ---------- overlays ---------- */
-.menu{position:fixed;inset:0;z-index:80;background:var(--ink-2);color:var(--paper);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .9s var(--ease),visibility 0s .9s}
+.menu{position:fixed;inset:0;z-index:80;background:var(--ink-2);color:var(--paper);display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);clip-path:inset(0 0 100% 0);visibility:hidden;transition:clip-path .24s var(--ease),visibility 0s .24s}
 .menu.open{clip-path:inset(0 0 0 0);visibility:visible;transition:clip-path .9s var(--ease),visibility 0s}
 .menu-list{padding:calc(var(--hd) + 36px) var(--pad) 36px;display:flex;flex-direction:column;justify-content:center;overflow-y:auto}
 .menu-list a{display:flex;width:fit-content;align-items:baseline;gap:20px;font-size:clamp(26px,3.2vw,50px);font-weight:900;line-height:1.3;letter-spacing:-.02em;color:rgba(244,243,241,.38);transition:color .3s}
@@ -579,8 +501,11 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
 .hint.gone{opacity:0;transform:translateY(12px);pointer-events:none}
 .toast{position:fixed;left:50%;top:22px;z-index:95;visibility:hidden;transform:translate(-50%,calc(-100% - 40px));background:var(--paper);color:var(--ink);padding:12px 22px;border-radius:999px;font-size:14px;font-weight:500;transition:transform .5s var(--ease);max-width:92vw;text-align:center}
 .toast.show{transform:translate(-50%,0);visibility:visible}
-@media print{.view{display:block!important}.pre,.top,.menu,.keys,.pg,.hint,.toast{display:none!important}.sec,.hero,.foot{break-after:page}.js .ln>span,.js .rv{transform:none!important;opacity:1!important}.hs{height:auto!important}.hs-sticky{position:relative;height:auto}.hs-track{transform:none!important;flex-wrap:wrap}}
+@media print{.view{display:block!important}.pre,.top,.menu,.keys,.pg,.hint,.toast{display:none!important}.sec,.hero{break-after:page}.js .ln>span,.js .rv{transform:none!important;opacity:1!important}.hs{height:auto!important}.hs-sticky{position:relative;height:auto}.hs-track{transform:none!important;flex-wrap:wrap}}
 </style>
+<link rel="stylesheet" href="assets/case-feature.css">
+<link rel="stylesheet" href="assets/library-ui.css">
+<link rel="stylesheet" href="assets/standards-ui.css">
 </head>
 <body>
 <a class="sr" href="#about">跳到正文</a>
@@ -598,26 +523,12 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
   </div>
 </div>
 
-<!-- ========== 页面切换遮罩 ========== -->
-<div class="pt" id="pt" aria-hidden="true">
-  <div class="pt-in">
-    <span class="en" id="ptEn"></span>
-    <div class="pt-t"><span class="ln"><span id="ptT"></span></span></div>
-    <span class="pt-idx num" id="ptIdx"></span>
-  </div>
-  <i class="pt-bar"></i>
-</div>
-
 <!-- ========== 顶部 ========== -->
 <div class="top" id="top">
   <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
   <header class="hd">
     <a class="brand" href="#home" aria-label="区级人工智能项目评估平台 首页">
-      <svg class="brand-mark" viewBox="0 0 34 34" aria-hidden="true">
-        <circle cx="17" cy="17" r="15" fill="none" stroke="rgba(244,243,241,.55)" stroke-width="1.4" stroke-dasharray="2.2 3"/>
-        <circle cx="17" cy="17" r="6.5" fill="none" stroke="#F4F3F1" stroke-width="1.8"/>
-        <circle cx="27.6" cy="6.4" r="3.4" fill="#CBF902"/>
-      </svg>
+      <img class="brand-mark" src="assets/brand-mark.svg" width="34" height="34" alt="">
       <span><b>区级人工智能项目评估平台</b><small>专注AI项目立项评估、造价核定与企业匹配</small></span>
     </a>
     <nav class="nav" id="nav" aria-label="主导航"></nav>
@@ -659,7 +570,7 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
     <div class="wrap">
       <div class="sh">
         <div><span class="en rv">Explore</span><h2 class="h2 rl"><span class="ln"><span>平台栏目</span></span></h2></div>
-        <p class="rv" style="--d:.1s">从立项评估到持续运营，每个栏目回答一个问题。点击进入对应页面。</p>
+        <p class="rv" style="--d:.1s">查阅项目评估、造价核定与匹配流程，或按地区检索询价依据。</p>
       </div>
       <nav class="idx" id="idxList" aria-label="平台栏目"></nav>
     </div>
@@ -714,7 +625,7 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
     <div class="wrap stats">
       <div class="stat"><span class="num" data-count="6">0</span><p>个评价维度</p></div>
       <div class="stat"><span class="num" data-count="23">0</span><p>项评价指标</p></div>
-      <div class="stat"><span class="num" data-count="3">0</span><p>个资源库：企业、技术、底座</p></div>
+      <div class="stat"><span class="num" data-count="5">0</span><p>个资源库支撑匹配、评估与询价</p></div>
       <div class="stat"><span class="num" data-count="11">0</span><p>个工作日出具评估结论</p></div>
     </div>
   </section>
@@ -873,22 +784,31 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
 
 <!-- ==================================================== 典型案例 -->
 <div class="view" data-page="cases">
-  <header class="pb">
-    <div class="lb-media ph"><img src="assets/scene-1.jpg" alt="政务服务大厅"></div>
-    <div class="lb-shade"></div>
-    <span class="cap">政务服务大厅（示意图）</span>
-    <div class="pb-text">
-      <p class="crumb rv"><a href="#home">首页</a><span>/</span><span>典型案例</span></p>
-      <span class="en rv">Cases</span>
-      <h1 class="h1 rl"><span class="ln"><span>典型案例</span></span></h1>
-      <p class="lead rv" style="--d:.15s">分数和核减率任一落入更低一档，就按更低一档出结论。</p>
+  <header class="inquiry-cover">
+    <div class="wrap">
+      <p class="crumb"><a href="#home">首页</a><span>/</span><span>典型案例</span></p>
+      <div class="inquiry-spread">
+        <div class="inquiry-intro">
+          <p class="inquiry-kicker">询价案例<span> / </span>会议系统集成</p>
+          <h1>视频会议系统</h1>
+          <p>同一型号的导播服务器，两份凭证给出了不同的单价。沿着这份询价档案，可以逐项查看设备规格、报价单位和参数符合情况。</p>
+          <a class="btn btn-lime" href="#database/library-case-entry">查看完整询价档案 <span aria-hidden="true">↗</span></a>
+        </div>
+        <article class="quote-sheet" aria-label="同型号报价对照">
+          <header><span>同型号报价对照</span><span>AI询价喵</span></header>
+          <h2>导播服务器</h2><p class="quote-model">现代中庆 <strong>M2600</strong></p>
+          <div id="featuredQuotes"></div>
+          <p class="quote-foot">点开凭证，可核对该报价对应的技术参数。</p>
+        </article>
+      </div>
+      <dl class="inquiry-metrics" id="inquiryMetrics"></dl>
     </div>
   </header>
   <section class="sec light">
     <div class="wrap">
       <div class="sh">
-        <div><span class="en rv">Results</span><h2 class="h2 rl"><span class="ln"><span>评估结论一览</span></span></h2></div>
-        <p class="rv" style="--d:.1s">六个示例项目。将鼠标移到卡片上，查看申报与核定金额、综合得分和建议承接方。</p>
+        <div><span class="en rv">Evaluation cases</span><h2 class="h2 rl"><span class="ln"><span>项目评估示例</span></span></h2></div>
+        <p class="rv" style="--d:.1s">以下六个演示项目展示不同的评估结论。展开卡片可查看申报金额、核定金额、综合得分和建议承接方。</p>
       </div>
       <div class="cases" id="caseGrid"></div>
     </div>
@@ -897,84 +817,35 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
 
 <!-- ==================================================== 资源库 -->
 <div class="view" data-page="database">
-  <header class="pb">
-    <div class="lb-media ph"><img src="assets/database.jpg" alt="数据中心机房走廊"></div>
-    <div class="lb-shade"></div>
-    <span class="cap">数据中心机房（示意图）</span>
-    <div class="pb-text">
-      <p class="crumb rv"><a href="#home">首页</a><span>/</span><span>资源库</span></p>
-      <span class="en rv">Database</span>
-      <h1 class="h1 rl"><span class="ln"><span>资源库</span></span></h1>
-      <p class="lead rv" style="--d:.15s">企业、技术和底座能力统一入库。新项目进来先匹配，再定价。</p>
+  <header class="library-mast">
+    <div class="wrap">
+      <p class="crumb"><a href="#home">首页</a><span>/</span><span>资源库</span></p>
+      <h1>资源库</h1>
+      <p>按场景查找企业和技术，按案例追溯设备报价。</p>
     </div>
   </header>
-  <section class="darker db-sec">
-    <div class="wrap">
-      <div class="db-grid" id="dbGrid"></div>
-      <p class="db-note">数量为示例数据</p>
-    </div>
-    <div class="mq" aria-hidden="true"><div class="mq-track" id="mq1"></div></div>
-    <div class="mq rev" aria-hidden="true"><div class="mq-track" id="mq2"></div></div>
-  </section>
-  <section class="sec light">
-    <div class="wrap">
-      <div class="sh">
-        <div><span class="en rv">Profile</span><h2 class="h2 rl"><span class="ln"><span>企业画像五组字段</span></span></h2></div>
-        <p class="rv" style="--d:.1s">同一张画像里横向比较资质、案例、团队和技术特色，避免只按企业规模打分。</p>
-      </div>
-      <div class="fields" id="fields"></div>
-    </div>
-  </section>
+  <div id="library-case-entry"><div id="library-app"></div></div>
 </div>
 
-<!-- ==================================================== 运营服务 -->
-<div class="view" data-page="service">
-  <header class="pb">
-    <div class="lb-media ph"><img src="assets/service.jpg" alt="城市夜景"></div>
-    <div class="lb-shade"></div>
-    <span class="cap">城市夜景（示意图）</span>
-    <div class="pb-text">
-      <p class="crumb rv"><a href="#home">首页</a><span>/</span><span>运营服务</span></p>
-      <span class="en rv">Service</span>
-      <h1 class="h1 rl"><span class="ln"><span>运营服务</span></span></h1>
-      <p class="lead rv" style="--d:.15s">平台建成后持续运营：数据定期更新，权重每年校准，评估能力从立项逐步延伸到执行与验收。</p>
+<!-- ==================================================== 询价标准 -->
+<div class="view" data-page="standards">
+  <header class="library-mast standards-mast">
+    <div class="wrap">
+      <p class="crumb"><a href="#home">首页</a><span>/</span><span>询价标准</span></p>
+      <div class="standards-mast-row">
+        <div>
+          <h1>询价标准</h1>
+          <p>按地区和文号，查阅信息化项目预算编制、建设费用及运维支出的测算依据。</p>
+        </div>
+        <div class="standards-mast-meta">
+          <dl id="standards-scope-counts" aria-label="地区目录构成"></dl>
+        </div>
+      </div>
     </div>
   </header>
-  <section class="sec dark">
-    <div class="wrap">
-      <div class="sh">
-        <div><span class="en rv">Operation</span><h2 class="h2 rl"><span class="ln"><span>持续运营与评估服务</span></span></h2></div>
-        <p class="rv" style="--d:.1s">评估结果和验收结果持续回流资源库，下一次评估不再从零开始。</p>
-      </div>
-      <div class="svc-grid">
-        <div class="svc rv"><span class="num">季度<small>更新</small></span><h3>数据定期更新</h3><p>企业库、技术库每季度更新，价格基准每半年更新，政策数据随文件发布更新。</p></div>
-        <div class="svc rv" style="--d:.1s"><span class="num">每年<small>校准</small></span><h3>权重年度校准</h3><p>用历史项目的实际核减率、验收结果和履约评价回归校准；分数与核减率结论不一致的项目全部纳入抽样复核。</p></div>
-        <div class="svc rv" style="--d:.2s"><span class="num">全周期<small>延伸</small></span><h3>立项到验收</h3><p>验收结果回流企业库和价格库，下一次评估不再从零开始。</p></div>
-      </div>
-      <div class="phases rv">
-        <div class="phase now"><i></i><span>一期 · 本期建设</span><h3>立项评估</h3><p>需求解析、造价核定、综合评分、企业匹配、报告出具。</p></div>
-        <div class="phase"><i></i><span>二期</span><h3>执行监管</h3><p>跟踪合同金额、进度和范围变更，与核定口径比对。</p></div>
-        <div class="phase"><i></i><span>三期</span><h3>验收评价</h3><p>用同一套指标评价产出与效益，结果回流资源库。</p></div>
-      </div>
-    </div>
-  </section>
+  <div id="standards-app"></div>
 </div>
 </main>
-
-<!-- ========== 页脚（各页共用） ========== -->
-<footer class="foot" id="foot">
-  <div class="foot-bg ph"><img src="assets/footer.jpg" alt="" loading="lazy"></div>
-  <div class="wrap">
-    <p class="foot-slogan rl"><span class="ln"><span>每一分钱，</span></span><span class="ln"><span style="--d:.1s">都有出处。</span></span></p>
-    <div class="foot-grid">
-      <div class="foot-brand"><h5>区级人工智能项目评估平台</h5><p>专注AI项目立项评估、造价核定与企业匹配。</p></div>
-      <div><h5>栏目</h5><ul id="footNav"></ul></div>
-      <div><h5>联系方式</h5><ul><li>电话：待确认</li><li>邮箱：待确认</li><li>地址：待确认</li></ul></div>
-      <div><h5>演示快捷键</h5><ul><li><kbd>Enter</kbd>开始演示</li><li><kbd>←</kbd><kbd>→</kbd>切换页面</li><li><kbd>Q</kbd>关闭演示</li><li><kbd>?</kbd>全部快捷键</li></ul></div>
-    </div>
-    <div class="foot-bottom"><span>© 2026 评估系统项目组 · 方案演示稿 V0.3</span><span>示意图片为占位图，替换 assets 文件夹中的同名文件即可</span></div>
-  </div>
-</footer>
 
 <!-- ========== 全屏目录 ========== -->
 <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="目录" aria-hidden="true">
@@ -1013,7 +884,7 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 /* =====================================================================
-   页面数据：改这里即可替换内容（全部为演示数据，企业一律写作“企业A/B/C”）
+   评估演示数据配置。视频会议系统的询价数据单独加载于 assets/conference-data.js。
    ===================================================================== */
 window.CONFIG = {
   /* 导航栏的每一项都是独立页面；顺序即数字键 1—8 的顺序 */
@@ -1023,9 +894,9 @@ window.CONFIG = {
     { id: 'evaluation', name: '项目评估', en: 'Evaluation', img: 'assets/evaluation.jpg', d: '六维综合评价体系与八步评估流程' },
     { id: 'pricing',    name: '造价核定', en: 'Pricing',    img: 'assets/pricing.jpg',    d: '工程量核定与复用抵扣' },
     { id: 'matching',   name: '场景匹配', en: 'Matching',   img: 'assets/scene-4.jpg',    d: '场景驱动的企业与技术匹配' },
-    { id: 'cases',      name: '典型案例', en: 'Cases',      img: 'assets/scene-1.jpg',    d: '六个示例项目的评估结论' },
-    { id: 'database',   name: '资源库',   en: 'Database',   img: 'assets/database.jpg',   d: '企业库、技术库、底座库' },
-    { id: 'service',    name: '运营服务', en: 'Service',    img: 'assets/service.jpg',    d: '持续运营与评估服务' }
+    { id: 'cases',      name: '典型案例', en: 'Cases',      img: 'assets/scene-1.jpg',    d: '视频会议系统询价档案与六个评估示例' },
+    { id: 'database',   name: '资源库',   en: 'Database',   img: 'assets/database.jpg',   d: '企业、技术与底座、项目与场景、案例和软硬件价格' },
+    { id: 'standards',  name: '询价标准', en: 'Standards',  img: 'assets/service.jpg',    d: '各地区信息化项目预算编制与费用测算依据' }
   ],
 
   five: [
@@ -1116,21 +987,6 @@ window.CONFIG = {
     { name: '惠企政策精准推送智能体', unit: '区科信局（示例）', scene: '政策问答', img: 'assets/evaluation.jpg', from: 450, to: 198, cut: 56.0, score: 52.4, verdict: '不予支持', ents: [], veto: '未完成算法备案，触发否决项' }
   ],
 
-  db: [
-    { n: 326,  u: '家', name: '企业库', d: '园区企业及其产品、技术与能力' },
-    { n: 1184, u: '项', name: '技术库', d: '前沿技术、企业已有技术与成果' },
-    { n: 27,   u: '个', name: '底座库', d: '可复用的底座能力与参考定价' }
-  ],
-  fields: [
-    { t: '基础信息', use: '身份与园区适配', items: ['名称、统一社会信用代码', '注册地与园区关系', '成立年限', '人员规模'] },
-    { t: '资质信用', use: '门槛与风险',     items: ['高新、专精特新、独角兽', '体系认证', '信用记录', '涉诉与处罚'] },
-    { t: '能力画像', use: '技术匹配',       items: ['技术标签', '产品线', '专利与软著', '模型与算法能力'] },
-    { t: '业绩画像', use: '案例与价格校准', items: ['政务案例', '合同金额', '验收结论与用户评价', '报价历史'] },
-    { t: '交付画像', use: '履约保障',       items: ['项目经理', '关键人员', '驻场能力', '本地机构'] }
-  ],
-  tagsA: ['国家高新技术企业', '专精特新', '独角兽企业', '小型专精团队', '园区新引进企业', '重点扶持企业'],
-  tagsB: ['政务大模型底座', '数字孪生底座', '数据中台', '统一身份认证', '电子证照', '政务云算力'],
-
   news: [
     { title: '平台动态',
       feat: { img: 'assets/scene-3.jpg', date: '2026-11-20', t: '评估平台完成首批 AI 项目试评估', d: '首批 6 个项目完成需求解析、造价核定与企业匹配全流程试运行。' },
@@ -1141,7 +997,10 @@ window.CONFIG = {
   ]
 };
 </script>
-
+<script src="assets/conference-data.js"></script>
+<script src="assets/library-ui.js"></script>
+<script src="assets/standards-data.js"></script>
+<script src="assets/standards-ui.js"></script>
 <script>
 (function () {
 'use strict';
@@ -1159,11 +1018,23 @@ function pad(n) { return String(n).padStart(2, '0'); }
 function r1(n) { return Math.round(n * 10 + 1e-6) / 10; }
 function viewOf(id) { return $('.view[data-page="' + id + '"]'); }
 
+var standardEntries = window.InquiryStandards && window.InquiryStandards.entries;
+if (Array.isArray(standardEntries)) {
+  ['省级', '市级'].forEach(function (level) {
+    var group = document.createElement('div');
+    var label = document.createElement('dt');
+    var count = document.createElement('dd');
+    label.textContent = level + '条目';
+    count.textContent = standardEntries.filter(function (entry) { return entry.level === level; }).length;
+    group.append(label, count);
+    $('#standards-scope-counts').append(group);
+  });
+}
+
 /* ================= 导航、目录、首页栏目 ================= */
 var tt = '平台专注：AI项目立项评估 ｜ 造价核定 ｜ 企业与技术匹配 ｜ 评估报告出具';
 $('#ticker').innerHTML = new Array(6).fill('<span>' + tt + '</span>').join('');
 $('#nav').innerHTML = C.pages.map(function (p) { return '<a href="#' + p.id + '" data-id="' + p.id + '">' + p.name + '</a>'; }).join('');
-$('#footNav').innerHTML = C.pages.map(function (p) { return '<li><a href="#' + p.id + '">' + p.name + '</a></li>'; }).join('');
 $('#menuList').innerHTML = C.pages.map(function (p) { return '<a href="#' + p.id + '" data-id="' + p.id + '"><small>' + pad(p.i + 1) + '</small>' + p.name + '</a>'; }).join('');
 $('#menuPic').insertAdjacentHTML('afterbegin', C.pages.map(function (p) { return '<img src="' + p.img + '" alt="" data-id="' + p.id + '" loading="lazy">'; }).join(''));
 $('#idxList').innerHTML = C.pages.slice(1).map(function (p) {
@@ -1348,14 +1219,32 @@ $('#caseGrid').innerHTML = C.cases.map(function (c, i) {
     '<div><small style="font-size:12px;color:rgba(244,243,241,.55)">' + (c.ents.length ? '建议承接方（仅供参考）' : '处理方式') + '</small><div class="case-ent">' + ents + '</div></div></div></article>';
 }).join('');
 if (!fine) $$('.case').forEach(function (el) { el.addEventListener('click', function () { el.classList.toggle('open'); }); });
-$('#dbGrid').innerHTML = C.db.map(function (d, i) {
-  return '<div class="db-cell rv" style="--d:' + (i * .1).toFixed(1) + 's"><span class="num" data-count="' + d.n + '">0<small>' + d.u + '</small></span><b>' + d.name + '</b><p>' + d.d + '</p></div>';
-}).join('');
-$('#fields').innerHTML = C.fields.map(function (f, i) {
-  return '<div class="field rv" style="--d:' + (i * .06).toFixed(2) + 's"><h3>' + f.t + '</h3><p>用于' + f.use + '</p><ul>' + f.items.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>';
-}).join('');
-function fillMq(id, arr) { var h = arr.concat(arr).map(function (t) { return '<span>' + t + '</span>'; }).join(''); $(id).innerHTML = h + h; }
-fillMq('#mq1', C.tagsA); fillMq('#mq2', C.tagsB);
+var inquiry = window.ConferenceData;
+var quoteList = document.getElementById('featuredQuotes');
+['14574', '14577'].forEach(function (id) {
+  var record = inquiry.quotes.find(function (q) { return q.id === id; });
+  if (!record || record.unitPrice == null) return;
+  var link = document.createElement('a');
+  link.href = '#database/quote-' + id;
+  var label = document.createElement('span');
+  label.textContent = '凭证 ' + id;
+  var price = document.createElement('strong');
+  price.textContent = '¥' + record.unitPrice.toLocaleString('zh-CN');
+  var suffix = document.createElement('small');
+  suffix.textContent = ' / ' + (record.unit || '单位未提供') + ' ↗';
+  link.append(label, price, suffix);
+  quoteList.append(link);
+});
+var parameterCount = inquiry.quotes.reduce(function (n, q) { return n + q.parameters.length; }, 0);
+[['询价项', inquiry.items.length], ['询价凭证', inquiry.quotes.length], ['参数对照', parameterCount]].forEach(function (pair) {
+  var metric = document.createElement('div');
+  var label = document.createElement('dt');
+  var value = document.createElement('dd');
+  label.textContent = pair[0];
+  value.textContent = pair[1];
+  metric.append(label, value);
+  document.getElementById('inquiryMetrics').append(metric);
+});
 $('#newsGrid').innerHTML = C.news.map(function (col) {
   return '<div class="rv"><div class="news-h"><h3>' + col.title + '</h3><a href="#home">MORE →</a></div>' +
     '<a class="news-feat" href="#home"><div class="ph"><img src="' + col.feat.img + '" alt="" loading="lazy"></div><div><time>' + col.feat.date + '</time><h4>' + col.feat.t + '</h4><p>' + col.feat.d + '</p></div></a>' +
@@ -1399,10 +1288,11 @@ function loop() {
 function goY(y) { S.t = Math.max(0, Math.min(maxY(), y)); if (!S.raf) { S.y = scrollY; S.raf = requestAnimationFrame(loop); } }
 function scrollToY(y) { if (S.on) goY(y); else scrollTo({ top: y, behavior: reduced ? 'auto' : 'smooth' }); }
 function stopScroll() { if (S.raf) { cancelAnimationFrame(S.raf); S.raf = 0; } }
-var menu = $('#menu'), keys = $('#keys'), pt = $('#pt'), busy = false;
-function overlayOpen() { return busy || menu.classList.contains('open') || keys.classList.contains('open'); }
+var menu = $('#menu'), keys = $('#keys');
+function overlayOpen() { return menu.classList.contains('open') || keys.classList.contains('open'); }
 if (S.on) addEventListener('wheel', function (e) {
-  if (e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+  if (e.defaultPrevented || e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
+  if (e.target.closest && e.target.closest('dialog,[role="dialog"],textarea,select,[data-native-scroll]')) return;
   e.preventDefault();
   if (overlayOpen()) return;
   var d = e.deltaY * (e.deltaMode === 1 ? 16 : (e.deltaMode === 2 ? innerHeight : 1));
@@ -1411,70 +1301,85 @@ if (S.on) addEventListener('wheel', function (e) {
 }, { passive: false });
 
 /* ================= 页面路由与切换动效 ================= */
-var curPage = null, pending = null, hdThr = 200, top = $('#top'), hero = $('#hero'), foot = $('#foot');
-function setHash(id, target) { try { history.replaceState(null, '', '#' + id + (target ? '/' + target : '')); } catch (e) {} }
-function parseHash() { var a = location.hash.replace(/^#/, '').split('/'); return { id: PIDS.indexOf(a[0]) >= 0 ? a[0] : 'home', target: a[1] || '' }; }
+var curPage = null, hdThr = 200, top = $('#top'), hero = $('#hero');
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+function setHash(id, target, replace) {
+  var hash = '#' + id + (target ? '/' + target : '');
+  if (location.hash === hash) return;
+  try {
+    if (replace) history.replaceState(null, '', hash);
+    else history.pushState(null, '', hash);
+  } catch (e) { location.hash = hash; }
+}
+function parseHash() {
+  var parts = location.hash.slice(1).split('/');
+  var id = parts[0] === 'service' ? 'standards' : parts[0];
+  return { id: PIDS.indexOf(id) >= 0 ? id : 'home', target: parts[1] || '' };
+}
 function calcHeader() { var v = viewOf(curPage), f = v && v.firstElementChild; hdThr = f ? f.offsetHeight - 160 : 200; }
+function routePosition(id, target) {
+  if (!target) return 0;
+  var el;
+  if (id === 'database') {
+    var quote = /^quote-(\d+)$/.exec(target);
+    if (target === 'library-case-entry' || quote) {
+      if (window.PortalLibrary) {
+        if (quote) window.PortalLibrary.open('prices', quote[1]);
+        else window.PortalLibrary.open('cases', 'video-conference');
+      }
+      target = 'library-case-entry';
+      if (matchMedia('(max-width:800px)').matches) el = document.querySelector('#library-app .lib-detail');
+    }
+  }
+  el = el || document.getElementById(target);
+  if (!el || !viewOf(id).contains(el)) return 0;
+  var position = el.getBoundingClientRect().top + scrollY - top.getBoundingClientRect().height - 12;
+  return Math.max(0, Math.min(maxY(), position));
+}
 function swap(id, target) {
   stopScroll();
   var v = viewOf(id);
-  resetIn(v); resetIn(foot);
+  resetIn(v);
   v.classList.remove('shown');
   if (id === 'home') hero.classList.remove('play');
   $$('.view').forEach(function (x) { x.classList.toggle('on', x === v); });
   curPage = id;
   var p = PAGE[id];
-  $$('#nav a').forEach(function (a) { a.classList.toggle('on', a.dataset.id === id); });
-  $$('#menuList a').forEach(function (a) { a.classList.toggle('on', a.dataset.id === id); });
+  $$('#nav a,#menuList a').forEach(function (a) {
+    a.classList.toggle('on', a.dataset.id === id);
+    if (a.dataset.id === id) a.setAttribute('aria-current', 'page');
+    else a.removeAttribute('aria-current');
+  });
   $('#pgNum').textContent = pad(p.i + 1) + ' / ' + pad(PIDS.length);
   $('#pgName').textContent = p.name;
-  document.title = (id === 'home' ? '' : p.name + ' · ') + '区级人工智能项目评估平台';
+  document.title = p.name + ' · 区级人工智能项目评估平台';
   idxFloat.classList.remove('on');
   if (id === 'matching') measureStrip();
-  var y = 0, el = target && document.getElementById(target);
-  if (el) y = el.getBoundingClientRect().top + scrollY - 124;
-  scrollTo(0, y); S.y = S.t = scrollY;
+  scrollTo(0, routePosition(id, target)); S.y = S.t = scrollY;
   calcHeader(); onScroll();
+  window.dispatchEvent(new Event('portal-route-change'));
 }
 function enter(id) {
   var v = viewOf(id);
-  armIn(v); armIn(foot);
+  armIn(v);
   v.classList.add('shown');
   if (id === 'home') hero.classList.add('play');
 }
-function go(id, target, instant) {
+function go(id, target, fromLocation) {
   if (PIDS.indexOf(id) < 0) id = 'home';
   target = target || '';
-  if (busy) { pending = [id, target]; return; }
   closeMenu(true); closeKeys();
-  setHash(id, target);
+  setHash(id, target, fromLocation);
   if (id === curPage) {
-    if (target && document.getElementById(target)) scrollToY(document.getElementById(target).getBoundingClientRect().top + scrollY - 124);
-    else scrollToY(0);
+    var y = routePosition(id, target);
+    if (fromLocation) { stopScroll(); scrollTo(0, y); S.y = S.t = scrollY; }
+    else scrollToY(y);
     return;
   }
-  if (instant || reduced) {
-    swap(id, target);
-    requestAnimationFrame(function () { requestAnimationFrame(function () { enter(id); }); });
-    return;
-  }
-  busy = true;
-  var p = PAGE[id];
-  $('#ptEn').textContent = p.en; $('#ptT').textContent = p.name; $('#ptIdx').textContent = pad(p.i + 1) + ' / ' + pad(PIDS.length);
-  pt.className = 'pt'; void pt.offsetWidth; pt.classList.add('cover');
-  setTimeout(function () {
-    swap(id, target);
-    requestAnimationFrame(function () { requestAnimationFrame(function () {
-      pt.classList.remove('cover'); pt.classList.add('lift');
-      enter(id);
-      setTimeout(function () {
-        pt.className = 'pt'; busy = false;
-        if (pending) { var q = pending; pending = null; go(q[0], q[1]); }
-      }, 880);
-    }); });
-  }, 950);
+  swap(id, target);
+  enter(id);
 }
-addEventListener('hashchange', function () { var h = parseHash(); go(h.id, h.target); });
+addEventListener('hashchange', function () { var h = parseHash(); go(h.id, h.target, true); });
 
 function onScroll() {
   if (!S.raf) S.y = S.t = scrollY;
@@ -1486,6 +1391,7 @@ addEventListener('scroll', function () { if (!ticking) { ticking = true; request
 addEventListener('resize', function () { if (curPage === 'matching') measureStrip(); calcHeader(); onScroll(); });
 
 document.addEventListener('click', function (e) {
+  if (e.defaultPrevented || e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
   var a = e.target.closest('a[href^="#"]'); if (!a) return;
   var parts = a.getAttribute('href').slice(1).split('/');
   if (PIDS.indexOf(parts[0]) < 0) return;
@@ -1518,7 +1424,7 @@ function showPic(id) { $$('#menuPic img').forEach(function (im) { im.classList.t
 function openMenu() {
   menu.classList.add('open'); menu.setAttribute('aria-hidden', 'false'); mbtn.setAttribute('aria-expanded', 'true');
   root.style.overflow = 'hidden'; showPic(curPage);
-  setTimeout(function () { var a = $('#menuList a.on') || $('#menuList a'); a.focus({ preventScroll: true }); }, 350);
+  setTimeout(function () { if (menu.classList.contains('open')) ($('#menuList a.on') || $('#menuList a')).focus({ preventScroll: true }); }, 350);
 }
 function closeMenu(silent) {
   if (!menu.classList.contains('open')) return;
@@ -1557,8 +1463,11 @@ function closeShow() {
 
 var ready = false;
 addEventListener('keydown', function (e) {
-  if (!ready || e.ctrlKey || e.metaKey || e.altKey) return;
-  var k = e.key, t = e.target, interactive = /^(A|BUTTON|INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || t.isContentEditable || t.getAttribute('tabindex') === '0';
+  if (!ready || e.defaultPrevented || e.isComposing || e.ctrlKey || e.metaKey || e.altKey) return;
+  var k = e.key, t = e.target;
+  if (!(t instanceof Element)) return;
+  if (t.isContentEditable || t.closest('input,textarea,select,[role="textbox"],[role="combobox"],[role="tablist"],dialog,[role="dialog"]:not(#keys):not(#menu)')) return;
+  var interactive = !!t.closest('a,button,[tabindex="0"]');
   if (k !== 'Shift') hideHint();
   if (k === 'Escape') { if (keys.classList.contains('open')) closeKeys(); else if (menu.classList.contains('open')) closeMenu(); else if (document.fullscreenElement) document.exitFullscreen().catch(function () {}); return; }
   if (k === '?' || (k === '/' && e.shiftKey)) { e.preventDefault(); if (keys.classList.contains('open')) closeKeys(); else openKeys(); return; }
@@ -1606,7 +1515,12 @@ function start() {
 (function () {
   var pre = $('#pre'), played = false;
   try { played = sessionStorage.getItem('aiEvalPre') === '1'; } catch (e) {}
-  if (reduced || played) { pre.remove(); start(); return; }
+  if (reduced || played || location.hash) {
+    pre.remove();
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
+    else start();
+    return;
+  }
   var num = $('#preNum'), bar = $('#preBar'), eng = $$('.pre-eng span'), T = 2200, t0 = performance.now(), done = false;
   function stepPre(now) {
     if (done) return;
