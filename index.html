@@ -280,88 +280,110 @@ ul{list-style:none}
 .veto b{color:var(--ink);font-weight:700;margin-right:4px}
 
 /* ---------- 评估作业台 ---------- */
-.ed-pick{display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px 40px;
-  padding:22px 26px;border:1px solid var(--line-l);background:#fff;margin-bottom:26px}
-.ed-pick-l{display:flex;flex-direction:column;gap:8px;flex:0 0 auto;min-width:300px}
+.ed-launch{display:flex;flex-wrap:wrap;gap:26px 40px;align-items:flex-start;
+  padding:24px 28px;border:1px solid var(--line-l);background:#fff;margin-bottom:24px}
+.ed-launch-l{flex:1 1 340px;display:flex;flex-direction:column;gap:9px;min-width:0}
 .ed-lb{font-size:11.5px;font-weight:800;letter-spacing:.1em;color:var(--mute)}
 .ed-select{font-family:inherit;font-size:15px;padding:10px 14px;border:1px solid var(--line-l);
-  background:#fff;color:var(--ink);cursor:pointer}
-.ed-pick-r{flex:1;display:flex;flex-wrap:wrap;gap:12px 34px}
+  background:#fff;color:var(--ink);cursor:pointer;width:100%}
+.ed-launch-meta{display:flex;flex-wrap:wrap;gap:14px 30px;margin-top:4px}
 .ed-meta-i{display:flex;flex-direction:column;gap:3px}
 .ed-meta-i span{font-size:11.5px;color:var(--mute)}
 .ed-meta-i b{font-size:15px;font-weight:700}
-.ed-meta-i b.num{font-size:18px}
+.ed-meta-i b.num{font-size:17px}
 .ed-meta-i small{font-size:11px;font-weight:400;color:var(--mute)}
+.ed-launch-r{flex:0 0 auto;display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.ed-run{display:inline-flex;align-items:center;gap:11px;font-family:inherit;font-size:15px;font-weight:700;
+  padding:14px 30px;border:none;background:var(--ink);color:var(--paper);cursor:pointer;
+  transition:background .25s,opacity .25s;position:relative;overflow:hidden}
+.ed-run:hover{background:#000}
+.ed-run.running{background:var(--ink)}
+.ed-run.done{background:var(--lime);color:var(--ink)}
+.ed-run-ico{width:11px;height:12px;flex:0 0 auto;background:currentColor;
+  clip-path:polygon(0 0,100% 50%,0 100%)}
+.ed-run.running .ed-run-ico{animation:edpulse 1s ease-in-out infinite}
+@keyframes edpulse{0%,100%{opacity:.35}50%{opacity:1}}
+.ed-reset{font-family:inherit;font-size:12.5px;padding:7px 16px;border:1px solid var(--line-l);
+  background:transparent;color:var(--mute);cursor:pointer}
+.ed-reset:hover{border-color:var(--ink);color:var(--ink)}
+.ed-run-hint{font-size:12px;color:var(--mute);line-height:1.6;max-width:340px}
 
-/* 流程进度 */
-.ed-progress{border:1px solid var(--line-l);background:rgba(244,243,241,.5);padding:22px 26px;margin-bottom:26px}
-.ed-progress-h{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-.ed-progress-h h3{font-size:14px;font-weight:800;letter-spacing:.06em;flex:0 0 auto}
-.ed-progress-bar{flex:1;height:6px;background:var(--line-l);overflow:hidden}
-.ed-progress-bar i{display:block;height:100%;background:var(--lime);width:0;transition:width .9s var(--ease)}
-.ed-progress-p{font-size:14px;font-weight:800;width:46px;text-align:right;font-variant-numeric:tabular-nums}
-.ed-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin:0;padding:0;list-style:none;
+/* 进度条 */
+.ed-prog{border:1px solid var(--line-l);background:rgba(244,243,241,.5);padding:20px 24px;margin-bottom:24px}
+.ed-prog-h{display:flex;align-items:center;gap:14px;margin-bottom:16px;flex-wrap:wrap}
+.ed-prog-l{font-size:11.5px;font-weight:800;letter-spacing:.1em;color:var(--mute);flex:0 0 auto}
+.ed-prog-track{flex:1;height:6px;background:var(--line-l);overflow:hidden;min-width:160px}
+.ed-prog-track i{display:block;height:100%;background:var(--lime);width:0;transition:width .45s var(--ease)}
+.ed-prog-p{font-size:15px;font-weight:800;width:48px;text-align:right;font-variant-numeric:tabular-nums}
+.ed-prog-step{font-size:12.5px;color:var(--mute);flex:0 0 auto;min-width:150px}
+.ed-phases{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;margin:0;padding:0;list-style:none;
   background:var(--line-l);border:1px solid var(--line-l)}
-.ed-step{background:#fff;padding:14px 16px;display:flex;gap:11px;align-items:flex-start;position:relative}
-.ed-step-n{font-size:13px;font-weight:800;width:22px;height:22px;flex:0 0 auto;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;background:var(--line-l);color:var(--mute);
-  font-variant-numeric:tabular-nums}
-.ed-step-b{flex:1;min-width:0}
-.ed-step-b h4{font-size:13.5px;font-weight:700;margin-bottom:2px}
-.ed-step-o{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:3px;
-  background:rgba(244,243,241,.9);color:var(--mute);margin-bottom:5px}
-.ed-step-b p{font-size:11.5px;line-height:1.55;color:var(--mute)}
-.ed-step-s{font-size:11px;font-weight:700;color:var(--mute);flex:0 0 auto;white-space:nowrap}
-.ed-step.done .ed-step-n{background:var(--ink);color:var(--lime)}
-.ed-step.done .ed-step-s{color:#0f7a47}
-.ed-step.now{background:var(--ink)}
-.ed-step.now .ed-step-n{background:var(--lime);color:var(--ink)}
-.ed-step.now h4,.ed-step.now .ed-step-b p{color:var(--paper)}
-.ed-step.now .ed-step-s{color:var(--lime)}
-.ed-step.now .ed-step-o{background:rgba(244,243,241,.14);color:rgba(244,243,241,.7)}
-.ed-step.sys .ed-step-o{background:rgba(203,249,2,.22);color:#4a6000}
-.ed-step.team .ed-step-o{background:rgba(244,243,241,.9);color:var(--mute)}
-.ed-step.gov .ed-step-o{background:rgba(0,90,160,.12);color:#005a9e}
+.ed-phase{background:#fff;padding:11px 12px;display:flex;flex-direction:column;gap:5px;
+  cursor:pointer;transition:background .25s}
+.ed-phase:hover{background:rgba(244,243,241,.7)}
+.ed-phase-n{font-size:11px;font-weight:800;width:19px;height:19px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;background:var(--line-l);color:var(--mute)}
+.ed-phase-b{display:flex;flex-direction:column;gap:1px}
+.ed-phase-b b{font-size:12.5px;font-weight:700}
+.ed-phase-b small{font-size:10.5px;color:var(--mute)}
+.ed-phase-s{font-size:12px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--lime)}
+.ed-phase.done .ed-phase-n{background:var(--ink);color:var(--lime)}
+.ed-phase.done .ed-phase-s{color:var(--ink)}
+.ed-phase.now{background:var(--ink)}
+.ed-phase.now .ed-phase-n{background:var(--lime);color:var(--ink)}
+.ed-phase.now .ed-phase-b b{color:var(--paper)}
+.ed-phase.now .ed-phase-b small{color:rgba(244,243,241,.55)}
+.ed-phase.now .ed-phase-s{color:var(--lime)}
+.ed-phase.wait{opacity:.5}
+.ed-phase.wait .ed-phase-s{color:var(--mute)}
 
-/* 结论摘要 */
-.ed-summary{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,2fr);gap:1px;
-  background:var(--line-l);border:1px solid var(--line-l);margin-bottom:30px}
-.ed-sum-main{background:var(--ink);color:var(--paper);padding:26px 30px;display:flex;
-  flex-direction:column;align-items:flex-start;justify-content:center;gap:4px}
-.ed-sum-l{font-size:12px;font-weight:700;letter-spacing:.1em;color:rgba(244,243,241,.55)}
-.ed-sum-n{font-size:clamp(54px,5.4vw,80px);line-height:.95;font-weight:900;font-variant-numeric:tabular-nums}
-.ed-sum-grid{background:#fff;display:grid;grid-template-columns:repeat(4,1fr)}
-.ed-sum-i{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:22px 24px;
-  border-left:1px solid var(--line-l)}
-.ed-sum-i:first-child{border-left:none}
-.ed-sum-i span{font-size:11.5px;color:var(--mute)}
-.ed-sum-i b{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
-.ed-grade{font-size:15px;font-weight:800;padding:3px 12px;border-radius:3px;background:rgba(244,243,241,.12)}
-.ed-grade.g-a{background:var(--lime);color:var(--ink)}
-.ed-grade.g-b{background:rgba(203,249,2,.7);color:var(--ink)}
-.ed-grade.g-c{background:rgba(244,243,241,.3);color:var(--paper)}
-.ed-grade.g-d{background:rgba(244,243,241,.16);color:rgba(244,243,241,.85)}
-.ed-grade.g-e{background:rgba(200,90,60,.35);color:#f0b0a0}
+/* 分区切换：左导航 + 右明细 */
+.ed-desk{display:grid;grid-template-columns:minmax(210px,250px) minmax(0,1fr);gap:1px;
+  background:var(--line-l);border:1px solid var(--line-l);margin-bottom:26px}
+.ed-nav{background:#fff;display:flex;flex-direction:column}
+.ed-nav-i{display:flex;align-items:center;gap:10px;padding:13px 15px;background:#fff;
+  border:none;border-bottom:1px solid var(--line-l);font-family:inherit;text-align:left;
+  cursor:pointer;transition:background .2s;width:100%}
+.ed-nav-i:last-child{border-bottom:none}
+.ed-nav-i:hover:not(:disabled){background:rgba(244,243,241,.7)}
+.ed-nav-i:disabled{opacity:.42;cursor:not-allowed}
+.ed-nav-n{font-size:11.5px;font-weight:800;width:20px;height:20px;flex:0 0 auto;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;background:var(--line-l);color:var(--mute)}
+.ed-nav-b{flex:1;display:flex;flex-direction:column;gap:1px;min-width:0}
+.ed-nav-b b{font-size:13px;font-weight:700}
+.ed-nav-b small{font-size:10.5px;color:var(--mute)}
+.ed-nav-s{font-size:13px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--mute)}
+.ed-nav-i.done .ed-nav-n{background:var(--ink);color:var(--lime)}
+.ed-nav-i.done .ed-nav-s{color:var(--ink)}
+.ed-nav-i.done.view{background:rgba(203,249,2,.14)}
+.ed-nav-i.done.view .ed-nav-n{background:var(--lime);color:var(--ink)}
+.ed-nav-i.on{background:var(--ink)}
+.ed-nav-i.on .ed-nav-n{background:var(--lime);color:var(--ink)}
+.ed-nav-i.on .ed-nav-b b{color:var(--paper)}
+.ed-nav-i.on .ed-nav-b small{color:rgba(244,243,241,.55)}
+.ed-nav-i.on .ed-nav-s{color:var(--lime)}
 
-/* 分维度分区 */
-.ed-sections{display:flex;flex-direction:column;gap:26px;margin-bottom:30px}
-.ed-sec{border:1px solid var(--line-l);background:#fff}
-.ed-sec-h{display:flex;align-items:center;gap:18px;padding:20px 26px 16px;flex-wrap:wrap}
-.ed-sec-code{font-family:var(--lat);font-size:34px;font-weight:800;line-height:1;width:46px;flex:0 0 auto;
+.ed-pane{background:#fff;min-height:420px;display:flex;flex-direction:column}
+.ed-pane-h{display:flex;align-items:center;gap:18px;padding:20px 26px 16px;flex-wrap:wrap;
+  border-bottom:1px solid var(--line-l)}
+.ed-pane-t{display:flex;align-items:center;gap:15px;flex:1;min-width:0}
+.ed-pane-code{font-family:var(--lat);font-size:32px;font-weight:800;line-height:1;width:44px;flex:0 0 auto;
   color:var(--ink);border-bottom:3px solid var(--lime);padding-bottom:4px}
-.ed-sec-t{flex:1;min-width:0}
-.ed-sec-t h3{font-size:19px;font-weight:800;letter-spacing:-.01em}
-.ed-sec-t p{font-size:12.5px;color:var(--mute);margin-top:3px}
-.ed-sec-s{display:flex;align-items:baseline;gap:10px;flex:0 0 auto}
-.ed-sec-s .num{font-size:34px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
-.ed-sec-g{font-size:12px;font-weight:800;padding:3px 10px;border-radius:3px;background:rgba(244,243,241,.8);color:var(--mute)}
-.ed-sec-g.g-a,.ed-sec-g.g-b{background:var(--lime);color:var(--ink)}
-.ed-sec-g.g-e{background:rgba(200,90,60,.16);color:#b4622a}
-.ed-sec-bar{height:4px;background:var(--line-l)}
-.ed-sec-bar i{display:block;height:100%;background:var(--ink);width:0;transition:width 1s var(--ease)}
-.ed-items{padding:6px 26px 20px}
-.ed-item{padding:16px 0 14px;border-bottom:1px solid var(--line-l)}
+.ed-pane-t h3{font-size:18px;font-weight:800;letter-spacing:-.01em}
+.ed-pane-t p{font-size:12.5px;color:var(--mute);margin-top:3px}
+.ed-pane-s{display:flex;align-items:baseline;gap:9px;flex:0 0 auto}
+.ed-pane-s .num{font-size:32px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.ed-pane-s small{font-size:11.5px;color:var(--mute)}
+.ed-pane-g{font-size:12px;font-weight:800;padding:3px 10px;border-radius:3px;background:rgba(244,243,241,.8);color:var(--mute)}
+.ed-pane-g.g-a,.ed-pane-g.g-b{background:var(--lime);color:var(--ink)}
+.ed-pane-g.g-e{background:rgba(200,90,60,.16);color:#b4622a}
+.ed-pane-b{padding:6px 26px 22px;flex:1}
+
+/* 指标项：逐步显现 */
+.ed-item{opacity:0;transform:translateY(10px);transition:opacity .45s var(--ease),transform .45s var(--ease);
+  padding:16px 0 14px;border-bottom:1px solid var(--line-l);visibility:hidden}
 .ed-item:last-child{border-bottom:none}
+.ed-item.show{opacity:1;transform:none;visibility:visible;transition-delay:var(--d,0s)}
 .ed-item-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}
 .ed-item-c{font-size:12px;font-weight:800;padding:1px 7px;border-radius:3px;background:var(--ink);color:var(--paper)}
 .ed-item-n{font-size:15px;font-weight:600}
@@ -369,13 +391,11 @@ ul{list-style:none}
 .ed-item-a{font-size:11px;font-weight:700;padding:2px 8px;border-radius:3px;
   background:rgba(244,243,241,.9);color:var(--mute)}
 .ed-item-a.a5{background:rgba(203,249,2,.3);color:#4a6000}
-.ed-item-a.a3{background:rgba(244,243,241,.9);color:var(--mute)}
 .ed-item-a.a1{background:rgba(200,90,60,.14);color:#b4622a}
 .ed-item-s{margin-left:auto;font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
 .ed-item-s.zero{color:#b4622a}
 .ed-item-basis{display:flex;gap:10px;align-items:flex-start;margin-bottom:9px}
-.ed-basis-l{flex:0 0 auto;font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--mute);
-  padding-top:3px}
+.ed-basis-l{flex:0 0 auto;font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--mute);padding-top:3px}
 .ed-item-basis p{font-size:13px;line-height:1.65;color:var(--ink)}
 .ed-item-subs{margin-bottom:9px}
 .ed-sub-list{display:flex;flex-wrap:wrap;gap:5px 8px}
@@ -384,16 +404,39 @@ ul{list-style:none}
 .ed-sub-i i{font-style:normal;font-size:10px;opacity:.55}
 .ed-sub-i.ok{border-color:rgba(203,249,2,.55);background:rgba(203,249,2,.14);color:var(--ink)}
 .ed-sub-i.ok i{opacity:1;color:#4a6000}
-.ed-item-foot{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-top:8px;
-  border-top:1px dashed var(--line-l)}
+.ed-item-foot{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-top:8px;border-top:1px dashed var(--line-l)}
 .ed-ev-tag{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap}
 .ed-ev-tag.l4{background:rgba(203,249,2,.28);color:#4a6000}
 .ed-ev-tag.l3{background:rgba(244,243,241,.9);color:var(--mute)}
 .ed-ev-tag.l2{background:rgba(0,90,160,.1);color:#005a9e}
 .ed-ev-tag.l1{background:rgba(200,90,60,.14);color:#b4622a}
 .ed-ev-desc{font-size:11.5px;color:var(--mute);flex:1 1 100%;line-height:1.55}
-.ed-veto-tag{font-size:10.5px;font-weight:700;color:#b4622a;border:1px solid rgba(180,98,42,.4);
-  padding:2px 8px;border-radius:3px}
+.ed-veto-tag{font-size:10.5px;font-weight:700;color:#b4622a;border:1px solid rgba(180,98,42,.4);padding:2px 8px;border-radius:3px}
+
+/* 汇总面板 */
+.ed-final{padding:4px 0 0}
+.ed-final-main{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:20px 24px;
+  background:var(--ink);color:var(--paper);margin-bottom:20px}
+.ed-final-l{font-size:12px;font-weight:700;letter-spacing:.1em;color:rgba(244,243,241,.55)}
+.ed-final-n{font-size:clamp(48px,4.8vw,70px);line-height:.95;font-weight:900;font-variant-numeric:tabular-nums}
+.ed-final-band{font-size:13px;color:rgba(244,243,241,.6)}
+.ed-final-side{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line-l);
+  border:1px solid var(--line-l);margin-bottom:22px}
+.ed-final-i{background:#fff;padding:14px 16px;display:flex;flex-direction:column;gap:5px}
+.ed-final-i span{font-size:11.5px;color:var(--mute)}
+.ed-final-i b{font-size:17px;font-weight:800;font-variant-numeric:tabular-nums}
+.ed-final-dims{display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+.ed-fd{display:flex;align-items:center;gap:11px;font-size:13px}
+.ed-fd .mono{font-weight:800;font-size:12px;width:16px;flex:0 0 auto}
+.ed-fd span:nth-child(2){width:88px;flex:0 0 auto;color:var(--mute);font-size:12.5px}
+.ed-fd-bar{flex:1;height:5px;background:var(--line-l)}
+.ed-fd-bar i{display:block;height:100%;background:var(--ink);transition:width .8s var(--ease)}
+.ed-fd .num{width:42px;text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
+.ed-final-worst h5{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--mute);margin-bottom:9px}
+.ed-final-worst ul{margin:0;padding-left:18px}
+.ed-final-worst li{font-size:13.5px;line-height:1.7;margin-bottom:8px}
+.ed-fw-d{display:block;font-size:12px;color:var(--mute);line-height:1.6;margin-top:1px}
+.ed-final-note{font-size:12px;color:var(--mute);line-height:1.7;padding-top:13px;border-top:1px dashed var(--line-l)}
 
 /* 公式与依据 */
 .ed-notes{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,.9fr);gap:24px;align-items:start}
@@ -411,12 +454,15 @@ ul{list-style:none}
 .ed-vres{margin-left:auto;font-size:11px;font-weight:700;color:#0f7a47}
 .ed-veto.bad .ed-vres{color:#b4622a}
 
-@media (max-width:1100px){.ed-steps{grid-template-columns:repeat(2,1fr)}.ed-summary{grid-template-columns:1fr}
-  .ed-sum-grid{grid-template-columns:repeat(2,1fr)}.ed-sum-i:nth-child(3){border-left:none}
-  .ed-notes{grid-template-columns:1fr}}
-@media (max-width:620px){.ed-steps{grid-template-columns:1fr}.ed-sum-grid{grid-template-columns:1fr}
-  .ed-sum-i{border-left:none;border-top:1px solid var(--line-l)}.ed-sum-i:first-child{border-top:none}
-  .ed-sec-h{padding:16px 18px 14px}.ed-items{padding:4px 18px 16px}.ed-sec-code{width:36px;font-size:26px}}
+@media (max-width:1100px){.ed-phases{grid-template-columns:repeat(4,1fr)}.ed-notes{grid-template-columns:1fr}
+  .ed-final-side{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:860px){.ed-desk{grid-template-columns:1fr}.ed-nav{flex-direction:row;overflow-x:auto}
+  .ed-nav-i{border-bottom:none;border-right:1px solid var(--line-l);flex:0 0 auto;min-width:150px}
+  .ed-nav-i:last-child{border-right:none}}
+@media (max-width:620px){.ed-phases{grid-template-columns:repeat(2,1fr)}.ed-final-side{grid-template-columns:1fr}
+  .ed-pane-h{padding:16px 18px 14px}.ed-pane-b{padding:4px 18px 16px}.ed-pane-code{width:36px;font-size:26px}
+  .ed-launch{padding:18px 20px}.ed-run{width:100%;justify-content:center}.ed-launch-r{width:100%}}
+
 @media (max-width:1000px){.eval-grid{grid-template-columns:1fr}.eval-photo{min-height:320px}.duel{flex-direction:column}.duel-side{min-height:300px}.dims{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:620px){.dims{grid-template-columns:1fr}}
 @media (max-width:620px){.pg{display:none}.hero-t{font-size:clamp(32px,9.4vw,46px)}.desk-list{grid-template-columns:1fr}.ring-sec{overflow:hidden}}
@@ -866,40 +912,48 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
     <div class="wrap">
       <div class="sh">
         <div><span class="en rv">Evaluation Desk</span><h2 class="h2 rl"><span class="ln"><span>评估作业台</span></span></h2></div>
-        <p class="rv" style="--d:.1s">选定投标项目后，系统按需求解析、造价核定、六维打分顺序自动完成评分，逐维度出分并挂接依据。</p>
+        <p class="rv" style="--d:.1s">选定投标项目并启动评估，系统按阶段推进，逐步给出各维度分值与判档依据。</p>
       </div>
 
-      <!-- 1. 选择项目 -->
-      <div class="ed-pick">
-        <div class="ed-pick-l">
-          <span class="ed-lb">投标项目</span>
+      <!-- 1. 启动区 -->
+      <div class="ed-launch" id="edLaunch">
+        <div class="ed-launch-l">
+          <label class="ed-lb" for="edProj">投标项目</label>
           <select id="edProj" class="ed-select"></select>
+          <div class="ed-launch-meta" id="edProjMeta"></div>
         </div>
-        <div class="ed-pick-r" id="edProjMeta"></div>
+        <div class="ed-launch-r">
+          <button class="ed-run" id="edRun" type="button">
+            <span class="ed-run-ico" aria-hidden="true"></span>
+            <span class="ed-run-t" id="edRunT">开始评估</span>
+          </button>
+          <button class="ed-reset" id="edReset" type="button" hidden>重新评估</button>
+          <p class="ed-run-hint" id="edRunHint">评估系统按「需求解析 → 造价核定 → 六维打分 → 汇总出分」顺序执行，全程留痕可回溯。</p>
+        </div>
       </div>
 
-      <!-- 2. 评估流程进度 -->
-      <div class="ed-progress" id="edProgress">
-        <div class="ed-progress-h">
-          <h3>评估流程进度</h3>
-          <div class="ed-progress-bar"><i id="edProgBar"></i></div>
-          <span class="ed-progress-p num" id="edProgPct">0%</span>
+      <!-- 2. 进度条 -->
+      <div class="ed-prog" id="edProg" hidden>
+        <div class="ed-prog-h">
+          <span class="ed-prog-l">评估进度</span>
+          <div class="ed-prog-track"><i id="edProgBar"></i></div>
+          <span class="ed-prog-p num" id="edProgPct">0%</span>
+          <span class="ed-prog-step" id="edProgStep">等待启动</span>
         </div>
-        <ol class="ed-steps" id="edSteps"></ol>
+        <ol class="ed-phases" id="edPhases"></ol>
       </div>
 
-      <!-- 3. 结论摘要 -->
-      <div class="ed-summary" id="edSummary">
-        <div class="ed-sum-main">
-          <span class="ed-sum-l">综合得分</span>
-          <div class="ed-sum-n num" id="edScore">—</div>
-          <span class="ed-grade" id="edGrade">—</span>
+      <!-- 3. 分区切换：左导航 + 右明细 -->
+      <div class="ed-desk" id="edDesk" hidden>
+        <nav class="ed-nav" id="edNav" aria-label="评估阶段导航"></nav>
+        <div class="ed-pane">
+          <div class="ed-pane-h" id="edPaneH"></div>
+          <div class="ed-pane-b" id="edPaneB"></div>
         </div>
-        <div class="ed-sum-grid" id="edSumGrid"></div>
       </div>
 
-      <!-- 4. 分维度评估结果 -->
-      <div class="ed-sections" id="edSections"></div>
+      <!-- 4. 汇总（最后阶段） -->
+      <div class="ed-final" id="edFinal" hidden></div>
 
       <!-- 5. 公式与依据 -->
       <div class="ed-notes">
@@ -1412,7 +1466,7 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
 
 /* ================= 评估作业台 =================
    口径来源：区级人工智能项目评估系统 V0.4
-   · 选定投标项目后，系统自动按指标判档并插值出分，用户不手工选分
+   · 选定投标项目并启动评估，系统按阶段推进逐部分给出分值
    · 指标按 0—100 分、五档；锚点 1/3/5，档内按「满足子项数比例」插值
    · 总分 = Σ(指标得分 × 指标权重) ÷ 100
    · 证据形式要件不满足 → 该指标 0 分（形式先于锚点判定）
@@ -1451,7 +1505,7 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     F5: ['告警分级机制', '各级通知与到场时限', '备件到场时限', '巡检频次', '可用率承诺', '漏洞修复时限']
   };
 
-  /* ---------- 证据等级（L4 最强，L1 仅过门槛） ---------- */
+  /* ---------- 证据等级 ---------- */
   var EV = {
     L4: { t: 'L4 实测/现场验证', d: '现场演示、实测数据、第三方现场核验结论' },
     L3: { t: 'L3 第三方权威评测', d: '权威机构评测报告、权威榜单、第三方检测结论' },
@@ -1460,16 +1514,15 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     X:  { t: '形式要件不满足', d: '证据形式要件不满足，按无效证据处理，该指标不得分' }
   };
 
-  /* ---------- 评估流程（八步中的评分相关环节） ---------- */
-  var FLOW = [
-    { k: 'step1',  n: '申报受理',   o: '申报单位', d: '接收申报材料与功能清单、报价明细' },
-    { k: 'step2',  n: '形式预审',   o: '评估系统', d: '完整性与合规性检查表' },
-    { k: 'step3',  n: '需求解析',   o: '评估系统', d: '生成需求画像、场景清单、复用清单' },
-    { k: 'step4',  n: '造价核定',   o: '评估系统', d: '功能点计数、分项核定价与复用抵扣' },
-    { k: 'step5',  n: '综合评分',   o: '评估系统', d: '六维指标自动打分、证据挂接' },
-    { k: 'step6',  n: '内部复核',   o: '评估团队', d: '复核意见与处理记录' },
-    { k: 'step7',  n: '结论出具',   o: '评估团队', d: '评估报告、整改清单' },
-    { k: 'step8',  n: '批复归档',   o: '主管部门', d: '批复文件、入库数据' }
+  /* ---------- 评估阶段：六个维度 + 汇总 ---------- */
+  var PHASES = [
+    { k: 'A', n: '需求必要性', o: '需求解析',   d: '生成需求画像，判断痛点真实性与重复建设' },
+    { k: 'B', n: '技术适配',   o: '技术初判',   d: '判断技术路线成熟度与底座、算力复用' },
+    { k: 'C', n: '造价合理性', o: '造价核定',   d: '功能点计数、市场对标与复用抵扣' },
+    { k: 'D', n: '企业能力',   o: '企业核验',   d: '资质信用、同类业绩与本地交付能力' },
+    { k: 'E', n: '园区产业',   o: '政策核验',   d: '园区注册纳税、重点产业方向与带动' },
+    { k: 'F', n: '安全合规',   o: '合规核查',   d: '数据安全、等保备案与内容安全' },
+    { k: 'Z', n: '汇总出分',   o: '结论出具',   d: '加权汇总、等级判定与结论生成' }
   ];
 
   /* ---------- 评估对象（示例投标项目） ---------- */
@@ -1513,22 +1566,14 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     var a = p.preset[it.code];
     if (a == null) return null;
     var ev = p.ev[it.code] || 'L3';
-    /* 证据形式要件不满足 → 0 分（形式先于锚点判定） */
     if (ev === 'X') return 0;
-    /* 一票否决项 F1/F2：只判门槛，不进入插值 */
-    if (it.code === 'F1' || it.code === 'F2') {
-      return ev === 'L1' ? 60 : AN[a];
-    }
+    if (it.code === 'F1' || it.code === 'F2') return ev === 'L1' ? 60 : AN[a];
     var subs = SUB[it.code] || [];
     var n = subs.length || 1;
-    /* 锚点对应的子项满足比例：5 分要求全部满足，3 分要求半数以上 */
     var hit = a === 5 ? n : (a === 3 ? Math.ceil(n / 2) : 0);
     var ratio = hit / n;
     if (a === 1) return 20;
-    if (a === 3) {
-      return ratio >= 0.5 ? Math.round(60 + 40 * ((ratio - 0.5) / 0.5)) : Math.round(20 + 40 * ratio);
-    }
-    /* 5 分锚点：未全部满足则向下插值 */
+    if (a === 3) return ratio >= 0.5 ? Math.round(60 + 40 * ((ratio - 0.5) / 0.5)) : Math.round(20 + 40 * ratio);
     return Math.round(Math.max(60, 100 - 20 * (1 - ratio)));
   }
   function grade(s) {
@@ -1550,127 +1595,199 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     if (s >= 60) return { t: '3 分锚点', c: 'a3' };
     return { t: '1 分锚点', c: 'a1' };
   }
+  function vetoPassed(p) {
+    return !['F1', 'F2'].some(function (c) {
+      var e = p.ev[c];
+      return e === 'X' || e === 'L1';
+    });
+  }
+  function totalScore(p) {
+    var t = 0;
+    DATA.forEach(function (it) { t += scoreOf(it, p) * it.w; });
+    return t / 100;
+  }
+  function dimScore(code, p) {
+    var items = DATA.filter(function (x) { return x.dim === code; });
+    var sum = 0, max = 0;
+    items.forEach(function (it) { sum += scoreOf(it, p) * it.w; max += it.w * 100; });
+    return max ? (sum / max * 100) : 0;
+  }
 
-  /* ---------- 渲染 ---------- */
+  /* ---------- 状态 ---------- */
+  var curProj = PROJ[0];
+  var phase = 0;        /* 已推进到的阶段序号 */
+  var view = 0;         /* 当前查看的阶段序号（可回看历史） */
+  var revealed = {};    /* 各阶段已显示到的指标数 */
+  var running = false;
+  var timer = null;
+
   var sel = $('#edProj');
   sel.innerHTML = PROJ.map(function (p) {
     return '<option value="' + p.id + '">' + esc(p.name) + '（' + esc(p.unit) + '）</option>';
   }).join('');
 
-  function render(p) {
-    /* --- 项目元信息 --- */
+  function renderMeta(p) {
     $('#edProjMeta').innerHTML =
       '<div class="ed-meta-i"><span>申报单位</span><b>' + esc(p.unit) + '</b></div>' +
       '<div class="ed-meta-i"><span>申报金额</span><b class="num">' + p.declared + ' <small>万元</small></b></div>' +
       '<div class="ed-meta-i"><span>核定价</span><b class="num">' + p.price + ' <small>万元</small></b></div>' +
-      '<div class="ed-meta-i"><span>受理日期</span><b>' + esc(p.date) + '</b></div>' +
-      '<div class="ed-meta-i"><span>评估结论</span><b>' + esc(p.verdict) + '</b></div>';
+      '<div class="ed-meta-i"><span>受理日期</span><b>' + esc(p.date) + '</b></div>';
+  }
 
-    /* --- 逐维度计算 --- */
-    var DIMS = C.dims;
-    var dimData = DIMS.map(function (dm) {
-      var items = DATA.filter(function (x) { return x.dim === dm.code; });
-      var sum = 0, max = 0, rows = [];
-      items.forEach(function (it) {
-        var s = scoreOf(it, p);
-        sum += s * it.w; max += it.w * 100;
-        rows.push({ it: it, s: s });
-      });
-      return { dm: dm, items: items, rows: rows, score: max ? (sum / max * 100) : 0 };
-    });
-
-    /* --- 总分 --- */
-    var total = 0;
-    DATA.forEach(function (it) { total += scoreOf(it, p) * it.w; });
-    var score = total / 100;
-    var g = grade(score);
-
-    /* --- 流程进度：八步，前四步为前置，第 5 步评分 --- */
-    var doneSteps = 8;   /* 评估已完成，进入结论阶段 */
-    var progPct = 100;
-
-    $('#edSteps').innerHTML = FLOW.map(function (f, i) {
-      var st = i < 4 ? 'done' : (i === 4 ? 'now' : 'wait');
-      var owner = f.o === '评估系统' ? 'sys' : (f.o === '评估团队' ? 'team' : (f.o === '主管部门' ? 'gov' : 'unit'));
-      return '<li class="ed-step ' + st + ' ' + owner + '">' +
-        '<span class="ed-step-n num">' + pad(i + 1) + '</span>' +
-        '<div class="ed-step-b"><h4>' + esc(f.n) + '</h4>' +
-        '<span class="ed-step-o">' + esc(f.o) + '</span>' +
-        '<p>' + esc(f.d) + '</p></div>' +
-        '<span class="ed-step-s">' + (i < 5 ? '已完成' : (i === 4 ? '本次评分' : '待执行')) + '</span>' +
+  /* ---------- 阶段条 ---------- */
+  function renderPhases() {
+    $('#edPhases').innerHTML = PHASES.map(function (ph, i) {
+      var st = i < phase ? 'done' : (i === phase ? 'now' : 'wait');
+      var sub = ph.k === 'Z' ? '总分' : (dimScore(ph.k, curProj).toFixed(1) + ' 分');
+      return '<li class="ed-phase ' + st + '" data-i="' + i + '">' +
+        '<span class="ed-phase-n num">' + (i + 1) + '</span>' +
+        '<span class="ed-phase-b"><b>' + esc(ph.n) + '</b><small>' + esc(ph.o) + '</small></span>' +
+        '<span class="ed-phase-s num" data-v="' + i + '">' + (i < phase ? sub : '') + '</span>' +
         '</li>';
     }).join('');
-    $('#edProgBar').style.width = progPct + '%';
-    $('#edProgPct').textContent = progPct + '%';
+    $$('#edPhases .ed-phase').forEach(function (li) {
+      li.addEventListener('click', function () {
+        var i = +li.dataset.i;
+        if (i > phase) return;      /* 尚未推进到的阶段不可点 */
+        stopAuto();
+        view = i;
+        renderDesk();
+      });
+    });
+  }
 
-    /* --- 结论摘要 --- */
-    $('#edScore').textContent = score.toFixed(1);
-    $('#edGrade').textContent = g.t;
-    $('#edGrade').className = 'ed-grade ' + g.c;
-    $('#edSumGrid').innerHTML =
-      '<div class="ed-sum-i"><span>指标完成</span><b class="num">25 / 25</b></div>' +
-      '<div class="ed-sum-i"><span>评价档位</span><b>' + band(score) + '</b></div>' +
-      '<div class="ed-sum-i"><span>核减率</span><b class="num">' + ((p.declared - p.price) / p.declared * 100).toFixed(1) + '%</b></div>' +
-      '<div class="ed-sum-i"><span>一票否决</span><b>' + (vetoPassed(p) ? '未触发' : '已触发') + '</b></div>';
-
-    /* --- 分维度分区 --- */
-    $('#edSections').innerHTML = dimData.map(function (dd, di) {
-      var dg = grade(dd.score);
-      return '<section class="ed-sec">' +
-        '<header class="ed-sec-h">' +
-          '<span class="ed-sec-code">' + dd.dm.code + '</span>' +
-          '<div class="ed-sec-t">' +
-            '<h3>' + esc(dd.dm.full) + '</h3>' +
-            '<p>' + esc(dd.dm.name) + '　·　权重 ' + dd.dm.w + '　·　' + dd.items.length + ' 项二级指标</p>' +
-          '</div>' +
-          '<div class="ed-sec-s">' +
-            '<span class="num">' + dd.score.toFixed(1) + '</span>' +
-            '<span class="ed-sec-g ' + dg.c + '">' + dg.t + '</span>' +
-          '</div>' +
-        '</header>' +
-        '<div class="ed-sec-bar"><i style="width:' + dd.score.toFixed(1) + '%"></i></div>' +
-        '<div class="ed-items">' +
-          dd.rows.map(function (r) {
-            var it = r.it, s = r.s;
-            var ev = EV[p.ev[it.code]] || EV.L3;
-            var an = anchorOf(s);
-            var isVeto = (it.code === 'F1' || it.code === 'F2');
-            var bad = (p.ev[it.code] === 'X');
-            var aDesc = s >= 90 ? it.a5 : (s >= 60 ? it.a3 : it.a1);
-            /* 子项满足情况 */
-            var subs = SUB[it.code] || [];
-            var n = subs.length || 1;
-            var a = p.preset[it.code] || 3;
-            var hit = a === 5 ? n : (a === 3 ? Math.ceil(n / 2) : 0);
-            var subHtml = subs.length
-              ? '<div class="ed-sub-list">' + subs.map(function (sb, si) {
-                  var ok = si < hit;
-                  return '<span class="ed-sub-i' + (ok ? ' ok' : '') + '">' +
-                    '<i aria-hidden="true">' + (ok ? '✓' : '—') + '</i>' + esc(sb) + '</span>';
-                }).join('') + '</div>'
-              : '';
-            return '<div class="ed-item">' +
-              '<div class="ed-item-h">' +
-                '<span class="ed-item-c mono">' + it.code + '</span>' +
-                '<span class="ed-item-n">' + esc(it.name) + '</span>' +
-                '<span class="ed-item-w">权重 ' + it.w + '</span>' +
-                '<span class="ed-item-a ' + an.c + '">' + an.t + '</span>' +
-                '<span class="ed-item-s num' + (bad ? ' zero' : '') + '">' + s + '</span>' +
-              '</div>' +
-              '<div class="ed-item-basis"><span class="ed-basis-l">判档依据</span><p>' + esc(aDesc) + '</p></div>' +
-              (subHtml ? '<div class="ed-item-subs">' + subHtml + '</div>' : '') +
-              '<div class="ed-item-foot">' +
-                '<span class="ed-ev-tag ' + (p.ev[it.code] === 'L4' ? 'l4' : (p.ev[it.code] === 'L3' ? 'l3' : (p.ev[it.code] === 'L2' ? 'l2' : 'l1'))) + '">' + esc(ev.t) + '</span>' +
-                '<span class="ed-ev-desc">' + esc(ev.d) + '</span>' +
-                (isVeto ? '<span class="ed-veto-tag">一票否决前置 · 不进入插值</span>' : '') +
-              '</div>' +
-            '</div>';
-          }).join('') +
-        '</div>' +
-      '</section>';
+  /* ---------- 左侧导航 ---------- */
+  function renderNav() {
+    $('#edNav').innerHTML = PHASES.map(function (ph, i) {
+      var st = i < phase ? 'done' : (i === phase ? 'on' : 'lock');
+      if (i === view) st = i < phase ? 'done view' : 'on';
+      var sc = i < phase ? dimScore(ph.k, curProj).toFixed(1) : '—';
+      return '<button class="ed-nav-i ' + st + '" data-i="' + i + '"' + (i > phase ? ' disabled' : '') + '>' +
+        '<span class="ed-nav-n num">' + (i + 1) + '</span>' +
+        '<span class="ed-nav-b"><b>' + esc(ph.n) + '</b><small>' + esc(ph.o) + '</small></span>' +
+        '<span class="ed-nav-s num">' + sc + '</span>' +
+        '</button>';
     }).join('');
+    $$('#edNav .ed-nav-i').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var i = +b.dataset.i;
+        if (i > phase) return;
+        stopAuto();
+        view = i;
+        renderDesk();
+      });
+    });
+  }
 
-    /* --- 一票否决 --- */
+  /* ---------- 右侧明细 ---------- */
+  function renderPane() {
+    var ph = PHASES[view];
+    if (ph.k === 'Z') { renderFinal(); return; }
+    var dm = C.dims.filter(function (x) { return x.code === ph.k; })[0];
+    var items = DATA.filter(function (x) { return x.dim === ph.k; });
+    var shown = revealed[ph.k] == null ? 0 : revealed[ph.k];
+    var sc = dimScore(ph.k, curProj);
+    var g = grade(sc);
+
+    $('#edPaneH').innerHTML =
+      '<div class="ed-pane-t">' +
+        '<span class="ed-pane-code">' + dm.code + '</span>' +
+        '<div><h3>' + esc(dm.full) + '</h3>' +
+        '<p>' + esc(ph.o) + ' · ' + esc(ph.d) + '</p></div>' +
+      '</div>' +
+      '<div class="ed-pane-s">' +
+        '<span class="num">' + sc.toFixed(1) + '</span>' +
+        '<span class="ed-pane-g ' + g.c + '">' + g.t + '</span>' +
+        '<small>权重 ' + dm.w + ' · ' + items.length + ' 项</small>' +
+      '</div>';
+
+    var html = items.map(function (it, idx) {
+      var s = scoreOf(it, curProj);
+      var ev = EV[curProj.ev[it.code]] || EV.L3;
+      var an = anchorOf(s);
+      var isVeto = (it.code === 'F1' || it.code === 'F2');
+      var bad = (curProj.ev[it.code] === 'X');
+      var aDesc = s >= 90 ? it.a5 : (s >= 60 ? it.a3 : it.a1);
+      var subs = SUB[it.code] || [];
+      var n = subs.length || 1;
+      var a = curProj.preset[it.code] || 3;
+      var hit = a === 5 ? n : (a === 3 ? Math.ceil(n / 2) : 0);
+      var subHtml = subs.length
+        ? '<div class="ed-sub-list">' + subs.map(function (sb, si) {
+            var ok = si < hit;
+            return '<span class="ed-sub-i' + (ok ? ' ok' : '') + '"><i aria-hidden="true">' + (ok ? '✓' : '—') + '</i>' + esc(sb) + '</span>';
+          }).join('') + '</div>'
+        : '';
+      return '<div class="ed-item' + (idx < shown ? ' show' : '') + '" style="--d:' + (idx * .09).toFixed(2) + 's">' +
+        '<div class="ed-item-h">' +
+          '<span class="ed-item-c mono">' + it.code + '</span>' +
+          '<span class="ed-item-n">' + esc(it.name) + '</span>' +
+          '<span class="ed-item-w">权重 ' + it.w + '</span>' +
+          '<span class="ed-item-a ' + an.c + '">' + an.t + '</span>' +
+          '<span class="ed-item-s num' + (bad ? ' zero' : '') + '">' + s + '</span>' +
+        '</div>' +
+        '<div class="ed-item-basis"><span class="ed-basis-l">判档依据</span><p>' + esc(aDesc) + '</p></div>' +
+        (subHtml ? '<div class="ed-item-subs">' + subHtml + '</div>' : '') +
+        '<div class="ed-item-foot">' +
+          '<span class="ed-ev-tag ' + (curProj.ev[it.code] === 'L4' ? 'l4' : (curProj.ev[it.code] === 'L3' ? 'l3' : (curProj.ev[it.code] === 'L2' ? 'l2' : 'l1'))) + '">' + esc(ev.t) + '</span>' +
+          '<span class="ed-ev-desc">' + esc(ev.d) + '</span>' +
+          (isVeto ? '<span class="ed-veto-tag">一票否决前置 · 不进入插值</span>' : '') +
+        '</div>' +
+      '</div>';
+    }).join('');
+    $('#edPaneB').innerHTML = html;
+  }
+
+  /* ---------- 汇总 ---------- */
+  function renderFinal() {
+    var p = curProj;
+    var sc = totalScore(p);
+    var g = grade(sc);
+    var calc = [];
+    DATA.forEach(function (it) {
+      var s = scoreOf(it, p);
+      calc.push({ c: it.code, n: it.name, s: s, w: it.w, part: s * it.w / 100 });
+    });
+    var worst = calc.slice().sort(function (a, b) { return (a.s - b.s) * (b.w - a.w); }).slice(0, 3);
+    $('#edPaneH').innerHTML =
+      '<div class="ed-pane-t"><span class="ed-pane-code">Z</span>' +
+      '<div><h3>汇总出分</h3><p>结论出具 · 加权汇总、等级判定与结论生成</p></div></div>';
+    $('#edPaneB').innerHTML =
+      '<div class="ed-final">' +
+        '<div class="ed-final-main">' +
+          '<span class="ed-final-l">综合得分</span>' +
+          '<div class="ed-final-n num">' + sc.toFixed(1) + '</div>' +
+          '<span class="ed-grade ' + g.c + '">' + g.t + '</span>' +
+          '<span class="ed-final-band">' + band(sc) + '</span>' +
+        '</div>' +
+        '<div class="ed-final-side">' +
+          '<div class="ed-final-i"><span>评估结论</span><b>' + esc(p.verdict) + '</b></div>' +
+          '<div class="ed-final-i"><span>申报金额</span><b class="num">' + p.declared + ' 万元</b></div>' +
+          '<div class="ed-final-i"><span>核定价</span><b class="num">' + p.price + ' 万元</b></div>' +
+          '<div class="ed-final-i"><span>核减率</span><b class="num">' + ((p.declared - p.price) / p.declared * 100).toFixed(1) + '%</b></div>' +
+          '<div class="ed-final-i"><span>一票否决</span><b>' + (vetoPassed(p) ? '未触发' : '已触发') + '</b></div>' +
+        '</div>' +
+        '<div class="ed-final-dims">' + C.dims.map(function (dm) {
+          var v = dimScore(dm.code, p);
+          return '<div class="ed-fd"><span class="mono">' + dm.code + '</span>' +
+            '<span>' + esc(dm.name) + '</span>' +
+            '<div class="ed-fd-bar"><i style="width:' + v.toFixed(1) + '%"></i></div>' +
+            '<span class="num">' + v.toFixed(1) + '</span></div>';
+        }).join('') + '</div>' +
+        (worst.length ? '<div class="ed-final-worst"><h5>关键扣分项（按权重 × 失分排序）</h5><ul>' +
+          worst.map(function (w) {
+            var it = DATA.filter(function (x) { return x.code === w.c; })[0];
+            return '<li><span class="mono">' + w.c + '</span> ' + esc(w.n) +
+              ' <b class="num">' + w.s + '</b> 分 / 权重 ' + w.w +
+              '<span class="ed-fw-d">' + esc(w.s >= 90 ? it.a5 : (w.s >= 60 ? it.a3 : it.a1)) + '</span></li>';
+          }).join('') + '</ul></div>' : '') +
+        '<p class="ed-final-note">所有得分均挂接证据编号，评估过程输入数据、参数版本与中间计算结果完整留痕，可逐项回溯到原始材料。</p>' +
+      '</div>';
+  }
+
+  /* ---------- 一票否决（右侧常驻） ---------- */
+  function renderVeto() {
+    var p = curProj;
     $('#edVeto').innerHTML = DATA.filter(function (x) { return x.code === 'F1' || x.code === 'F2'; }).map(function (it) {
       var ev = p.ev[it.code];
       var bad = (ev === 'X' || ev === 'L1');
@@ -1681,21 +1798,117 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     }).join('');
   }
 
-  function vetoPassed(p) {
-    return !['F1', 'F2'].some(function (c) {
-      var e = p.ev[c];
-      return e === 'X' || e === 'L1';
-    });
+  /* ---------- 进度 ---------- */
+  function setProgress(pct, text) {
+    $('#edProgBar').style.width = pct + '%';
+    $('#edProgPct').textContent = Math.round(pct) + '%';
+    if (text != null) $('#edProgStep').textContent = text;
   }
 
+  function renderDesk() {
+    renderPhases();
+    renderNav();
+    renderPane();
+    var pct = (phase / (PHASES.length - 1)) * 100;
+    setProgress(pct, PHASES[phase].o + ' · ' + PHASES[phase].n);
+  }
+
+  /* ---------- 自动推进 ---------- */
+  function stopAuto() {
+    if (timer) { clearTimeout(timer); timer = null; }
+    running = false;
+    $('#edRunT').textContent = '开始评估';
+    $('#edRun').classList.remove('running');
+  }
+
+  function advance() {
+    if (!running) return;
+    var ph = PHASES[phase];
+    var items = ph.k === 'Z' ? [] : DATA.filter(function (x) { return x.dim === ph.k; });
+    var shown = (revealed[ph.k] == null ? 0 : revealed[ph.k]);
+    if (shown < items.length) {
+      revealed[ph.k] = shown + 1;
+      view = phase;
+      renderPane();
+      /* 进度：阶段内推进占 80%，阶段间占 20% */
+      var base = (phase / (PHASES.length - 1)) * 100;
+      var step = (80 / (PHASES.length - 1)) * (shown / items.length);
+      setProgress(base + step);
+      timer = setTimeout(advance, 420);
+      return;
+    }
+    /* 本阶段完成，进入下一阶段 */
+    if (phase < PHASES.length - 1) {
+      phase++;
+      view = phase;
+      renderDesk();
+      timer = setTimeout(advance, 500);
+      return;
+    }
+    /* 全部完成 */
+    running = false;
+    $('#edRunT').textContent = '评估完成';
+    $('#edRun').classList.remove('running');
+    $('#edRun').classList.add('done');
+    $('#edReset').hidden = false;
+    setProgress(100, '评估完成 · 结论已出具');
+    renderPhases();
+    renderNav();
+  }
+
+  function start() {
+    phase = 0;
+    view = 0;
+    revealed = {};
+    running = true;
+    $('#edProg').hidden = false;
+    $('#edDesk').hidden = false;
+    $('#edFinal').hidden = true;
+    $('#edReset').hidden = true;
+    $('#edRun').classList.add('running');
+    $('#edRun').classList.remove('done');
+    $('#edRunT').textContent = '评估中…';
+    setProgress(0, '启动评估');
+    renderDesk();
+    timer = setTimeout(advance, 380);
+  }
+
+  /* ---------- 事件 ---------- */
+  $('#edRun').addEventListener('click', function () {
+    if (running) { stopAuto(); $('#edRunT').textContent = '继续评估'; return; }
+    start();
+  });
+  $('#edReset').addEventListener('click', function () {
+    stopAuto();
+    $('#edRun').classList.remove('done');
+    $('#edRunT').textContent = '开始评估';
+    phase = 0; view = 0; revealed = {};
+    setProgress(0, '等待启动');
+    renderDesk();
+  });
   sel.addEventListener('change', function () {
     var p = PROJ.filter(function (x) { return x.id === sel.value; })[0];
-    if (p) render(p);
+    if (!p) return;
+    stopAuto();
+    curProj = p;
+    renderMeta(p);
+    renderVeto();
+    $('#edRun').classList.remove('done');
+    $('#edRunT').textContent = '开始评估';
+    $('#edReset').hidden = true;
+    phase = 0; view = 0; revealed = {};
+    setProgress(0, '等待启动');
+    renderDesk();
   });
 
-  render(PROJ[0]);
+  /* ---------- 初始化 ---------- */
+  renderMeta(curProj);
+  renderVeto();
+  renderPhases();
+  renderNav();
+  renderPane();
+  setProgress(0, '等待启动');
 })();
-
 /* ================= 瀑布图 ================= */
 (function () {
   var wf = $('#wf'), tip = $('#wfTip');
