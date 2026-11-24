@@ -12,6 +12,7 @@
 <script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('rm');</script>
 <link rel="stylesheet" href="assets/portal.css">
 <link rel="stylesheet" href="assets/case-feature.css">
+<link rel="stylesheet" href="assets/library-ui.css">
 </head>
 <body>
 <main id="main" tabindex="-1" class="view on" data-page="cases">
@@ -23,7 +24,7 @@
           <p class="inquiry-kicker">询价案例<span> / </span>会议系统集成</p>
           <h1>视频会议系统</h1>
           <p>同一型号的导播服务器，两份凭证给出了不同的单价。沿着这份询价档案，可以逐项查看设备规格、报价单位和参数符合情况。</p>
-          <a class="btn btn-lime" href="database.html#library-case-entry">查看完整询价档案 <span aria-hidden="true">↗</span></a>
+          <a class="btn btn-lime" href="#conference-archive">查看完整询价档案 <span aria-hidden="true">↗</span></a>
         </div>
         <article class="quote-sheet" aria-label="同型号报价对照">
           <header><span>同型号报价对照</span><span>AI询价喵</span></header>
@@ -35,6 +36,12 @@
       <dl class="inquiry-metrics" id="inquiryMetrics"></dl>
     </div>
   </header>
+  <section class="sec light" id="conference-archive" aria-labelledby="conference-title">
+    <div class="wrap">
+      <h2 class="h2" id="conference-title">视频会议询价档案</h2>
+      <div id="conference-items"></div>
+    </div>
+  </section>
   <section class="sec light">
     <div class="wrap">
       <div class="sh">
@@ -49,6 +56,7 @@
 <script src="assets/portal-data.js"></script>
 <script src="assets/portal-shell.js"></script>
 <script src="assets/conference-data.js"></script>
+<script src="assets/library-ui.js"></script>
 <script src="assets/pages/cases.js"></script>
 <script src="assets/portal.js"></script>
 </body>

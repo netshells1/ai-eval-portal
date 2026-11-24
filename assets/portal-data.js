@@ -10,7 +10,7 @@ window.CONFIG = {
     { id: 'pricing',    name: '造价核定', en: 'Pricing',    img: 'assets/pricing.jpg',    d: '工程量核定与复用抵扣' },
     { id: 'matching',   name: '场景匹配', en: 'Matching',   img: 'assets/scene-4.jpg',    d: '场景驱动的企业与技术匹配' },
     { id: 'cases',      name: '典型案例', en: 'Cases',      img: 'assets/scene-1.jpg',    d: '视频会议系统询价档案与六个评估示例' },
-    { id: 'database',   name: '资源库',   en: 'Database',   img: 'assets/database.jpg',   d: '企业、技术与底座、项目与场景、案例和软硬件价格' },
+    { id: 'database',   name: '资源库',   en: 'Database',   img: 'assets/database.jpg',   d: '企业、技术与底座、项目与场景和软硬件价格' },
     { id: 'standards',  name: '询价标准', en: 'Standards',  img: 'assets/service.jpg',    d: '各地区信息化项目预算编制与费用测算依据' }
   ],
 

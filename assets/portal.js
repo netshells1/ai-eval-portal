@@ -83,10 +83,13 @@ function positionTarget() {
   const target = location.hash.slice(1);
   if (!target) return;
   let el = document.getElementById(target);
-  if (curPage === 'database' && (target === 'library-case-entry' || /^quote-\d+$/.test(target))) {
-    if (target === 'library-case-entry') window.PortalLibrary.open('cases', 'video-conference');
-    else window.PortalLibrary.open('prices', target.slice(6));
-    el = (matchMedia('(max-width:800px)').matches && $('#library-app .lib-detail')) || $('#library-case-entry');
+  if (curPage === 'database' && target === 'library-case-entry') {
+    location.replace('cases.html#conference-archive');
+    return;
+  }
+  if (curPage === 'database' && /^quote-\d+$/.test(target)) {
+    window.PortalLibrary.open('prices', target.slice(6));
+    el = (matchMedia('(max-width:800px)').matches && $('#library-app .lib-detail')) || $('#library-app');
   }
   if (el && view.contains(el)) {
     stopScroll();

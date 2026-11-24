@@ -20,8 +20,14 @@
 | 项目评估 | 从需求必要性、技术适配、造价合理性、企业履约能力、园区产业适配和安全合规六个维度审视项目，查看各维度权重与评价指标。 |
 | 造价核定 | 通过瀑布图查看示例项目从申报金额到核定区间的变化，逐项检查工程量、市场单价与复用抵扣。 |
 | 场景匹配 | 选择申报项目，对照其需求、可复用组件和候选企业，查看匹配理由与待核验事项。 |
-| 资源库与典型案例 | 在企业库、技术与底座库、项目与场景库、案例库、软硬件价格库之间追踪关联记录，按设备或型号打开报价凭证。 |
+| 资源库与典型案例 | 在企业库、技术与底座库、项目与场景库、软硬件价格库之间追踪关联记录，按设备或型号打开报价凭证。 |
 | 询价标准 | 按地区、层级、文件名称或文号检索 33 条地区记录，查阅文字摘录、表格和参考图。 |
+
+## 资源库的数据口径
+
+资源库采用《区级AI项目评估系统-数据.xlsx》的离线快照。企业库列出 20 家企业，项目与场景库列出 20 个需求场景。技术与底座库按来源索引 20 条企业能力、11 组案例复用要素和 2 项可共享设备。表内的模拟关联、推演信息和待核事项随记录展示。
+
+软硬件价格库分别收录 15 项设备价格基准和 30 条视频会议询价凭证。设备详情保留原始计量单位，并列出工作表中 2027 年估算的 P25、P50、P75。整包报价按批展示。
 
 ## 用一个案例走通询价
 
@@ -42,7 +48,7 @@
 | 公共导航、目录与快捷键面板 | [portal-shell.js](./assets/portal-shell.js) 维护结构，[portal.js](./assets/portal.js) 维护导航及演示交互 |
 | 公共样式与栏目交互 | [portal.css](./assets/portal.css)、[pages/](./assets/pages/) 内的栏目脚本 |
 | 导航栏目清单、评价维度和项目演示数据 | [portal-data.js](./assets/portal-data.js) 中的 `window.CONFIG` |
-| 五类资源库的检索、筛选与详情 | [library-ui.js](./assets/library-ui.js)、[library-ui.css](./assets/library-ui.css) |
+| 四类资源库的检索、筛选与详情 | [工作簿数据](./assets/resource-data.js)、[library-ui.js](./assets/library-ui.js)、[library-ui.css](./assets/library-ui.css) |
 | 视频会议询价项、凭证与参数记录 | [conference-data.js](./assets/conference-data.js) |
 | 地区标准目录、正文及图页 | [standards-data.js](./assets/standards-data.js)、[standard-pages/](./assets/standard-pages/) |
 | 标准卡片、详情弹窗与读图交互 | [standards-ui.js](./assets/standards-ui.js)、[standards-ui.css](./assets/standards-ui.css) |
