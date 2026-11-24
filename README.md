@@ -4,14 +4,14 @@
 
 ## 快速开始
 
-在仓库页面选择 **Code → Download ZIP**，解压整个目录，双击 `index.html` 即可浏览。项目使用原生 HTML、CSS 和 JavaScript，直接从本地文件运行，支持离线演示。请将 `index.html` 和 `assets/` 保持在同一目录。
+在仓库页面选择 **Code → Download ZIP**，解压整个目录，双击 `index.html` 即可浏览。项目使用原生 HTML、CSS 和 JavaScript，直接从本地文件运行，支持离线演示。请把八个 HTML 文件和 `assets/` 保持在同一目录。
 
 | 演示环境 | 启动 | 结束 |
 | --- | --- | --- |
 | Windows | 双击 `启动项目.bat` | 双击 `关闭项目.bat` |
 | macOS | 双击 `启动项目.command` | 双击 `关闭项目.command` |
 
-演示时按数字键 `1` 至 `8` 切换栏目，按 `?` 查看快捷键。更多操作见[使用说明](./使用说明.md)。
+演示时按数字键 `1` 至 `8` 切换栏目，按 `?` 查看快捷键。
 
 ## 评审工作流
 
@@ -31,9 +31,17 @@
 
 ## 协作与维护
 
+八个栏目各有独立的 HTML 文件，可以单独编辑、刷新或双击预览。
+
+| 首页 | 平台介绍 | 项目评估 | 造价核定 | 场景匹配 | 典型案例 | 资源库 | 询价标准 |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| [index.html](./index.html) | [about.html](./about.html) | [evaluation.html](./evaluation.html) | [pricing.html](./pricing.html) | [matching.html](./matching.html) | [cases.html](./cases.html) | [database.html](./database.html) | [standards.html](./standards.html) |
+
 | 修改内容 | 主要文件 |
 | --- | --- |
-| 页面、导航、评价维度、项目及企业演示数据 | [index.html](./index.html) 中的页面结构与 `window.CONFIG` |
+| 公共导航、目录与快捷键面板 | [portal-shell.js](./assets/portal-shell.js) 维护结构，[portal.js](./assets/portal.js) 维护导航及演示交互 |
+| 公共样式与栏目交互 | [portal.css](./assets/portal.css)、[pages/](./assets/pages/) 内的栏目脚本 |
+| 导航栏目清单、评价维度和项目演示数据 | [portal-data.js](./assets/portal-data.js) 中的 `window.CONFIG` |
 | 五类资源库的检索、筛选与详情 | [library-ui.js](./assets/library-ui.js)、[library-ui.css](./assets/library-ui.css) |
 | 视频会议询价项、凭证与参数记录 | [conference-data.js](./assets/conference-data.js) |
 | 地区标准目录、正文及图页 | [standards-data.js](./assets/standards-data.js)、[standard-pages/](./assets/standard-pages/) |

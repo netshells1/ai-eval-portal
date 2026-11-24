@@ -155,12 +155,10 @@
       sizeImage();
       stage.scrollTop = stage.scrollLeft = 0;
     }
-    function closeForRoute() {
-      if (/^#(standards|service)(\/|$)/.test(location.hash)) return;
+    window.addEventListener('pagehide', function () {
       if (reader.open) reader.close();
       if (dossier.open) dossier.close();
-    }
-    for (const event of ['portal-route-change', 'hashchange', 'popstate']) window.addEventListener(event, closeForRoute);
+    });
     function closeOnBackdrop(event) {
       if (event.target !== this) return;
       const bounds = this.getBoundingClientRect();

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>场景匹配 · 区级人工智能项目评估平台</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="专注AI项目立项评估、造价核定与企业匹配。">
+<!-- 网络字体异步加载：内网打不开时自动回退到系统字体，不会卡住页面 -->
+<link rel="stylesheet" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('rm');</script>
+<link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+<main id="main" tabindex="-1" class="view on" data-page="matching">
+  <header class="pb">
+    <div class="lb-media ph"><img src="assets/scene-4.jpg" alt="黄昏城市路口"></div>
+    <div class="lb-shade"></div>
+    <span class="cap">城市治理场景（示意图）</span>
+    <div class="pb-text">
+      <p class="crumb rv"><a href="index.html">首页</a><span>/</span><span>场景匹配</span></p>
+      <span class="en rv">Matching</span>
+      <h1 class="h1 rl"><span class="ln"><span>场景匹配</span></span></h1>
+      <p class="lead rv" style="--d:.15s">先按场景找到同类项目和可复用的底座，再从企业库里筛出候选企业，按适配度排序，只给前三家。</p>
+    </div>
+  </header>
+  <section class="sec light">
+    <div class="wrap">
+      <div class="sh" style="margin-bottom:0">
+        <div><span class="en rv">Scenes</span><h2 class="h2 rl"><span class="ln"><span>场景驱动的</span></span><span class="ln"><span style="--d:.08s">企业与技术匹配</span></span></h2></div>
+        <p class="rv" style="--d:.1s">每个场景沉淀历次项目的功能清单、核定价和验收结果，新项目进来先找同类参照。</p>
+      </div>
+    </div>
+    <div class="hs" id="hs">
+      <div class="hs-sticky">
+        <div class="hs-track" id="hsTrack">
+          <div class="hs-intro">
+            <h3>五个典型场景</h3>
+            <p>继续向下滚动，查看每个场景已评估的项目数和可复用的底座。</p>
+          </div>
+          <div class="hs-end">
+            <h3>需求进来，能力匹配出去。</h3>
+            <a class="btn" href="matching.html#desk">打开评估对接台</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="desk rv" id="desk">
+        <div class="desk-bar"><span><b>评估对接台</b><span class="demo">演示数据</span></span><span>适配度 = 0.35 × 技术匹配 + 0.25 × 同类案例 + 0.20 × 交付能力 + 0.10 × 本地服务 + 0.10 × 价格合理性</span></div>
+        <div class="desk-body">
+          <div class="desk-list" id="projList" role="tablist" aria-label="申报项目"><h4>申报项目</h4></div>
+          <div class="desk-main" role="tabpanel">
+            <div class="profile" id="profile"></div>
+            <div class="cands-h"><b>候选企业 · 适配度前三</b><div class="legend" id="legend"></div></div>
+            <div id="cands"></div>
+          </div>
+        </div>
+        <div class="desk-foot"><span id="folded"></span><span>匹配结果仅供参考，不直接指定中标人。</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="assets/portal-data.js"></script>
+<script src="assets/portal-shell.js"></script>
+<script src="assets/pages/matching.js"></script>
+<script src="assets/portal.js"></script>
+</body>
+</html>

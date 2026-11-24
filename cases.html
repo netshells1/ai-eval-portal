@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>典型案例 · 区级人工智能项目评估平台</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="专注AI项目立项评估、造价核定与企业匹配。">
+<!-- 网络字体异步加载：内网打不开时自动回退到系统字体，不会卡住页面 -->
+<link rel="stylesheet" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('rm');</script>
+<link rel="stylesheet" href="assets/portal.css">
+<link rel="stylesheet" href="assets/case-feature.css">
+</head>
+<body>
+<main id="main" tabindex="-1" class="view on" data-page="cases">
+  <header class="inquiry-cover">
+    <div class="wrap">
+      <p class="crumb"><a href="index.html">首页</a><span>/</span><span>典型案例</span></p>
+      <div class="inquiry-spread">
+        <div class="inquiry-intro">
+          <p class="inquiry-kicker">询价案例<span> / </span>会议系统集成</p>
+          <h1>视频会议系统</h1>
+          <p>同一型号的导播服务器，两份凭证给出了不同的单价。沿着这份询价档案，可以逐项查看设备规格、报价单位和参数符合情况。</p>
+          <a class="btn btn-lime" href="database.html#library-case-entry">查看完整询价档案 <span aria-hidden="true">↗</span></a>
+        </div>
+        <article class="quote-sheet" aria-label="同型号报价对照">
+          <header><span>同型号报价对照</span><span>AI询价喵</span></header>
+          <h2>导播服务器</h2><p class="quote-model">现代中庆 <strong>M2600</strong></p>
+          <div id="featuredQuotes"></div>
+          <p class="quote-foot">点开凭证，可核对该报价对应的技术参数。</p>
+        </article>
+      </div>
+      <dl class="inquiry-metrics" id="inquiryMetrics"></dl>
+    </div>
+  </header>
+  <section class="sec light">
+    <div class="wrap">
+      <div class="sh">
+        <div><span class="en rv">Evaluation cases</span><h2 class="h2 rl"><span class="ln"><span>项目评估示例</span></span></h2></div>
+        <p class="rv" style="--d:.1s">以下六个演示项目展示不同的评估结论。展开卡片可查看申报金额、核定金额、综合得分和建议承接方。</p>
+      </div>
+      <div class="cases" id="caseGrid"></div>
+    </div>
+  </section>
+</main>
+
+<script src="assets/portal-data.js"></script>
+<script src="assets/portal-shell.js"></script>
+<script src="assets/conference-data.js"></script>
+<script src="assets/pages/cases.js"></script>
+<script src="assets/portal.js"></script>
+</body>
+</html>
