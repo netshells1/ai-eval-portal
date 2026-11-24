@@ -348,10 +348,11 @@ ul{list-style:none}
 .ed-phase.wait{opacity:.5}
 .ed-phase.wait .ed-phase-s{color:var(--mute)}
 
-/* 分区切换：左导航固定 + 右明细独立滚动 */
+/* 分区切换：左导航固定满高 + 右明细独立滚动，不撑长页面 */
 .ed-desk{display:grid;grid-template-columns:minmax(200px,230px) minmax(0,1fr);gap:1px;
-  background:var(--line-l);border:1px solid var(--line-l);margin-bottom:26px;align-items:start}
-.ed-nav{background:#fff;display:flex;flex-direction:column;align-self:start;overflow:hidden}
+  background:var(--line-l);border:1px solid var(--line-l);margin-bottom:26px;
+  align-items:stretch;height:min(600px,70vh)}
+.ed-nav{background:#fff;display:flex;flex-direction:column;overflow:hidden;min-height:0}
 .ed-nav-i{display:flex;align-items:center;gap:10px;padding:10px 15px;background:#fff;
   border:none;border-bottom:1px solid var(--line-l);font-family:inherit;text-align:left;
   cursor:pointer;transition:background .2s;width:100%;flex:0 0 auto}
@@ -374,8 +375,7 @@ ul{list-style:none}
 .ed-nav-i.on .ed-nav-b small{color:rgba(244,243,241,.55)}
 .ed-nav-i.on .ed-nav-s{color:var(--lime)}
 
-.ed-pane{background:#fff;display:flex;flex-direction:column;
-  max-height:min(620px,72vh);overflow:hidden}
+.ed-pane{background:#fff;display:flex;flex-direction:column;overflow:hidden;min-height:0}
 .ed-pane-h{display:flex;align-items:center;gap:16px;padding:16px 22px 13px;flex-wrap:wrap;
   border-bottom:1px solid var(--line-l);flex:0 0 auto}
 .ed-pane-t{display:flex;align-items:center;gap:15px;flex:1;min-width:0}
@@ -438,10 +438,7 @@ ul{list-style:none}
 .ed-veto-tag{font-size:10.5px;font-weight:700;color:#b4622a;border:1px solid rgba(180,98,42,.4);padding:1px 7px;border-radius:3px}
 
 /* 汇总面板 */
-.ed-final{padding:4px 0 0;overflow-y:auto;max-height:min(600px,70vh);overscroll-behavior:contain}
-.ed-final::-webkit-scrollbar{width:6px}
-.ed-final::-webkit-scrollbar-track{background:rgba(244,243,241,.5)}
-.ed-final::-webkit-scrollbar-thumb{background:rgba(244,243,241,.95);border:1px solid var(--line-l)}
+.ed-final{padding:4px 0 0}
 .ed-final-main{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;padding:18px 22px;
   background:var(--ink);color:var(--paper);margin-bottom:18px}
 .ed-final-l{font-size:11.5px;font-weight:700;letter-spacing:.1em;color:rgba(244,243,241,.55)}
@@ -1776,6 +1773,18 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
       '</div>';
     }).join('');
     $('#edPaneB').innerHTML = html;
+    /* 新项出现时把最新一条滚入视野，内容超出则区域内上滑 */
+    if (shown > 0) {
+      var box = $('#edPaneB');
+      var vis = box.querySelectorAll('.ed-item.show');
+      var last = vis[vis.length - 1];
+      if (last && box.scrollHeight > box.clientHeight) {
+        requestAnimationFrame(function () {
+          var want = last.offsetTop + last.offsetHeight - box.clientHeight;
+          if (want > box.scrollTop) box.scrollTo({ top: want, behavior: 'smooth' });
+        });
+      }
+    }
   }
 
   /* ---------- 汇总 ---------- */
