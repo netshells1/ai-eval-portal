@@ -353,26 +353,27 @@ ul{list-style:none}
 /* 分区切换：左导航固定满高 + 右明细独立滚动，不撑长页面 */
 .ed-desk{display:grid;grid-template-columns:minmax(200px,230px) minmax(0,1fr);gap:1px;
   background:var(--line-l);border:1px solid var(--line-l);margin-bottom:26px;
-  align-items:stretch;height:min(600px,70vh)}
+  align-items:stretch;height:min(780px,88vh)}
 .ed-nav{background:#fff;display:flex;flex-direction:column;overflow:hidden;min-height:0}
-.ed-nav-i{display:flex;align-items:center;gap:10px;padding:10px 15px;background:#fff;
+.ed-nav-i{display:flex;align-items:center;gap:11px;padding:11px 15px;background:#fff;
   border:none;border-bottom:1px solid var(--line-l);font-family:inherit;text-align:left;
   cursor:pointer;transition:background .2s;width:100%;flex:0 0 auto}
 .ed-nav-i:last-child{border-bottom:none}
 .ed-nav-i:hover:not(:disabled){background:rgba(244,243,241,.7)}
 .ed-nav-i:disabled{opacity:.42;cursor:not-allowed}
-.ed-nav-n{font-size:11.5px;font-weight:800;width:20px;height:20px;flex:0 0 auto;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;background:var(--line-l);color:var(--mute)}
+.ed-nav-code{font-family:var(--lat);font-size:21px;font-weight:800;line-height:1;width:30px;flex:0 0 auto;
+  text-align:center;padding:6px 0;border-radius:3px;background:rgba(244,243,241,.9);color:var(--mute);
+  transition:background .3s var(--ease),color .3s var(--ease)}
 .ed-nav-b{flex:1;display:flex;flex-direction:column;gap:1px;min-width:0}
 .ed-nav-b b{font-size:13.5px;font-weight:700}
 .ed-nav-b small{font-size:10.5px;color:var(--mute)}
 .ed-nav-s{font-size:14px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--mute)}
-.ed-nav-i.done .ed-nav-n{background:var(--ink);color:var(--lime)}
+.ed-nav-i.done .ed-nav-code{background:var(--ink);color:var(--lime)}
 .ed-nav-i.done .ed-nav-s{color:var(--ink)}
 .ed-nav-i.done.view{background:rgba(203,249,2,.14)}
-.ed-nav-i.done.view .ed-nav-n{background:var(--lime);color:var(--ink)}
+.ed-nav-i.done.view .ed-nav-code{background:var(--lime);color:var(--ink)}
 .ed-nav-i.on{background:var(--ink)}
-.ed-nav-i.on .ed-nav-n{background:var(--lime);color:var(--ink)}
+.ed-nav-i.on .ed-nav-code{background:var(--lime);color:var(--ink)}
 .ed-nav-i.on .ed-nav-b b{color:var(--paper)}
 .ed-nav-i.on .ed-nav-b small{color:rgba(244,243,241,.55)}
 .ed-nav-i.on .ed-nav-s{color:var(--lime)}
@@ -400,7 +401,7 @@ ul{list-style:none}
   border-radius:50%;animation:edspin .9s linear infinite}
 @keyframes edspin{to{transform:rotate(360deg)}}
 .ed-pane-b{padding:4px 22px 18px;flex:1;min-height:0;overflow-y:auto;
-  scroll-behavior:smooth;overscroll-behavior:contain}
+  scroll-behavior:smooth;overscroll-behavior:auto}
 .ed-pane-b::-webkit-scrollbar{width:6px}
 .ed-pane-b::-webkit-scrollbar-track{background:rgba(244,243,241,.5)}
 .ed-pane-b::-webkit-scrollbar-thumb{background:rgba(244,243,241,.95);border:1px solid var(--line-l)}
@@ -974,7 +975,7 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
         <nav class="ed-nav" id="edNav" aria-label="评估阶段导航"></nav>
         <div class="ed-pane">
           <div class="ed-pane-h" id="edPaneH"></div>
-          <div class="ed-pane-b" id="edPaneB"></div>
+          <div class="ed-pane-b" id="edPaneB" data-native-scroll></div>
         </div>
       </div>
 
@@ -1692,9 +1693,13 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
       if (i === view) st = i < phase ? 'done view' : 'on';
       /* 未出分的阶段不显示分值，汇总阶段总分最后才出 */
       var sc = i < phase ? (ph.k === 'Z' ? '总分' : dimScore(ph.k, curProj).toFixed(1)) : '—';
+      /* 左侧以维度代码 A—F 标识，汇总阶段用 Σ */
+      var code = ph.k === 'Z' ? 'Σ' : ph.k;
+      var nm = ph.k === 'Z' ? '汇总出分' : ph.n;
+      var sub = ph.k === 'Z' ? '结论出具' : ph.o;
       return '<button class="ed-nav-i ' + st + '" data-i="' + i + '"' + (i > phase ? ' disabled' : '') + '>' +
-        '<span class="ed-nav-n num">' + (i + 1) + '</span>' +
-        '<span class="ed-nav-b"><b>' + esc(ph.n) + '</b><small>' + esc(ph.o) + '</small></span>' +
+        '<span class="ed-nav-code">' + code + '</span>' +
+        '<span class="ed-nav-b"><b>' + esc(nm) + '</b><small>' + esc(sub) + '</small></span>' +
         '<span class="ed-nav-s num">' + sc + '</span>' +
         '</button>';
     }).join('');
@@ -2223,7 +2228,10 @@ var menu = $('#menu'), keys = $('#keys');
 function overlayOpen() { return menu.classList.contains('open') || keys.classList.contains('open'); }
 if (S.on) addEventListener('wheel', function (e) {
   if (e.defaultPrevented || e.ctrlKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-  if (e.target.closest && e.target.closest('dialog,[role="dialog"],textarea,select,[data-native-scroll]')) return;
+  var tgt = e.target;
+  var node = tgt && tgt.nodeType === 3 ? tgt.parentElement : tgt;
+  /* 放行原生可滚动容器：dialog、textarea、select、标注 data-native-scroll 的区域 */
+  if (node && node.closest && node.closest('dialog,[role="dialog"],textarea,select,[data-native-scroll]')) return;
   e.preventDefault();
   if (overlayOpen()) return;
   var d = e.deltaY * (e.deltaMode === 1 ? 16 : (e.deltaMode === 2 ? innerHeight : 1));
