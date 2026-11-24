@@ -280,120 +280,143 @@ ul{list-style:none}
 .veto b{color:var(--ink);font-weight:700;margin-right:4px}
 
 /* ---------- 评估作业台 ---------- */
-.ed-flow{display:flex;flex-wrap:wrap;gap:0;margin:26px 0 0;padding:0;list-style:none;
-  border-top:1px solid var(--line-l);border-left:1px solid var(--line-l)}
-.ed-flow li{flex:1 1 0;min-width:150px;display:flex;align-items:center;gap:10px;
-  padding:14px 18px;border-right:1px solid var(--line-l);border-bottom:1px solid var(--line-l);
-  font-size:13.5px;color:var(--mute);transition:background .3s,color .3s}
-.ed-flow li b{width:24px;height:24px;flex:0 0 auto;border-radius:50%;display:flex;align-items:center;
-  justify-content:center;font-size:12px;font-weight:800;background:var(--line-l);color:var(--mute);
-  transition:background .3s,color .3s}
-.ed-flow li.on{background:var(--ink);color:var(--paper)}
-.ed-flow li.on b{background:var(--lime);color:var(--ink)}
-.ed-flow li.done b{background:var(--ink);color:var(--lime)}
-.ed-formula{margin:26px 0 clamp(30px,4vw,48px);padding:20px 24px;border-left:3px solid var(--lime);
-  background:rgba(244,243,241,.72);display:flex;flex-direction:column;gap:10px}
-.ed-formula .fx-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px}
-.ed-formula .fx-label{flex:0 0 auto;font-size:11.5px;font-weight:800;letter-spacing:.1em;
-  color:var(--mute);border:1px solid var(--line-l);padding:2px 9px;border-radius:3px}
-.ed-formula .fx{font-size:14.5px;line-height:1.6;color:var(--ink)}
-.ed-grid{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(300px,.9fr);gap:clamp(24px,3vw,48px);align-items:start}
-.ed-picker{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:22px;
-  padding-bottom:20px;border-bottom:1px solid var(--line-l)}
-.ed-lb{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--mute)}
-.ed-select{flex:1 1 260px;font-family:inherit;font-size:15px;padding:10px 14px;
-  border:1px solid var(--line-l);background:#fff;color:var(--ink);cursor:pointer}
-.ed-hint{font-size:12.5px;color:var(--mute);flex:1 1 100%}
-.ed-dims{display:flex;flex-direction:column;gap:26px}
-.ed-dim{border-top:2px solid var(--ink);padding-top:14px}
-.ed-dim-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.ed-code{font-family:var(--lat);font-size:20px;font-weight:800;letter-spacing:.04em}
-.ed-dim-n{font-size:15px;font-weight:700}
-.ed-dim-w{font-size:12px;color:var(--mute)}
-.ed-dim-s{margin-left:auto;font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
-.ed-row{border:1px solid var(--line-l);padding:16px 18px;margin-bottom:12px;background:#fff;transition:border-color .25s}
-.ed-row:hover{border-color:var(--ink)}
-.ed-row-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
-.ed-rc{font-size:13px;font-weight:800;letter-spacing:.04em;padding:1px 7px;border-radius:3px;
-  background:var(--ink);color:var(--paper)}
-.ed-rn{font-size:15px;font-weight:600}
-.ed-rw{font-size:12px;color:var(--mute)}
-.ed-rs{margin-left:auto;font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
-.ed-rs.veto{color:#b4622a}
-.ed-anchors{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.ed-anchor{text-align:left;border:1px solid var(--line-l);background:rgba(244,243,241,.5);
-  padding:10px 12px;cursor:pointer;font-family:inherit;transition:border-color .25s,background .25s}
-.ed-anchor:hover{border-color:var(--ink)}
-.ed-anchor.on{border-color:var(--ink);background:var(--ink)}
-.ed-anchor b{display:block;font-size:13px;font-weight:800;margin-bottom:5px}
-.ed-anchor span{display:block;font-size:11.5px;line-height:1.5;color:var(--mute)}
-.ed-anchor.on b{color:var(--lime)}
-.ed-anchor.on span{color:rgba(244,243,241,.7)}
-.ed-subs{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;align-items:center}
-.ed-subs-l{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--mute);flex:0 0 100%}
-.ed-sub{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--mute);cursor:pointer}
-.ed-sub input{accent-color:var(--ink);cursor:pointer}
-.ed-sub:hover{color:var(--ink)}
-.ed-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:13px;
-  padding-top:11px;border-top:1px dashed var(--line-l)}
-.ed-ev{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;color:var(--mute)}
-.ed-evsel{font-family:inherit;font-size:12px;padding:3px 8px;border:1px solid var(--line-l);background:#fff;cursor:pointer}
-.ed-evd{font-size:11.5px;color:var(--mute);flex:1 1 100%;line-height:1.5}
-.ed-veto-tag{font-size:11px;font-weight:700;color:#b4622a;border:1px solid rgba(180,98,42,.4);
-  padding:2px 8px;border-radius:3px}
-.ed-why{font-size:12px;color:var(--mute);flex:1 1 100%;line-height:1.6}
-/* 右侧结果面板 */
-.ed-side{position:sticky;top:24px;display:flex;flex-direction:column;gap:16px}
-.ed-score{border:1px solid var(--line-l);padding:22px 24px;background:var(--ink);color:var(--paper)}
-.ed-score-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
-.ed-score-l{font-size:12px;font-weight:700;letter-spacing:.1em;color:rgba(244,243,241,.55)}
+.ed-pick{display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px 40px;
+  padding:22px 26px;border:1px solid var(--line-l);background:#fff;margin-bottom:26px}
+.ed-pick-l{display:flex;flex-direction:column;gap:8px;flex:0 0 auto;min-width:300px}
+.ed-lb{font-size:11.5px;font-weight:800;letter-spacing:.1em;color:var(--mute)}
+.ed-select{font-family:inherit;font-size:15px;padding:10px 14px;border:1px solid var(--line-l);
+  background:#fff;color:var(--ink);cursor:pointer}
+.ed-pick-r{flex:1;display:flex;flex-wrap:wrap;gap:12px 34px}
+.ed-meta-i{display:flex;flex-direction:column;gap:3px}
+.ed-meta-i span{font-size:11.5px;color:var(--mute)}
+.ed-meta-i b{font-size:15px;font-weight:700}
+.ed-meta-i b.num{font-size:18px}
+.ed-meta-i small{font-size:11px;font-weight:400;color:var(--mute)}
+
+/* 流程进度 */
+.ed-progress{border:1px solid var(--line-l);background:rgba(244,243,241,.5);padding:22px 26px;margin-bottom:26px}
+.ed-progress-h{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.ed-progress-h h3{font-size:14px;font-weight:800;letter-spacing:.06em;flex:0 0 auto}
+.ed-progress-bar{flex:1;height:6px;background:var(--line-l);overflow:hidden}
+.ed-progress-bar i{display:block;height:100%;background:var(--lime);width:0;transition:width .9s var(--ease)}
+.ed-progress-p{font-size:14px;font-weight:800;width:46px;text-align:right;font-variant-numeric:tabular-nums}
+.ed-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin:0;padding:0;list-style:none;
+  background:var(--line-l);border:1px solid var(--line-l)}
+.ed-step{background:#fff;padding:14px 16px;display:flex;gap:11px;align-items:flex-start;position:relative}
+.ed-step-n{font-size:13px;font-weight:800;width:22px;height:22px;flex:0 0 auto;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;background:var(--line-l);color:var(--mute);
+  font-variant-numeric:tabular-nums}
+.ed-step-b{flex:1;min-width:0}
+.ed-step-b h4{font-size:13.5px;font-weight:700;margin-bottom:2px}
+.ed-step-o{display:inline-block;font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:3px;
+  background:rgba(244,243,241,.9);color:var(--mute);margin-bottom:5px}
+.ed-step-b p{font-size:11.5px;line-height:1.55;color:var(--mute)}
+.ed-step-s{font-size:11px;font-weight:700;color:var(--mute);flex:0 0 auto;white-space:nowrap}
+.ed-step.done .ed-step-n{background:var(--ink);color:var(--lime)}
+.ed-step.done .ed-step-s{color:#0f7a47}
+.ed-step.now{background:var(--ink)}
+.ed-step.now .ed-step-n{background:var(--lime);color:var(--ink)}
+.ed-step.now h4,.ed-step.now .ed-step-b p{color:var(--paper)}
+.ed-step.now .ed-step-s{color:var(--lime)}
+.ed-step.now .ed-step-o{background:rgba(244,243,241,.14);color:rgba(244,243,241,.7)}
+.ed-step.sys .ed-step-o{background:rgba(203,249,2,.22);color:#4a6000}
+.ed-step.team .ed-step-o{background:rgba(244,243,241,.9);color:var(--mute)}
+.ed-step.gov .ed-step-o{background:rgba(0,90,160,.12);color:#005a9e}
+
+/* 结论摘要 */
+.ed-summary{display:grid;grid-template-columns:minmax(220px,.8fr) minmax(0,2fr);gap:1px;
+  background:var(--line-l);border:1px solid var(--line-l);margin-bottom:30px}
+.ed-sum-main{background:var(--ink);color:var(--paper);padding:26px 30px;display:flex;
+  flex-direction:column;align-items:flex-start;justify-content:center;gap:4px}
+.ed-sum-l{font-size:12px;font-weight:700;letter-spacing:.1em;color:rgba(244,243,241,.55)}
+.ed-sum-n{font-size:clamp(54px,5.4vw,80px);line-height:.95;font-weight:900;font-variant-numeric:tabular-nums}
+.ed-sum-grid{background:#fff;display:grid;grid-template-columns:repeat(4,1fr)}
+.ed-sum-i{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:22px 24px;
+  border-left:1px solid var(--line-l)}
+.ed-sum-i:first-child{border-left:none}
+.ed-sum-i span{font-size:11.5px;color:var(--mute)}
+.ed-sum-i b{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums}
 .ed-grade{font-size:15px;font-weight:800;padding:3px 12px;border-radius:3px;background:rgba(244,243,241,.12)}
 .ed-grade.g-a{background:var(--lime);color:var(--ink)}
 .ed-grade.g-b{background:rgba(203,249,2,.7);color:var(--ink)}
 .ed-grade.g-c{background:rgba(244,243,241,.3);color:var(--paper)}
 .ed-grade.g-d{background:rgba(244,243,241,.16);color:rgba(244,243,241,.85)}
 .ed-grade.g-e{background:rgba(200,90,60,.35);color:#f0b0a0}
-.ed-score-n{font-size:clamp(56px,5.6vw,84px);line-height:.92;font-weight:900;margin:8px 0 6px;
-  font-variant-numeric:tabular-nums}
-.ed-score-s{font-size:12.5px;color:rgba(244,243,241,.6);line-height:1.5}
-.ed-meter{height:4px;background:rgba(244,243,241,.14);margin-top:14px}
-.ed-meter i{display:block;height:100%;background:var(--lime);width:0;transition:width .6s var(--ease)}
-.ed-break,.ed-formula-mini,.ed-veto-box{border:1px solid var(--line-l);padding:18px 20px;background:rgba(244,243,241,.5)}
-.ed-break h4,.ed-formula-mini h4,.ed-veto-box h4{font-size:12px;font-weight:800;letter-spacing:.1em;
-  color:var(--mute);margin-bottom:13px}
-.ed-br{display:flex;align-items:center;gap:9px;margin-bottom:9px}
-.ed-br-c{font-family:var(--lat);font-size:12px;font-weight:800;width:16px;flex:0 0 auto}
-.ed-br-n{font-size:12.5px;color:var(--mute);flex:0 0 auto;width:72px}
-.ed-br-bar{flex:1;height:5px;background:var(--line-l)}
-.ed-br-bar i{display:block;height:100%;background:var(--ink);transition:width .5s var(--ease)}
-.ed-br-v{font-size:13px;font-weight:800;width:40px;text-align:right;font-variant-numeric:tabular-nums}
-.ed-calc-row{display:flex;align-items:baseline;gap:9px;font-size:12px;padding:4px 0;color:var(--mute)}
-.ed-calc-row b{margin-left:auto;color:var(--ink);font-variant-numeric:tabular-nums}
-.ed-calc-t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.ed-calc-f{border-bottom:1px solid var(--line-l);padding-bottom:8px;margin-bottom:6px;font-size:14px;color:var(--ink)}
-.ed-calc-f b{font-size:26px;font-weight:800}
-.ed-calc-sub{font-size:11px;color:var(--mute);margin-bottom:8px;letter-spacing:.04em}
+
+/* 分维度分区 */
+.ed-sections{display:flex;flex-direction:column;gap:26px;margin-bottom:30px}
+.ed-sec{border:1px solid var(--line-l);background:#fff}
+.ed-sec-h{display:flex;align-items:center;gap:18px;padding:20px 26px 16px;flex-wrap:wrap}
+.ed-sec-code{font-family:var(--lat);font-size:34px;font-weight:800;line-height:1;width:46px;flex:0 0 auto;
+  color:var(--ink);border-bottom:3px solid var(--lime);padding-bottom:4px}
+.ed-sec-t{flex:1;min-width:0}
+.ed-sec-t h3{font-size:19px;font-weight:800;letter-spacing:-.01em}
+.ed-sec-t p{font-size:12.5px;color:var(--mute);margin-top:3px}
+.ed-sec-s{display:flex;align-items:baseline;gap:10px;flex:0 0 auto}
+.ed-sec-s .num{font-size:34px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.ed-sec-g{font-size:12px;font-weight:800;padding:3px 10px;border-radius:3px;background:rgba(244,243,241,.8);color:var(--mute)}
+.ed-sec-g.g-a,.ed-sec-g.g-b{background:var(--lime);color:var(--ink)}
+.ed-sec-g.g-e{background:rgba(200,90,60,.16);color:#b4622a}
+.ed-sec-bar{height:4px;background:var(--line-l)}
+.ed-sec-bar i{display:block;height:100%;background:var(--ink);width:0;transition:width 1s var(--ease)}
+.ed-items{padding:6px 26px 20px}
+.ed-item{padding:16px 0 14px;border-bottom:1px solid var(--line-l)}
+.ed-item:last-child{border-bottom:none}
+.ed-item-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.ed-item-c{font-size:12px;font-weight:800;padding:1px 7px;border-radius:3px;background:var(--ink);color:var(--paper)}
+.ed-item-n{font-size:15px;font-weight:600}
+.ed-item-w{font-size:11.5px;color:var(--mute)}
+.ed-item-a{font-size:11px;font-weight:700;padding:2px 8px;border-radius:3px;
+  background:rgba(244,243,241,.9);color:var(--mute)}
+.ed-item-a.a5{background:rgba(203,249,2,.3);color:#4a6000}
+.ed-item-a.a3{background:rgba(244,243,241,.9);color:var(--mute)}
+.ed-item-a.a1{background:rgba(200,90,60,.14);color:#b4622a}
+.ed-item-s{margin-left:auto;font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.ed-item-s.zero{color:#b4622a}
+.ed-item-basis{display:flex;gap:10px;align-items:flex-start;margin-bottom:9px}
+.ed-basis-l{flex:0 0 auto;font-size:10.5px;font-weight:800;letter-spacing:.08em;color:var(--mute);
+  padding-top:3px}
+.ed-item-basis p{font-size:13px;line-height:1.65;color:var(--ink)}
+.ed-item-subs{margin-bottom:9px}
+.ed-sub-list{display:flex;flex-wrap:wrap;gap:5px 8px}
+.ed-sub-i{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;padding:2px 9px;
+  border:1px solid var(--line-l);color:var(--mute);background:rgba(244,243,241,.4)}
+.ed-sub-i i{font-style:normal;font-size:10px;opacity:.55}
+.ed-sub-i.ok{border-color:rgba(203,249,2,.55);background:rgba(203,249,2,.14);color:var(--ink)}
+.ed-sub-i.ok i{opacity:1;color:#4a6000}
+.ed-item-foot{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding-top:8px;
+  border-top:1px dashed var(--line-l)}
+.ed-ev-tag{font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:3px;white-space:nowrap}
+.ed-ev-tag.l4{background:rgba(203,249,2,.28);color:#4a6000}
+.ed-ev-tag.l3{background:rgba(244,243,241,.9);color:var(--mute)}
+.ed-ev-tag.l2{background:rgba(0,90,160,.1);color:#005a9e}
+.ed-ev-tag.l1{background:rgba(200,90,60,.14);color:#b4622a}
+.ed-ev-desc{font-size:11.5px;color:var(--mute);flex:1 1 100%;line-height:1.55}
+.ed-veto-tag{font-size:10.5px;font-weight:700;color:#b4622a;border:1px solid rgba(180,98,42,.4);
+  padding:2px 8px;border-radius:3px}
+
+/* 公式与依据 */
+.ed-notes{display:grid;grid-template-columns:minmax(0,1.7fr) minmax(260px,.9fr);gap:24px;align-items:start}
+.ed-formula{margin:0;padding:20px 24px;border-left:3px solid var(--lime);
+  background:rgba(244,243,241,.72);display:flex;flex-direction:column;gap:10px}
+.ed-formula .fx-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px}
+.ed-formula .fx-label{flex:0 0 auto;font-size:11.5px;font-weight:800;letter-spacing:.1em;
+  color:var(--mute);border:1px solid var(--line-l);padding:2px 9px;border-radius:3px}
+.ed-formula .fx{font-size:14.5px;line-height:1.6;color:var(--ink)}
+.ed-veto-box{border:1px solid var(--line-l);padding:18px 20px;background:#fff}
+.ed-veto-box h4{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--mute);margin-bottom:11px}
 .ed-veto-box p{font-size:11.5px;color:var(--mute);line-height:1.6;margin-bottom:11px}
 .ed-veto{display:flex;align-items:center;gap:8px;font-size:12px;padding:6px 0;border-top:1px dashed var(--line-l)}
 .ed-vc{font-family:var(--lat);font-weight:800;font-size:11.5px}
 .ed-vres{margin-left:auto;font-size:11px;font-weight:700;color:#0f7a47}
 .ed-veto.bad .ed-vres{color:#b4622a}
-.ed-out{margin-top:clamp(34px,4.5vw,60px);border:1px solid var(--line-l);padding:26px 30px;background:#fff}
-.ed-out h4{font-size:17px;font-weight:800;margin-bottom:16px}
-.ed-out h5{font-size:12.5px;font-weight:800;letter-spacing:.08em;color:var(--mute);margin:20px 0 10px}
-.ed-out-row{display:flex;align-items:baseline;gap:14px;padding:9px 0;border-bottom:1px solid var(--line-l);font-size:14px}
-.ed-out-row span:first-child{color:var(--mute);flex:0 0 auto;width:96px}
-.ed-out-row b{font-size:16px}
-.ed-out-g{padding:2px 10px;border-radius:3px;font-size:12px;font-weight:800;background:rgba(244,243,241,.7)}
-.ed-out-g.g-a,.ed-out-g.g-b{background:var(--lime);color:var(--ink)}
-.ed-out-g.g-e{background:rgba(200,90,60,.18);color:#b4622a}
-.ed-dedu{margin:0;padding-left:20px}
-.ed-dedu li{font-size:13.5px;line-height:1.7;margin-bottom:9px}
-.ed-dedu .ed-ded-n{display:block;font-size:12px;color:var(--mute);line-height:1.6;margin-top:2px}
-.ed-out-note{margin-top:20px;padding-top:14px;border-top:1px dashed var(--line-l);
-  font-size:12px;color:var(--mute);line-height:1.7}
-@media (max-width:1100px){.ed-grid{grid-template-columns:1fr}.ed-side{position:static}.ed-anchors{grid-template-columns:1fr}}
-@media (max-width:620px){.ed-anchors{grid-template-columns:1fr}.ed-flow li{min-width:100%}}
+
+@media (max-width:1100px){.ed-steps{grid-template-columns:repeat(2,1fr)}.ed-summary{grid-template-columns:1fr}
+  .ed-sum-grid{grid-template-columns:repeat(2,1fr)}.ed-sum-i:nth-child(3){border-left:none}
+  .ed-notes{grid-template-columns:1fr}}
+@media (max-width:620px){.ed-steps{grid-template-columns:1fr}.ed-sum-grid{grid-template-columns:1fr}
+  .ed-sum-i{border-left:none;border-top:1px solid var(--line-l)}.ed-sum-i:first-child{border-top:none}
+  .ed-sec-h{padding:16px 18px 14px}.ed-items{padding:4px 18px 16px}.ed-sec-code{width:36px;font-size:26px}}
 @media (max-width:1000px){.eval-grid{grid-template-columns:1fr}.eval-photo{min-height:320px}.duel{flex-direction:column}.duel-side{min-height:300px}.dims{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:620px){.dims{grid-template-columns:1fr}}
 @media (max-width:620px){.pg{display:none}.hero-t{font-size:clamp(32px,9.4vw,46px)}.desk-list{grid-template-columns:1fr}.ring-sec{overflow:hidden}}
@@ -843,75 +866,63 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
     <div class="wrap">
       <div class="sh">
         <div><span class="en rv">Evaluation Desk</span><h2 class="h2 rl"><span class="ln"><span>评估作业台</span></span></h2></div>
-        <p class="rv" style="--d:.1s">按 25 项二级指标逐项打分。选锚点、勾子项，系统实时算分并挂接依据，产出可复评的评分过程留痕。</p>
+        <p class="rv" style="--d:.1s">选定投标项目后，系统按需求解析、造价核定、六维打分顺序自动完成评分，逐维度出分并挂接依据。</p>
       </div>
 
-      <!-- 流程条 -->
-      <ol class="ed-flow" id="edFlow">
-        <li class="on"><b>1</b><span>选择项目</span></li>
-        <li><b>2</b><span>逐项打分</span></li>
-        <li><b>3</b><span>挂接依据</span></li>
-        <li><b>4</b><span>汇总出分</span></li>
-      </ol>
-
-      <!-- 公式 -->
-      <div class="ed-formula">
-        <div class="fx-row">
-          <span class="fx-label">总分</span>
-          <span class="fx">总分 = Σ（指标得分 × 指标权重）÷ 100</span>
+      <!-- 1. 选择项目 -->
+      <div class="ed-pick">
+        <div class="ed-pick-l">
+          <span class="ed-lb">投标项目</span>
+          <select id="edProj" class="ed-select"></select>
         </div>
-        <div class="fx-row">
-          <span class="fx-label">档内插值</span>
-          <span class="fx">指标得分 = 锚点分 + (锚点分差 × 满足子项数比例)　·　证据形式不满足 → 该指标 0 分</span>
-        </div>
-        <div class="fx-row">
-          <span class="fx-label">等级</span>
-          <span class="fx">A 档 ≥85　·　B 档 75—84　·　C 档 65—74　·　D 档 55—64　·　E 档 &lt;55</span>
-        </div>
+        <div class="ed-pick-r" id="edProjMeta"></div>
       </div>
 
-      <div class="ed-grid">
-        <!-- 左：打分表 -->
-        <div class="ed-main">
-          <div class="ed-picker">
-            <label class="ed-lb" for="edProj">评估对象</label>
-            <select id="edProj" class="ed-select"></select>
-            <span class="ed-hint" id="edProjHint"></span>
-          </div>
-          <div class="ed-dims" id="edDims"></div>
+      <!-- 2. 评估流程进度 -->
+      <div class="ed-progress" id="edProgress">
+        <div class="ed-progress-h">
+          <h3>评估流程进度</h3>
+          <div class="ed-progress-bar"><i id="edProgBar"></i></div>
+          <span class="ed-progress-p num" id="edProgPct">0%</span>
         </div>
-
-        <!-- 右：结果面板 -->
-        <aside class="ed-side">
-          <div class="ed-score">
-            <div class="ed-score-h">
-              <span class="ed-score-l">综合得分</span>
-              <span class="ed-grade" id="edGrade">—</span>
-            </div>
-            <div class="ed-score-n num" id="edScore">0.0</div>
-            <div class="ed-score-s" id="edScoreSub">尚未打分</div>
-            <div class="ed-meter"><i id="edMeter"></i></div>
-          </div>
-
-          <div class="ed-break">
-            <h4>六维得分</h4>
-            <div id="edBreak"></div>
-          </div>
-
-          <div class="ed-formula-mini">
-            <h4>计算过程</h4>
-            <div class="ed-calc" id="edCalc"></div>
-          </div>
-
-          <div class="ed-veto-box">
-            <h4>一票否决前置</h4>
-            <p>F1 数据安全、F2 等保与算法备案先过门槛，不进入插值。</p>
-            <div id="edVeto"></div>
-          </div>
-        </aside>
+        <ol class="ed-steps" id="edSteps"></ol>
       </div>
 
-      <div class="ed-out rv" id="edOut"></div>
+      <!-- 3. 结论摘要 -->
+      <div class="ed-summary" id="edSummary">
+        <div class="ed-sum-main">
+          <span class="ed-sum-l">综合得分</span>
+          <div class="ed-sum-n num" id="edScore">—</div>
+          <span class="ed-grade" id="edGrade">—</span>
+        </div>
+        <div class="ed-sum-grid" id="edSumGrid"></div>
+      </div>
+
+      <!-- 4. 分维度评估结果 -->
+      <div class="ed-sections" id="edSections"></div>
+
+      <!-- 5. 公式与依据 -->
+      <div class="ed-notes">
+        <div class="ed-formula">
+          <div class="fx-row">
+            <span class="fx-label">总分</span>
+            <span class="fx">总分 = Σ（指标得分 × 指标权重）÷ 100</span>
+          </div>
+          <div class="fx-row">
+            <span class="fx-label">档内插值</span>
+            <span class="fx">指标得分 = 锚点分 + (锚点分差 × 满足子项数比例)　·　证据形式不满足 → 该指标 0 分</span>
+          </div>
+          <div class="fx-row">
+            <span class="fx-label">等级</span>
+            <span class="fx">A 档 ≥85　·　B 档 75—84　·　C 档 65—74　·　D 档 55—64　·　E 档 &lt;55</span>
+          </div>
+        </div>
+        <div class="ed-veto-box">
+          <h4>一票否决前置</h4>
+          <p>F1 数据安全、F2 等保与算法备案先过门槛，不进入插值。</p>
+          <div id="edVeto"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1401,6 +1412,7 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
 
 /* ================= 评估作业台 =================
    口径来源：区级人工智能项目评估系统 V0.4
+   · 选定投标项目后，系统自动按指标判档并插值出分，用户不手工选分
    · 指标按 0—100 分、五档；锚点 1/3/5，档内按「满足子项数比例」插值
    · 总分 = Σ(指标得分 × 指标权重) ÷ 100
    · 证据形式要件不满足 → 该指标 0 分（形式先于锚点判定）
@@ -1441,73 +1453,83 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
 
   /* ---------- 证据等级（L4 最强，L1 仅过门槛） ---------- */
   var EV = {
-    L4: { t: 'L4 实测/现场验证', d: '现场演示、实测数据、第三方现场核验结论', ok: true },
-    L3: { t: 'L3 第三方权威评测', d: '权威机构评测报告、权威榜单、第三方检测结论', ok: true },
-    L2: { t: 'L2 公开基准/行业数据', d: '公开基准数据、行业统计、标准与政策文件', ok: true },
-    L1: { t: 'L1 认证资质类', d: '证书、备案证明、体系认证；仅用于过门槛，不单独支撑高分', ok: false },
-    X:  { t: '形式要件不满足', d: '证据形式要件不满足，按无效证据处理，该指标不得分', ok: false }
+    L4: { t: 'L4 实测/现场验证', d: '现场演示、实测数据、第三方现场核验结论' },
+    L3: { t: 'L3 第三方权威评测', d: '权威机构评测报告、权威榜单、第三方检测结论' },
+    L2: { t: 'L2 公开基准/行业数据', d: '公开基准数据、行业统计、标准与政策文件' },
+    L1: { t: 'L1 认证资质类', d: '证书、备案证明、体系认证；仅用于通过门槛，不单独支撑高分' },
+    X:  { t: '形式要件不满足', d: '证据形式要件不满足，按无效证据处理，该指标不得分' }
   };
 
-  /* ---------- 评估对象（示例项目） ---------- */
+  /* ---------- 评估流程（八步中的评分相关环节） ---------- */
+  var FLOW = [
+    { k: 'step1',  n: '申报受理',   o: '申报单位', d: '接收申报材料与功能清单、报价明细' },
+    { k: 'step2',  n: '形式预审',   o: '评估系统', d: '完整性与合规性检查表' },
+    { k: 'step3',  n: '需求解析',   o: '评估系统', d: '生成需求画像、场景清单、复用清单' },
+    { k: 'step4',  n: '造价核定',   o: '评估系统', d: '功能点计数、分项核定价与复用抵扣' },
+    { k: 'step5',  n: '综合评分',   o: '评估系统', d: '六维指标自动打分、证据挂接' },
+    { k: 'step6',  n: '内部复核',   o: '评估团队', d: '复核意见与处理记录' },
+    { k: 'step7',  n: '结论出具',   o: '评估团队', d: '评估报告、整改清单' },
+    { k: 'step8',  n: '批复归档',   o: '主管部门', d: '批复文件、入库数据' }
+  ];
+
+  /* ---------- 评估对象（示例投标项目） ---------- */
   var PROJ = [
     { id: 'P1', name: '政务服务智能问答与材料预审智能体', unit: '区政务服务局', scene: '政策问答 · 材料预审',
-      declared: 1400, verdict: '支持', preset: { A1: 5, A2: 3, A3: 3, A4: 5, B1: 5, B2: 5, B3: 5, B4: 3, B5: 3,
+      declared: 1400, price: 1210, verdict: '整改后支持', date: '2026-11-18',
+      preset: { A1: 5, A2: 3, A3: 3, A4: 5, B1: 5, B2: 5, B3: 5, B4: 3, B5: 3,
         C1: 3, C2: 3, C3: 5, C4: 3, D1: 5, D2: 5, D3: 3, D4: 5, E1: 5, E2: 5, E3: 3, F1: 3, F2: 3, F3: 3, F4: 3, F5: 3 },
       ev: { A1: 'L4', A2: 'L3', A3: 'L3', A4: 'L4', B1: 'L4', B2: 'L4', B3: 'L3', B4: 'L2', B5: 'L2',
         C1: 'L3', C2: 'L3', C3: 'L4', C4: 'L3', D1: 'L4', D2: 'L4', D3: 'L3', D4: 'L4', E1: 'L4', E2: 'L4',
         E3: 'L2', F1: 'L3', F2: 'L3', F3: 'L2', F4: 'L2', F5: 'L2' } },
     { id: 'P2', name: '城市运行事件智能分拨平台', unit: '区城市管理委', scene: '工单分流 · 城市治理',
-      declared: 860, verdict: '有条件支持', preset: { A1: 5, A2: 5, A3: 3, A4: 3, B1: 5, B2: 3, B3: 3, B4: 3, B5: 3,
+      declared: 860, price: 782, verdict: '有条件支持', date: '2026-11-20',
+      preset: { A1: 5, A2: 5, A3: 3, A4: 3, B1: 5, B2: 3, B3: 3, B4: 3, B5: 3,
         C1: 3, C2: 3, C3: 3, C4: 3, D1: 5, D2: 3, D3: 5, D4: 3, E1: 5, E2: 3, E3: 3, F1: 3, F2: 3, F3: 3, F4: 3, F5: 3 },
       ev: { A1: 'L4', A2: 'L3', A3: 'L2', A4: 'L3', B1: 'L3', B2: 'L3', B3: 'L2', B4: 'L2', B5: 'L2',
         C1: 'L3', C2: 'L2', C3: 'L3', C4: 'L2', D1: 'L4', D2: 'L3', D3: 'L4', D4: 'L2', E1: 'L4', E2: 'L2',
         E3: 'L2', F1: 'L3', F2: 'L1', F3: 'L2', F4: 'L2', F5: 'L2' } },
     { id: 'P3', name: '产业招商智能分析助手', unit: '区投促局', scene: '产业分析',
-      declared: 520, verdict: '支持', preset: { A1: 3, A2: 3, A3: 3, A4: 3, B1: 5, B2: 5, B3: 5, B4: 5, B5: 3,
+      declared: 520, price: 494, verdict: '支持', date: '2026-11-21',
+      preset: { A1: 3, A2: 3, A3: 3, A4: 3, B1: 5, B2: 5, B3: 5, B4: 5, B5: 3,
         C1: 3, C2: 5, C3: 5, C4: 3, D1: 5, D2: 5, D3: 5, D4: 3, E1: 5, E2: 5, E3: 5, F1: 5, F2: 5, F3: 5, F4: 3, F5: 3 },
       ev: { A1: 'L3', A2: 'L3', A3: 'L2', A4: 'L3', B1: 'L4', B2: 'L4', B3: 'L4', B4: 'L3', B5: 'L2',
         C1: 'L3', C2: 'L4', C3: 'L4', C4: 'L2', D1: 'L4', D2: 'L4', D3: 'L4', D4: 'L3', E1: 'L4', E2: 'L4',
         E3: 'L3', F1: 'L4', F2: 'L4', F3: 'L3', F4: 'L2', F5: 'L2' } },
     { id: 'P4', name: '城市道路病害智能巡检', unit: '区市政管委', scene: '城市治理',
-      declared: 690, verdict: '整改后支持', preset: { A1: 3, A2: 3, A3: 3, A4: 5, B1: 3, B2: 3, B3: 3, B4: 3, B5: 3,
+      declared: 690, price: 581, verdict: '整改后支持', date: '2026-11-22',
+      preset: { A1: 3, A2: 3, A3: 3, A4: 5, B1: 3, B2: 3, B3: 3, B4: 3, B5: 3,
         C1: 3, C2: 3, C3: 3, C4: 3, D1: 3, D2: 3, D3: 3, D4: 3, E1: 3, E2: 3, E3: 3, F1: 3, F2: 1, F3: 3, F4: 1, F5: 1 },
       ev: { A1: 'L3', A2: 'L2', A3: 'L2', A4: 'L3', B1: 'L2', B2: 'L2', B3: 'L2', B4: 'L2', B5: 'L2',
         C1: 'L2', C2: 'L3', C3: 'L3', C4: 'L2', D1: 'L3', D2: 'L3', D3: 'L2', D4: 'L2', E1: 'L3', E2: 'L2',
         E3: 'L2', F1: 'L2', F2: 'L1', F3: 'L2', F4: 'L1', F5: 'L1' } }
   ];
 
-  /* ---------- 状态 ---------- */
-  var curProj = PROJ[0];
-  /* state[code] = { anchor: 1|3|5, subs: [bool], ev: 'L4'... } */
-  var state = {};
-
   /* ---------- 工具 ---------- */
   function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
-  /* 锚点 → 0—100 分基准 */
   var AN = { 1: 20, 3: 60, 5: 100 };
-  function scoreOf(it) {
-    var st = state[it.code];
-    if (!st) return null;
-    /* 证据形式不满足 → 0 分（形式先于锚点判定） */
-    if (st.ev === 'X') return 0;
+
+  /* ---------- 系统自动打分 ---------- */
+  function scoreOf(it, p) {
+    var a = p.preset[it.code];
+    if (a == null) return null;
+    var ev = p.ev[it.code] || 'L3';
+    /* 证据形式要件不满足 → 0 分（形式先于锚点判定） */
+    if (ev === 'X') return 0;
     /* 一票否决项 F1/F2：只判门槛，不进入插值 */
     if (it.code === 'F1' || it.code === 'F2') {
-      return st.ev === 'L1' ? 60 : (st.ev === 'X' ? 0 : AN[st.anchor]);
+      return ev === 'L1' ? 60 : AN[a];
     }
     var subs = SUB[it.code] || [];
     var n = subs.length || 1;
-    var hit = st.subs.filter(Boolean).length;
+    /* 锚点对应的子项满足比例：5 分要求全部满足，3 分要求半数以上 */
+    var hit = a === 5 ? n : (a === 3 ? Math.ceil(n / 2) : 0);
     var ratio = hit / n;
-    var lo = AN[st.anchor];
-    /* 3 分锚点：需满足半数以上子项 */
-    if (st.anchor === 1) return lo;
-    if (st.anchor === 3) {
-      /* 3→5 分区间插值，按子项比例；不足半数回到 1—3 分区间 */
+    if (a === 1) return 20;
+    if (a === 3) {
       return ratio >= 0.5 ? Math.round(60 + 40 * ((ratio - 0.5) / 0.5)) : Math.round(20 + 40 * ratio);
     }
-    /* 5 分锚点：要求全部子项满足，否则向下插值 */
-    var span = 20;  /* 3→5 分差 */
-    return Math.round(Math.max(60, 100 - span * (1 - ratio)));
+    /* 5 分锚点：未全部满足则向下插值 */
+    return Math.round(Math.max(60, 100 - 20 * (1 - ratio)));
   }
   function grade(s) {
     if (s >= 85) return { t: 'A 档', c: 'g-a' };
@@ -1523,6 +1545,11 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     if (s >= 40) return '不足';
     return '缺失';
   }
+  function anchorOf(s) {
+    if (s >= 90) return { t: '5 分锚点', c: 'a5' };
+    if (s >= 60) return { t: '3 分锚点', c: 'a3' };
+    return { t: '1 分锚点', c: 'a1' };
+  }
 
   /* ---------- 渲染 ---------- */
   var sel = $('#edProj');
@@ -1530,214 +1557,143 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     return '<option value="' + p.id + '">' + esc(p.name) + '（' + esc(p.unit) + '）</option>';
   }).join('');
 
-  function loadProj(p) {
-    curProj = p;
-    state = {};
-    DATA.forEach(function (it) {
-      var a = p.preset[it.code] || 3;
-      var subs = SUB[it.code] || [];
-      /* 预设锚点对应的子项默认满足数 */
-      var n = subs.length || 1;
-      var hit = a === 5 ? n : (a === 3 ? Math.max(1, Math.ceil(n / 2)) : 0);
-      var arr = subs.map(function (_, i) { return i < hit; });
-      state[it.code] = { anchor: a, subs: arr, ev: p.ev[it.code] || 'L3' };
-    });
-    render();
-  }
+  function render(p) {
+    /* --- 项目元信息 --- */
+    $('#edProjMeta').innerHTML =
+      '<div class="ed-meta-i"><span>申报单位</span><b>' + esc(p.unit) + '</b></div>' +
+      '<div class="ed-meta-i"><span>申报金额</span><b class="num">' + p.declared + ' <small>万元</small></b></div>' +
+      '<div class="ed-meta-i"><span>核定价</span><b class="num">' + p.price + ' <small>万元</small></b></div>' +
+      '<div class="ed-meta-i"><span>受理日期</span><b>' + esc(p.date) + '</b></div>' +
+      '<div class="ed-meta-i"><span>评估结论</span><b>' + esc(p.verdict) + '</b></div>';
 
-  function render() {
+    /* --- 逐维度计算 --- */
     var DIMS = C.dims;
-    /* --- 打分表 --- */
-    $('#edDims').innerHTML = DIMS.map(function (dm) {
+    var dimData = DIMS.map(function (dm) {
       var items = DATA.filter(function (x) { return x.dim === dm.code; });
-      var dScore = 0, dMax = 0;
+      var sum = 0, max = 0, rows = [];
       items.forEach(function (it) {
-        var s = scoreOf(it);
-        if (s != null) { dScore += s * it.w; dMax += it.w * 100; }
+        var s = scoreOf(it, p);
+        sum += s * it.w; max += it.w * 100;
+        rows.push({ it: it, s: s });
       });
-      var dAvg = dMax ? (dScore / dMax * 100) : 0;
-      return '<div class="ed-dim">' +
-        '<div class="ed-dim-h">' +
-          '<span class="ed-code">' + dm.code + '</span>' +
-          '<span class="ed-dim-n">' + esc(dm.full) + '</span>' +
-          '<span class="ed-dim-w">权重 ' + dm.w + '</span>' +
-          '<span class="ed-dim-s num">' + dAvg.toFixed(1) + '</span>' +
-        '</div>' +
-        items.map(function (it) { return rowHTML(it); }).join('') +
-        '</div>';
-    }).join('');
-
-    /* --- 汇总 --- */
-    var total = 0, wsum = 0, done = 0, calc = [];
-    DATA.forEach(function (it) {
-      var s = scoreOf(it);
-      if (s != null) {
-        total += s * it.w; wsum += it.w * 100; done++;
-        calc.push({ c: it.code, n: it.name, s: s, w: it.w, part: s * it.w / 100 });
-      }
+      return { dm: dm, items: items, rows: rows, score: max ? (sum / max * 100) : 0 };
     });
-    var score = wsum ? total / 100 : 0;
+
+    /* --- 总分 --- */
+    var total = 0;
+    DATA.forEach(function (it) { total += scoreOf(it, p) * it.w; });
+    var score = total / 100;
     var g = grade(score);
 
+    /* --- 流程进度：八步，前四步为前置，第 5 步评分 --- */
+    var doneSteps = 8;   /* 评估已完成，进入结论阶段 */
+    var progPct = 100;
+
+    $('#edSteps').innerHTML = FLOW.map(function (f, i) {
+      var st = i < 4 ? 'done' : (i === 4 ? 'now' : 'wait');
+      var owner = f.o === '评估系统' ? 'sys' : (f.o === '评估团队' ? 'team' : (f.o === '主管部门' ? 'gov' : 'unit'));
+      return '<li class="ed-step ' + st + ' ' + owner + '">' +
+        '<span class="ed-step-n num">' + pad(i + 1) + '</span>' +
+        '<div class="ed-step-b"><h4>' + esc(f.n) + '</h4>' +
+        '<span class="ed-step-o">' + esc(f.o) + '</span>' +
+        '<p>' + esc(f.d) + '</p></div>' +
+        '<span class="ed-step-s">' + (i < 5 ? '已完成' : (i === 4 ? '本次评分' : '待执行')) + '</span>' +
+        '</li>';
+    }).join('');
+    $('#edProgBar').style.width = progPct + '%';
+    $('#edProgPct').textContent = progPct + '%';
+
+    /* --- 结论摘要 --- */
     $('#edScore').textContent = score.toFixed(1);
     $('#edGrade').textContent = g.t;
     $('#edGrade').className = 'ed-grade ' + g.c;
-    $('#edMeter').style.width = score.toFixed(1) + '%';
-    $('#edScoreSub').innerHTML = done === DATA.length
-      ? '已打分 ' + done + ' / ' + DATA.length + ' 项 · ' + band(score) + ' · 申报 ' + curProj.declared + ' 万元'
-      : '已打分 ' + done + ' / ' + DATA.length + ' 项 · 申报 ' + curProj.declared + ' 万元';
+    $('#edSumGrid').innerHTML =
+      '<div class="ed-sum-i"><span>指标完成</span><b class="num">25 / 25</b></div>' +
+      '<div class="ed-sum-i"><span>评价档位</span><b>' + band(score) + '</b></div>' +
+      '<div class="ed-sum-i"><span>核减率</span><b class="num">' + ((p.declared - p.price) / p.declared * 100).toFixed(1) + '%</b></div>' +
+      '<div class="ed-sum-i"><span>一票否决</span><b>' + (vetoPassed(p) ? '未触发' : '已触发') + '</b></div>';
 
-    /* 六维得分 */
-    $('#edBreak').innerHTML = DIMS.map(function (dm) {
-      var items = DATA.filter(function (x) { return x.dim === dm.code; });
-      var dScore = 0, dMax = 0;
-      items.forEach(function (it) { var s = scoreOf(it); if (s != null) { dScore += s * it.w; dMax += it.w * 100; } });
-      var v = dMax ? (dScore / dMax * 100) : 0;
-      return '<div class="ed-br"><span class="ed-br-c">' + dm.code + '</span>' +
-        '<span class="ed-br-n">' + esc(dm.name) + '</span>' +
-        '<div class="ed-br-bar"><i style="width:' + v.toFixed(1) + '%"></i></div>' +
-        '<span class="ed-br-v num">' + v.toFixed(1) + '</span></div>';
+    /* --- 分维度分区 --- */
+    $('#edSections').innerHTML = dimData.map(function (dd, di) {
+      var dg = grade(dd.score);
+      return '<section class="ed-sec">' +
+        '<header class="ed-sec-h">' +
+          '<span class="ed-sec-code">' + dd.dm.code + '</span>' +
+          '<div class="ed-sec-t">' +
+            '<h3>' + esc(dd.dm.full) + '</h3>' +
+            '<p>' + esc(dd.dm.name) + '　·　权重 ' + dd.dm.w + '　·　' + dd.items.length + ' 项二级指标</p>' +
+          '</div>' +
+          '<div class="ed-sec-s">' +
+            '<span class="num">' + dd.score.toFixed(1) + '</span>' +
+            '<span class="ed-sec-g ' + dg.c + '">' + dg.t + '</span>' +
+          '</div>' +
+        '</header>' +
+        '<div class="ed-sec-bar"><i style="width:' + dd.score.toFixed(1) + '%"></i></div>' +
+        '<div class="ed-items">' +
+          dd.rows.map(function (r) {
+            var it = r.it, s = r.s;
+            var ev = EV[p.ev[it.code]] || EV.L3;
+            var an = anchorOf(s);
+            var isVeto = (it.code === 'F1' || it.code === 'F2');
+            var bad = (p.ev[it.code] === 'X');
+            var aDesc = s >= 90 ? it.a5 : (s >= 60 ? it.a3 : it.a1);
+            /* 子项满足情况 */
+            var subs = SUB[it.code] || [];
+            var n = subs.length || 1;
+            var a = p.preset[it.code] || 3;
+            var hit = a === 5 ? n : (a === 3 ? Math.ceil(n / 2) : 0);
+            var subHtml = subs.length
+              ? '<div class="ed-sub-list">' + subs.map(function (sb, si) {
+                  var ok = si < hit;
+                  return '<span class="ed-sub-i' + (ok ? ' ok' : '') + '">' +
+                    '<i aria-hidden="true">' + (ok ? '✓' : '—') + '</i>' + esc(sb) + '</span>';
+                }).join('') + '</div>'
+              : '';
+            return '<div class="ed-item">' +
+              '<div class="ed-item-h">' +
+                '<span class="ed-item-c mono">' + it.code + '</span>' +
+                '<span class="ed-item-n">' + esc(it.name) + '</span>' +
+                '<span class="ed-item-w">权重 ' + it.w + '</span>' +
+                '<span class="ed-item-a ' + an.c + '">' + an.t + '</span>' +
+                '<span class="ed-item-s num' + (bad ? ' zero' : '') + '">' + s + '</span>' +
+              '</div>' +
+              '<div class="ed-item-basis"><span class="ed-basis-l">判档依据</span><p>' + esc(aDesc) + '</p></div>' +
+              (subHtml ? '<div class="ed-item-subs">' + subHtml + '</div>' : '') +
+              '<div class="ed-item-foot">' +
+                '<span class="ed-ev-tag ' + (p.ev[it.code] === 'L4' ? 'l4' : (p.ev[it.code] === 'L3' ? 'l3' : (p.ev[it.code] === 'L2' ? 'l2' : 'l1'))) + '">' + esc(ev.t) + '</span>' +
+                '<span class="ed-ev-desc">' + esc(ev.d) + '</span>' +
+                (isVeto ? '<span class="ed-veto-tag">一票否决前置 · 不进入插值</span>' : '') +
+              '</div>' +
+            '</div>';
+          }).join('') +
+        '</div>' +
+      '</section>';
     }).join('');
 
-    /* 计算过程 */
-    $('#edCalc').innerHTML =
-      '<div class="ed-calc-row ed-calc-f"><span>总分</span><b class="num">' + score.toFixed(1) + '</b></div>' +
-      '<div class="ed-calc-sub">Σ（指标得分 × 指标权重）÷ 100</div>' +
-      calc.map(function (x) {
-        return '<div class="ed-calc-row"><span class="mono">' + x.c + '</span>' +
-          '<span class="ed-calc-t">' + esc(x.n) + '</span>' +
-          '<span class="mono">' + x.s + ' × ' + x.w + '</span>' +
-          '<b class="mono">' + x.part.toFixed(2) + '</b></div>';
-      }).join('');
-
-    /* 一票否决 */
+    /* --- 一票否决 --- */
     $('#edVeto').innerHTML = DATA.filter(function (x) { return x.code === 'F1' || x.code === 'F2'; }).map(function (it) {
-      var st = state[it.code];
-      var bad = st.ev === 'X' || st.ev === 'L1';
+      var ev = p.ev[it.code];
+      var bad = (ev === 'X' || ev === 'L1');
       return '<div class="ed-veto' + (bad ? ' bad' : '') + '">' +
         '<span class="ed-vc">' + it.code + '</span>' +
         '<span>' + esc(it.name) + '</span>' +
         '<span class="ed-vres">' + (bad ? '门槛未过' : '已过门槛') + '</span></div>';
     }).join('');
-
-    /* 输出结论 */
-    var out = [];
-    var worst = calc.slice().sort(function (a, b) { return (a.s - b.s) * (b.w - a.w); }).slice(0, 3);
-    out.push('<h4>评估结论</h4>');
-    out.push('<div class="ed-out-row"><span>综合得分</span><b class="num">' + score.toFixed(1) + '</b><span class="ed-out-g ' + g.c + '">' + g.t + '</span></div>');
-    out.push('<div class="ed-out-row"><span>评估结论</span><b>' + esc(curProj.verdict) + '</b></div>');
-    out.push('<div class="ed-out-row"><span>申报金额</span><b class="num">' + curProj.declared + ' 万元</b></div>');
-    if (worst.length) {
-      out.push('<h5>关键扣分项（按权重×失分排序）</h5><ul class="ed-dedu">');
-      worst.forEach(function (w) {
-        out.push('<li><span class="mono">' + w.c + '</span> ' + esc(w.n) +
-          ' <b class="num">' + w.s + '</b> 分 / 权重 ' + w.w +
-          '<span class="ed-ded-n">' + esc(itPoint(w.c, 'why')) + '</span></li>');
-      });
-      out.push('</ul>');
-    }
-    out.push('<p class="ed-out-note">所有得分均挂接证据编号，评估过程输入数据、参数版本与中间计算结果完整留痕，可逐项回溯到原始材料。</p>');
-    $('#edOut').innerHTML = out.join('');
-
-    /* 流程条状态 */
-    $$('#edFlow li').forEach(function (li, i) {
-      li.classList.toggle('on', i === (done === DATA.length ? 3 : (done ? 1 : 0)));
-      li.classList.toggle('done', done > 0 && !(done === DATA.length));
-    });
-
-    bindRows();
   }
 
-  function itPoint(code, which) {
-    var it = DATA.filter(function (x) { return x.code === code; })[0];
-    if (!it) return '';
-    if (which === 'why') {
-      var st = state[code];
-      if (st.ev === 'X') return '证据形式要件不满足，该指标不得分';
-      if (st.anchor === 5) return '达到 5 分锚点：' + it.a5;
-      if (st.anchor === 3) return '达到 3 分锚点：' + it.a3;
-      return '仅达 1 分锚点：' + it.a1;
-    }
-    return it.point;
-  }
-
-  function rowHTML(it) {
-    var st = state[it.code];
-    var sc = scoreOf(it);
-    var subs = SUB[it.code] || [];
-    var isVeto = (it.code === 'F1' || it.code === 'F2');
-    var ev = EV[st.ev] || EV.L3;
-    return '<div class="ed-row" data-code="' + it.code + '">' +
-      '<div class="ed-row-h">' +
-        '<span class="ed-rc mono">' + it.code + '</span>' +
-        '<span class="ed-rn">' + esc(it.name) + '</span>' +
-        '<span class="ed-rw">权重 ' + it.w + '</span>' +
-        '<span class="ed-rs num' + (isVeto ? ' veto' : '') + '">' + (sc == null ? '—' : sc) + '</span>' +
-      '</div>' +
-      '<div class="ed-anchors" role="radiogroup" aria-label="' + esc(it.name) + ' 锚点评分">' +
-        [1, 3, 5].map(function (a) {
-          var on = st.anchor === a;
-          var desc = a === 1 ? it.a1 : (a === 3 ? it.a3 : it.a5);
-          return '<button class="ed-anchor' + (on ? ' on' : '') + '" data-code="' + it.code + '" data-a="' + a + '" role="radio" aria-checked="' + on + '">' +
-            '<b>' + a + ' 分</b><span>' + esc(desc) + '</span></button>';
-        }).join('') +
-      '</div>' +
-      '<div class="ed-subs">' +
-        (subs.length ? '<span class="ed-subs-l">子项（档内按满足比例插值）</span>' +
-          subs.map(function (s, i) {
-            return '<label class="ed-sub"><input type="checkbox" data-code="' + it.code + '" data-i="' + i + '"' +
-              (st.subs[i] ? ' checked' : '') + '><span>' + esc(s) + '</span></label>';
-          }).join('') : '<span class="ed-subs-l">本指标按锚点直接判档</span>') +
-      '</div>' +
-      '<div class="ed-meta">' +
-        '<label class="ed-ev">证据等级' +
-          '<select data-code="' + it.code + '" class="ed-evsel">' +
-            Object.keys(EV).map(function (k) {
-              return '<option value="' + k + '"' + (st.ev === k ? ' selected' : '') + '>' + EV[k].t + '</option>';
-            }).join('') +
-          '</select></label>' +
-        '<span class="ed-evd">' + esc(ev.d) + '</span>' +
-        (isVeto ? '<span class="ed-veto-tag">一票否决前置 · 不进入插值</span>' : '') +
-        '<span class="ed-why">评分要点：' + esc(it.point) + '</span>' +
-      '</div>' +
-    '</div>';
-  }
-
-  function bindRows() {
-    $$('.ed-anchor').forEach(function (b) {
-      b.addEventListener('click', function () {
-        var code = b.dataset.code, a = +b.dataset.a;
-        var st = state[code];
-        st.anchor = a;
-        var subs = SUB[code] || [];
-        var n = subs.length || 1;
-        /* 切锚点时按新锚点重置子项 */
-        var hit = a === 5 ? n : (a === 3 ? Math.max(1, Math.ceil(n / 2)) : 0);
-        st.subs = subs.map(function (_, i) { return i < hit; });
-        render();
-      });
-    });
-    $$('.ed-sub input').forEach(function (cb) {
-      cb.addEventListener('change', function () {
-        state[cb.dataset.code].subs[+cb.dataset.i] = cb.checked;
-        render();
-      });
-    });
-    $$('.ed-evsel').forEach(function (s) {
-      s.addEventListener('change', function () {
-        state[s.dataset.code].ev = s.value;
-        render();
-      });
+  function vetoPassed(p) {
+    return !['F1', 'F2'].some(function (c) {
+      var e = p.ev[c];
+      return e === 'X' || e === 'L1';
     });
   }
 
   sel.addEventListener('change', function () {
     var p = PROJ.filter(function (x) { return x.id === sel.value; })[0];
-    if (p) loadProj(p);
+    if (p) render(p);
   });
 
-  $('#edProjHint').textContent = '共 ' + PROJ.length + ' 个示例项目，切换后按该项目材料预填锚点与证据等级，可逐项调整。';
-  loadProj(PROJ[0]);
+  render(PROJ[0]);
 })();
 
 /* ================= 瀑布图 ================= */
