@@ -8,7 +8,7 @@
 }
 .inquiry-cover {
   padding: calc(var(--hd) + 58px) var(--pad) clamp(28px, 4vw, 64px);
-  background: linear-gradient(115deg, #20251d 30%, #2d3627);
+  background: linear-gradient(105deg, #192018eb 12%, #1c241dd9 46%, #17201673), url(cases.jpg) center / cover;
 }
 .inquiry-cover .crumb,
 .library-mast .crumb { margin-bottom: clamp(18px, 3vw, 40px); }
@@ -73,21 +73,22 @@
 .inquiry-metrics div { display: flex; align-items: baseline; gap: 10px; }
 .inquiry-metrics dt { order: 1; font-size: 13px; color: #bec4b6; }
 .inquiry-metrics dd { font: 720 clamp(23px, 2vw, 33px)/1.2 var(--lat); }
-.library-mast { padding: calc(var(--hd) + 46px) var(--pad) clamp(25px, 3vw, 44px); overflow: hidden; }
+.library-mast { padding: calc(var(--hd) + 46px) var(--pad) clamp(25px, 3vw, 44px); overflow: hidden; background: var(--ink-2) url(database.jpg) center 47% / cover; }
 .library-mast::before {
   position: absolute;
   content: "";
   inset: 0;
   z-index: -1;
   background: linear-gradient(90deg, #20241d 16%, #20241dee 42%, #20241d44 82%),
-              linear-gradient(180deg, #171c168a, transparent 90%), url(database.jpg) center 47% / cover;
+              linear-gradient(180deg, #171c168a, transparent 90%);
 }
 .library-mast .crumb { margin-bottom: 12px; }
 .library-mast h1 { font-size: clamp(40px, 4.8vw, 72px); line-height: 1.08; font-weight: 900; letter-spacing: -.04em; }
 .library-mast h1 + p { color: #d0d5c9; margin-top: 12px; font-size: 15px; }
+.standards-mast { background-image: url(service.jpg); background-position: center 51%; }
 .standards-mast::before {
   background: linear-gradient(90deg, #1d241cf2 0%, #1e241ddc 40%, #1e241d73 72%, #1e241dcc),
-              linear-gradient(0deg, #1b221adb, transparent 75%), url(service.jpg) center 51% / cover;
+              linear-gradient(0deg, #1b221adb, transparent 75%);
 }
 .standards-mast-row {
   display: flex;

@@ -17,7 +17,7 @@ var tt = '平台专注：AI项目立项评估 ｜ 造价核定 ｜ 企业与技�
 $('#ticker').innerHTML = new Array(6).fill('<span>' + tt + '</span>').join('');
 $('#nav').innerHTML = C.pages.map(function (p) { return '<a href="' + pageUrl(p.id) + '" data-id="' + p.id + '">' + p.name + '</a>'; }).join('');
 $('#menuList').innerHTML = C.pages.map(function (p) { return '<a href="' + pageUrl(p.id) + '" data-id="' + p.id + '"><small>' + pad(p.i + 1) + '</small>' + p.name + '</a>'; }).join('');
-$('#menuPic').insertAdjacentHTML('afterbegin', C.pages.map(function (p) { return '<img src="' + p.img + '" alt="" data-id="' + p.id + '" loading="lazy">'; }).join(''));
+$('#menuPic').insertAdjacentHTML('afterbegin', C.pages.map(function (p) { return '<img src="' + (p.id === 'home' ? 'assets/footer.jpg' : p.img) + '" alt="" data-id="' + p.id + '" loading="lazy">'; }).join(''));
 if (window.initPortalPage) window.initPortalPage({ C, $, $$, pad, fmt, reduced, fine, countTo, pageUrl });
 
 /* ================= 图片缺失时显示占位 ================= */
@@ -148,7 +148,22 @@ let slideFrame, slideUrl;
 function presentMessage(action) {
   window.parent.postMessage({ portalSlide: action, page: curPage, hash: location.hash }, messageOrigin);
 }
+// Keep the navigation bar in place while the current content recedes.
+let exitAnimation, destination;
 function navigateTo(url) {
+  destination = url;
+  if (exitAnimation) return;
+  if (reduced || !view.animate) { openDestination(url); return; }
+  exitAnimation = view.animate([{opacity: 1}, {opacity: .72}], {
+    duration: 135, easing: 'ease-in', fill: 'forwards'
+  });
+  exitAnimation.onfinish = () => openDestination(destination);
+}
+function clearExit() {
+  if (exitAnimation) { exitAnimation.cancel(); exitAnimation = null; }
+}
+window.addEventListener('pageshow', clearExit);
+function openDestination(url) {
   if (!document.fullscreenElement || inPresentation) { location.assign(url); return; }
   closeMenu(true);
   slideUrl = url;
@@ -159,6 +174,7 @@ function navigateTo(url) {
   slideFrame.src = url;
   document.body.append(slideFrame);
   slideFrame.focus();
+  clearExit();
 }
 window.addEventListener('message', function (event) {
   if (!slideFrame || event.source !== slideFrame.contentWindow) return;
@@ -168,7 +184,7 @@ window.addEventListener('message', function (event) {
   if (!data || !PIDS.includes(data.page)) return;
   if (data.portalSlide === 'location' && typeof data.hash === 'string') {
     slideUrl = pageUrl(data.page) + (data.hash.startsWith('#') ? data.hash : '');
-    document.title = PAGE[data.page].name + ' · 区级人工智能项目评估平台';
+    document.title = PAGE[data.page].name + ' · 人工智能项目评估平台';
   } else if (data.portalSlide === 'exit') fsToggle();
   else if (data.portalSlide === 'close') window.close();
 });
@@ -187,13 +203,14 @@ document.addEventListener('click', function (e) {
   const link = e.target.closest('a[href]');
   if (!link || link.target || e.button !== 0 || e.defaultPrevented || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
   const url = new URL(link.href);
-  const page = PIDS.find(id => new URL(pageUrl(id), location.href).href.split('#')[0] === url.href.split('#')[0]);
+  const page = PIDS.find(id => new URL(pageUrl(id), location.href).pathname === url.pathname);
+  if (url.origin !== location.origin || url.protocol !== location.protocol) return;
   if (!page) return;
   closeMenu(true);
-  if (page === curPage && url.hash === location.hash && !link.matches('.sr')) {
+  if (page === curPage && url.search === location.search && url.hash === location.hash && !link.matches('.sr')) {
     e.preventDefault();
     if (url.hash) positionTarget(); else scrollToY(0);
-  } else if (page !== curPage && document.fullscreenElement && !inPresentation) {
+  } else if (page !== curPage) {
     e.preventDefault(); navigateTo(pageUrl(page) + url.hash);
   }
 });
@@ -258,31 +275,5 @@ function start() {
   calcHeader(); onScroll(); armIn(view); positionTarget();
   hintT = setTimeout(hideHint, 8000);
 }
-(function () {
-  var pre = $('#pre'), played = false;
-  try { played = sessionStorage.getItem('aiEvalPre') === '1'; } catch (e) {}
-  if (!pre || reduced || played || location.hash || window.name === 'portal-presentation') {
-    if (pre) pre.remove();
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });
-    else start();
-    return;
-  }
-  var num = $('#preNum'), bar = $('#preBar'), eng = $$('.pre-eng span'), T = 2200, t0 = performance.now(), done = false;
-  function stepPre(now) {
-    if (done) return;
-    var p = Math.min(1, (now - t0) / T), e = 1 - Math.pow(1 - p, 3);
-    num.textContent = Math.round(e * 100); bar.style.transform = 'scaleX(' + e + ')';
-    eng.forEach(function (s, i) { s.classList.toggle('on', e >= (i + 1) / 4.4); });
-    if (p < 1) requestAnimationFrame(stepPre); else finish();
-  }
-  function finish() {
-    if (done) return; done = true;
-    num.textContent = 100; bar.style.transform = 'scaleX(1)'; eng.forEach(function (s) { s.classList.add('on'); });
-    try { sessionStorage.setItem('aiEvalPre', '1'); } catch (e) {}
-    setTimeout(function () { pre.classList.add('out'); start(); setTimeout(function () { pre.remove(); }, 1200); }, 260);
-  }
-  pre.addEventListener('click', finish);
-  addEventListener('keydown', function skip() { removeEventListener('keydown', skip); finish(); });
-  requestAnimationFrame(stepPre);
-})();
+window.PortalMedia.enter(start);
 })();

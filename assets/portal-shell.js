@@ -7,9 +7,9 @@
 <div class="top" id="top">
   <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
   <header class="hd">
-    <a class="brand" href="index.html" aria-label="区级人工智能项目评估平台 首页">
+    <a class="brand" href="index.html" aria-label="人工智能项目评估平台 首页">
       <img class="brand-mark" src="assets/brand-mark.svg" width="34" height="34" alt="">
-      <span><b>区级人工智能项目评估平台</b><small>专注AI项目立项评估、造价核定与企业匹配</small></span>
+      <span><b>人工智能项目评估平台</b><small>专注AI项目立项评估、造价核定与企业匹配</small></span>
     </a>
     <nav class="nav" id="nav" aria-label="主导航"></nav>
     <div class="hd-act">
@@ -54,19 +54,4 @@
 <div class="pg" aria-hidden="true"><span class="num" id="pgNum">01 / 08</span><span id="pgName">首页</span></div>
 <button class="hint" id="hint">按 <kbd>?</kbd> 查看快捷键，<kbd>Enter</kbd> 开始演示</button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>`);
-  if (main.dataset.page === 'home') {
-    document.body.insertAdjacentHTML('afterbegin', `
-<!-- ========== 开场加载页 ========== -->
-<div class="pre" id="pre" role="status" aria-label="评估引擎加载中">
-  <div class="pre-top"><span class="en">District AI Project Evaluation</span><span class="en">V0.3</span></div>
-  <div class="pre-mid">
-    <div class="pre-num num"><span id="preNum">0</span><i>%</i></div>
-    <div class="pre-eng"><span>需求解析</span><span>造价核定</span><span>匹配推荐</span><span>报告生成</span></div>
-  </div>
-  <div class="pre-foot">
-    <div class="pre-bar"><i id="preBar"></i></div>
-    <div class="pre-cap"><span>评估引擎加载中</span><span>点击或按任意键跳过</span></div>
-  </div>
-</div>`);
-  }
 })();

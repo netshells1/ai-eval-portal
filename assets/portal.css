@@ -441,12 +441,12 @@ ul{list-style:none}
 /* Let the next heading be readable as soon as the route changes. */
 .js .view.on :is(.pb,.hero) .ln>span,.js .view.on :is(.pb,.hero) .rv{transform:none;opacity:1;transition:none}
 @media (prefers-reduced-motion:no-preference){
-  .view.on{animation:route-appear .24s ease-out}
-  .view.on :is(.pb-text,.hero-in){animation:route-heading .28s var(--ease)}
-  .view.on .pb .lb-media img{animation:route-image .42s var(--ease)}
+  .view.on.shown{animation:route-appear .32s ease-out}
+  .view.on.shown :is(.pb-text,.hero-in,.inquiry-spread,.library-mast>.wrap){animation:route-heading .38s var(--ease)}
+  .view.on.shown .pb .lb-media img{animation:route-image .42s var(--ease)}
 }
 @keyframes route-appear{from{opacity:.78}to{opacity:1}}
-@keyframes route-heading{from{transform:translateY(8px)}to{transform:translateY(0)}}
+@keyframes route-heading{from{transform:translateY(14px)}to{transform:translateY(0)}}
 @keyframes route-image{from{transform:scale(1.025)}to{transform:scale(1)}}
 
 /* home: section index with floating preview */
@@ -507,3 +507,15 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
 .toast{position:fixed;left:50%;top:22px;z-index:95;visibility:hidden;transform:translate(-50%,calc(-100% - 40px));background:var(--paper);color:var(--ink);padding:12px 22px;border-radius:999px;font-size:14px;font-weight:500;transition:transform .5s var(--ease);max-width:92vw;text-align:center}
 .toast.show{transform:translate(-50%,0);visibility:visible}
 @media print{.view{display:block!important}.pre,.top,.menu,.keys,.pg,.hint,.toast{display:none!important}.sec,.hero{break-after:page}.js .ln>span,.js .rv{transform:none!important;opacity:1!important}.hs{height:auto!important}.hs-sticky{position:relative;height:auto}.hs-track{transform:none!important;flex-wrap:wrap}}
+
+/* Background films share the still image's crop and stay behind the text. */
+.pre{background:linear-gradient(90deg,#171d18e6,#192019a6),url(opening-city.jpg) center/cover,var(--ink-2)}
+.portal-film{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:0;transition:opacity .45s ease}
+.portal-film.playing{opacity:1}
+.hero-media .portal-film{object-position:62% 60%;filter:saturate(.82) brightness(.84)}
+.hero-img.reveal{z-index:1}
+.lb-media .portal-film{width:74%;object-position:30% 50%;filter:saturate(.85) brightness(.9)}
+.library-mast .portal-film{z-index:-2;object-position:center 47%}
+.standards-mast .portal-film{object-position:center 51%}
+.menu-pic .portal-film{filter:saturate(.8) brightness(.75)}
+@media(max-width:900px){.lb-media .portal-film{width:100%}}
