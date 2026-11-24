@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>项目评估 · 人工智能项目评估平台</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="专注AI项目立项评估、造价核定与企业匹配。">
+<!-- 网络字体异步加载：内网打不开时自动回退到系统字体，不会卡住页面 -->
+<link rel="stylesheet" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('rm');</script>
+<link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+<main id="main" tabindex="-1" class="view on" data-page="evaluation">
+  <header class="pb">
+    <div class="lb-media ph"><img src="assets/evaluation.jpg" alt="会议桌上的项目申报文件"></div>
+    <div class="lb-shade"></div>
+    <span class="cap">申报材料（示意图）</span>
+    <div class="pb-text">
+      <p class="crumb rv"><a href="index.html">首页</a><span>/</span><span>项目评估</span></p>
+      <span class="en rv">Evaluation</span>
+      <h1 class="h1 rl"><span class="ln"><span>项目评估</span></span></h1>
+      <p class="lead rv" style="--d:.15s">不只看技术参数。需求、技术、造价、企业、园区、合规六个维度同时判断，系统自动评分，评估团队只做复核。</p>
+    </div>
+  </header>
+  <section class="sec light">
+    <div class="wrap">
+      <div class="sh">
+        <div><span class="en rv">Six dimensions</span><h2 class="h2 rl"><span class="ln"><span>六维综合评价体系</span></span></h2></div>
+        <p class="rv" style="--d:.1s">25 项二级指标，每项都有 1 分、3 分、5 分的评分锚点，不同批次的分数可以直接比较。</p>
+      </div>
+      <div class="duel rv">
+        <div class="duel-side duel-old">
+          <div>
+            <div class="duel-t">传统<br>参数评估</div>
+            <p class="duel-p">输入几个技术参数和建设需求，给出一个价格。</p>
+          </div>
+          <dl class="duel-list">
+            <div><dt>定价</dt><dd>报价下浮或人工经验</dd></div>
+            <div><dt>企业</dt><dd>资质门槛，按规模排序</dd></div>
+            <div><dt>输出</dt><dd>一个价格结论</dd></div>
+          </dl>
+        </div>
+        <div class="duel-side duel-new">
+          <div>
+            <div class="duel-t"><span>六维</span><br>综合评估</div>
+            <p class="duel-p">同一家企业，在不同项目中得分不同；能复用的底座、组件、数据和算力，逐项折成价格。</p>
+          </div>
+          <dl class="duel-list">
+            <div><dt>定价</dt><dd>功能点加行业基准，叠加复用抵扣</dd></div>
+            <div><dt>企业</dt><dd>按场景适配度评价，小团队有独门技术也能高分</dd></div>
+            <div><dt>输出</dt><dd>评分、核定价区间、匹配名单、风险清单</dd></div>
+          </dl>
+        </div>
+      </div>
+      <div class="dims" id="dims"></div>
+      <p class="veto rv"><b>一票否决</b><span>未完成生成式人工智能安全评估或算法备案</span><span>涉及未脱敏个人信息且无合法依据</span><span>报价超过核定价 2 倍且无合理说明</span><span>列入严重失信或政府采购禁入名单</span></p>
+    </div>
+  </section>
+  <section class="sec light" id="evalDeskSec">
+    <div class="wrap">
+      <div class="sh">
+        <div><span class="en rv">Evaluation Desk</span><h2 class="h2 rl"><span class="ln"><span>评估作业台</span></span></h2></div>
+        <p class="rv" style="--d:.1s">选定投标项目并启动评估，系统按阶段推进，逐步给出各维度分值与判档依据。</p>
+      </div>
+
+      <!-- 1. 启动区 -->
+      <div class="ed-launch" id="edLaunch">
+        <div class="ed-launch-l">
+          <label class="ed-lb" for="edProj">投标项目</label>
+          <select id="edProj" class="ed-select"></select>
+          <div class="ed-launch-meta" id="edProjMeta"></div>
+        </div>
+        <div class="ed-launch-r">
+          <button class="ed-run" id="edRun" type="button">
+            <span class="ed-run-ico" aria-hidden="true"></span>
+            <span class="ed-run-t" id="edRunT">开始评估</span>
+          </button>
+          <button class="ed-reset" id="edReset" type="button" hidden>重新评估</button>
+          <p class="ed-run-hint" id="edRunHint">评估系统按「需求解析 → 造价核定 → 六维打分 → 汇总出分」顺序执行，全程留痕可回溯。</p>
+        </div>
+      </div>
+
+      <!-- 2. 进度条 -->
+      <div class="ed-prog" id="edProg" hidden>
+        <div class="ed-prog-h">
+          <span class="ed-prog-l">评估进度</span>
+          <div class="ed-prog-track"><i id="edProgBar"></i></div>
+          <span class="ed-prog-p num" id="edProgPct">0%</span>
+          <span class="ed-prog-step" id="edProgStep">等待启动</span>
+        </div>
+        <ol class="ed-phases" id="edPhases"></ol>
+      </div>
+
+      <!-- 3. 分区切换：左导航 + 右明细 -->
+      <div class="ed-desk" id="edDesk" hidden>
+        <nav class="ed-nav" id="edNav" aria-label="评估阶段导航"></nav>
+        <div class="ed-pane">
+          <div class="ed-pane-h" id="edPaneH"></div>
+          <div class="ed-pane-b" id="edPaneB" data-native-scroll></div>
+        </div>
+      </div>
+
+      <!-- 4. 汇总（最后阶段） -->
+      <div class="ed-final" id="edFinal" hidden></div>
+
+      <!-- 5. 公式与依据 -->
+      <div class="ed-notes">
+        <div class="ed-formula">
+          <div class="fx-row">
+            <span class="fx-label">总分</span>
+            <span class="fx">总分 = Σ（指标得分 × 指标权重）÷ 100</span>
+          </div>
+          <div class="fx-row">
+            <span class="fx-label">档内插值</span>
+            <span class="fx">指标得分 = 锚点分 + (锚点分差 × 满足子项数比例)　·　证据形式不满足 → 该指标 0 分</span>
+          </div>
+          <div class="fx-row">
+            <span class="fx-label">等级</span>
+            <span class="fx">A 档 ≥85　·　B 档 75—84　·　C 档 65—74　·　D 档 55—64　·　E 档 &lt;55</span>
+          </div>
+        </div>
+        <div class="ed-veto-box">
+          <h4>一票否决前置</h4>
+          <p>F1 数据安全、F2 等保与算法备案先过门槛，不进入插值。</p>
+          <div id="edVeto"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="sec dark">
+    <div class="wrap">
+      <div class="sh">
+        <div><span class="en rv">Process</span><h2 class="h2 rl"><span class="ln"><span>八步评估流程</span></span></h2></div>
+        <p class="rv" style="--d:.1s">系统自动评分与造价核定并行执行，评估团队只做结果复核，不占评审排期。</p>
+      </div>
+      <div class="steps" id="steps"><div class="steps-line"><i></i></div></div>
+      <div class="proc-note rv">
+        <div><span class="num">11</span><span>个工作日：常规项目</span></div>
+        <div><span class="num">5</span><span>个工作日：紧急项目通道</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="assets/portal-data.js"></script>
+<script src="assets/ind-data.js"></script>
+<script src="assets/portal-shell.js"></script>
+<script src="assets/pages/evaluation.js"></script>
+<script src="assets/pages/evaluation-desk.js"></script>
+<script src="assets/portal-media.js"></script>
+<script src="assets/portal.js"></script>
+</body>
+</html>

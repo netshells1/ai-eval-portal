@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>平台介绍 · 人工智能项目评估平台</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="专注AI项目立项评估、造价核定与企业匹配。">
+<!-- 网络字体异步加载：内网打不开时自动回退到系统字体，不会卡住页面 -->
+<link rel="stylesheet" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('rm');</script>
+<link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+<main id="main" tabindex="-1" class="view on" data-page="about">
+  <header class="pb">
+    <div class="lb-media ph"><img src="assets/about.jpg" alt="政务服务中心建筑外立面"></div>
+    <div class="lb-shade"></div>
+    <span class="cap">政务服务中心外立面（示意图）</span>
+    <div class="pb-text">
+      <p class="crumb rv"><a href="index.html">首页</a><span>/</span><span>平台介绍</span></p>
+      <span class="en rv">About</span>
+      <h1 class="h1 rl"><span class="ln"><span>平台介绍</span></span></h1>
+      <p class="lead rv" style="--d:.15s">区内各委办局的人工智能、智能体类项目，在申请区级资金前统一在这里评估。用需求画像判断该不该建，用工程量和行业基准判断<b>该花多少钱</b>，用企业库与技术库判断<b>该由谁来做</b>。每一个结论都<span class="ul">可核验<svg viewBox="0 0 120 12" preserveAspectRatio="none" aria-hidden="true"><path pathLength="100" d="M2 8 C 22 3, 40 10, 62 6 S 100 3, 118 7"/></svg></span>。</p>
+    </div>
+  </header>
+  <section class="darker ring-sec">
+    <div class="wrap ring-grid">
+      <div class="ring" id="ring">
+        <svg viewBox="0 0 600 600" aria-hidden="true">
+          <circle cx="300" cy="300" r="150" fill="none" stroke="rgba(244,243,241,.12)"/>
+          <circle cx="300" cy="300" r="92" fill="none" stroke="rgba(244,243,241,.08)"/>
+          <g class="orbit"><circle cx="300" cy="300" r="220" fill="none" stroke="#CBF902" stroke-width="1.6" stroke-dasharray="2 9" stroke-linecap="round"/></g>
+          <g id="spokes"></g>
+        </svg>
+        <div class="ring-c"><b>五位一体</b><small>评估服务体系</small></div>
+        <div class="ring-tip" id="ringTip" role="status" aria-live="polite"></div>
+      </div>
+      <div class="ring-panel" aria-live="polite">
+        <span class="en">Five in one</span>
+        <div class="rp-body" id="rpBody">
+          <div class="rp-idx num" id="rpIdx">03<small>/05</small></div>
+          <h3 class="rp-t" id="rpT"></h3>
+          <p class="rp-d" id="rpD"></p>
+          <div class="rp-anchor" id="rpAnchor">
+            <button class="rp-q" type="button" aria-label="锚点评分说明" aria-expanded="false">?</button>
+            <span class="rp-anchor-txt">1 分 不达标　·　3 分 基本达标　·　5 分 优秀达标</span>
+            <div class="rp-pop" id="rpPop" role="tooltip">
+              <b>锚点评分说明</b>
+              <p>每项指标按 1 / 3 / 5 分三档锚点判分：1 分表示不达标，3 分表示基本达标，5 分表示优秀达标。同一套锚点贯穿所有批次，保证评估结果可横向比较。</p>
+            </div>
+          </div>
+          <p class="rp-note" id="rpNote">当前所处评估流程节点</p>
+        </div>
+        <div class="rp-bar"><i id="rpBar" class="step"></i></div>
+      </div>
+    </div>
+    <div class="wrap stats">
+      <div class="stat"><span class="num" data-count="6">0</span><p>个评价维度</p></div>
+      <div class="stat"><span class="num" data-count="25">0</span><p>项二级评估指标</p></div>
+      <div class="stat"><span class="num" data-count="5">0</span><p>大类资源库支撑匹配、评估与询价</p></div>
+      <div class="stat"><span class="num" data-count="11">0</span><p>个工作日出具评估结论</p></div>
+    </div>
+  </section>
+</main>
+
+<script src="assets/portal-data.js"></script>
+<script src="assets/portal-shell.js"></script>
+<script src="assets/pages/about.js"></script>
+<script src="assets/portal-media.js"></script>
+<script src="assets/portal.js"></script>
+</body>
+</html>

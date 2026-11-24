@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>造价核定 · 人工智能项目评估平台</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<meta name="description" content="专注AI项目立项评估、造价核定与企业匹配。">
+<!-- 网络字体异步加载：内网打不开时自动回退到系统字体，不会卡住页面 -->
+<link rel="stylesheet" media="print" onload="this.media='all'"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap">
+<script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('rm');</script>
+<link rel="stylesheet" href="assets/portal.css">
+</head>
+<body>
+<main id="main" tabindex="-1" class="view on" data-page="pricing">
+  <header class="pb">
+    <div class="lb-media ph"><img src="assets/pricing.jpg" alt="游标卡尺与算式草稿"></div>
+    <div class="lb-shade"></div>
+    <span class="cap">口径：北京基准 · CSBMK-202510</span>
+    <div class="pb-text">
+      <p class="crumb rv"><a href="index.html">首页</a><span>/</span><span>造价核定</span></p>
+      <span class="en rv">Pricing</span>
+      <h1 class="h1 rl"><span class="ln"><span>造价核定</span></span></h1>
+      <p class="lead rv" style="--d:.15s">先算工程量，再对行业基准，最后把能复用的部分扣掉。核定价以区间出具，不对外发布单一底价。</p>
+    </div>
+  </header>
+  <section class="sec dark">
+    <div class="wrap">
+      <div class="sh">
+        <div><span class="en rv">Waterfall</span><h2 class="h2 rl"><span class="ln"><span>从申报到核定</span></span></h2></div>
+        <p class="rv" style="--d:.1s">示例：政务服务智能问答与材料预审智能体。申报 1,400 万元，逐项核减后核定 1,210 万元。</p>
+      </div>
+      <div class="formula rv" aria-label="核定投资等于建设费加运维费减复用抵扣">
+        <span class="t key">核定投资</span><span class="op">=</span><span class="t">建设费</span><span class="op">+</span><span class="t">运维费</span><span class="op">−</span><span class="t key">复用抵扣</span>
+      </div>
+      <div class="price-grid">
+        <div class="wf" id="wf">
+          <div class="wf-tip" id="wfTip"></div>
+          <p class="wf-note">浅绿色横带为核定价区间 1166—1254 万元（P25—P75）。将鼠标移到柱子上查看核减理由和证据编号。</p>
+        </div>
+        <div class="price-side">
+          <div class="kv rv"><span>申报金额</span><span class="num" data-count="1400">0<small>万元</small></span></div>
+          <div class="kv rv"><span>核定价（P50）</span><div><span class="num" data-count="1210">0<small>万元</small></span><span class="kv-sub">区间 1166—1254 万元</span></div></div>
+          <div class="kv hl rv"><span>核减率</span><span class="num" data-count="13.6" data-dec="1" data-suffix="%">0</span></div>
+          <div class="chips rv"><span class="chip">功能点单价 1,243.52 元</span><span class="chip">运维费率基准 13.5%</span><span class="chip">知识工程 2.4 万元/人月</span><span class="chip">模型适配 3.2 万元/人月</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script src="assets/portal-data.js"></script>
+<script src="assets/portal-shell.js"></script>
+<script src="assets/pages/pricing.js"></script>
+<script src="assets/portal-media.js"></script>
+<script src="assets/portal.js"></script>
+</body>
+</html>
