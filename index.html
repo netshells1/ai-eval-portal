@@ -184,24 +184,56 @@ ul{list-style:none}
 .node{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;gap:10px;padding:8px 18px 8px 9px;border-radius:999px;border:1px solid var(--line-d);background:rgba(30,33,26,.9);font-size:15px;font-weight:500;white-space:nowrap;transition:border-color .4s,background .4s}
 .node{padding:8px 18px}
 .node:hover,.node.on{border-color:var(--lime)}
+/* 激活节点：浅灰基调 + 亮色点缀，避免大面积亮色 */
+.node{color:rgba(244,243,241,.62);transition:border-color .4s,background .4s,color .4s}
+.node:hover{color:rgba(244,243,241,.9)}
+.node.on{color:#fff;border-color:var(--lime);background:rgba(203,249,2,.1)}
+.node.on::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--lime);
+  box-shadow:0 0 10px rgba(203,249,2,.7);flex:0 0 auto}
 .ndot{fill:var(--ink-2);stroke:var(--lime);stroke-width:2;transition:r .45s var(--ease),fill .45s}
 .ndot.on{fill:var(--lime);r:10px}
+/* 节点 hover 提示 */
+.ring-tip{position:absolute;left:50%;bottom:2%;transform:translate(-50%,8px);
+  padding:8px 16px;border-radius:999px;border:1px solid var(--line-d);
+  background:rgba(16,18,14,.94);font-size:13px;line-height:1.4;color:rgba(244,243,241,.82);
+  white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .3s,transform .3s var(--ease);z-index:5}
+.ring-tip.on{opacity:1;transform:translate(-50%,0)}
 .rp-idx small{font-size:.32em;margin-left:.15em;color:rgba(244,243,241,.3)}
 .ring-panel .en{color:rgba(244,243,241,.5)}
 .rp-idx{font-size:clamp(64px,7vw,120px);line-height:.9;color:rgba(244,243,241,.16);margin:10px 0 6px}
 .rp-t{font-size:clamp(30px,3vw,48px);font-weight:900;letter-spacing:-.02em;line-height:1.2}
 .rp-d{font-size:clamp(16px,1.2vw,19px);color:rgba(244,243,241,.78);margin-top:16px;max-width:26em;min-height:5.2em}
+/* 锚点评分说明 */
+.rp-anchor{position:relative;margin-top:18px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rp-q{width:22px;height:22px;flex:0 0 auto;border-radius:50%;border:1px solid rgba(244,243,241,.35);
+  background:transparent;color:rgba(244,243,241,.75);font-size:12px;font-weight:700;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;transition:border-color .25s,color .25s,background .25s}
+.rp-q:hover,.rp-q[aria-expanded="true"]{border-color:var(--lime);color:var(--lime);background:rgba(203,249,2,.1)}
+.rp-anchor-txt{font-size:13px;color:rgba(244,243,241,.55);letter-spacing:.02em}
+.rp-pop{position:absolute;left:0;top:calc(100% + 10px);width:min(340px,100%);z-index:20;
+  padding:14px 16px;border:1px solid var(--line-d);border-left:3px solid var(--lime);
+  background:rgba(16,18,14,.97);opacity:0;visibility:hidden;transform:translateY(-6px);
+  transition:opacity .25s,transform .25s var(--ease),visibility .25s}
+.rp-pop.on{opacity:1;visibility:visible;transform:none}
+.rp-pop b{display:block;font-size:13px;font-weight:700;margin-bottom:6px;color:rgba(244,243,241,.92)}
+.rp-pop p{font-size:12.5px;line-height:1.7;color:rgba(244,243,241,.68)}
+/* 流程节点备注 */
+.rp-note{font-size:12px;color:rgba(244,243,241,.42);margin-top:16px;letter-spacing:.04em}
 .rp-body{transition:opacity .35s,transform .5s var(--ease)}
 .rp-body.swap{opacity:0;transform:translateY(10px)}
 .rp-bar{height:2px;background:var(--line-d);margin-top:30px;max-width:380px}
 .rp-bar i{display:block;height:100%;width:100%;background:var(--lime);transform-origin:left;transform:scaleX(0)}
 .rp-bar i.run{animation:fill 5s linear forwards}
+/* 静态步进指示：标出当前环节在五步中的位置 */
+.rp-bar i.step{transform:scaleX(var(--p,.6));transition:transform .5s var(--ease)}
 @keyframes fill{to{transform:scaleX(1)}}
+/* 底部四卡片：等宽均分，数字加重 */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-d);margin-top:clamp(72px,11vh,132px)}
-.stat{padding:30px 24px 0 0}
-.stat .num{font-size:clamp(60px,6.8vw,120px);line-height:.95;display:block}
-.stat p{font-size:15px;color:rgba(244,243,241,.7);margin-top:12px}
-@media (max-width:1000px){.ring-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.node{font-size:13px;padding:6px 12px 6px 7px}}
+.stat{padding:30px 26px 0 0}
+.stat .num{font-size:clamp(60px,6.8vw,120px);line-height:.95;display:block;font-weight:900;
+  color:rgba(244,243,241,.92);font-variant-numeric:tabular-nums}
+.stat p{font-size:14px;color:rgba(244,243,241,.62);margin-top:10px;line-height:1.6}
+@media (max-width:1000px){.ring-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.node{font-size:13px;padding:6px 12px 6px 7px}.rp-tip-w{display:none}}
 
 /* ---------- evaluation ---------- */
 .eval-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(20px,2.4vw,40px)}
@@ -496,6 +528,9 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
 .keys-foot{font-size:13px;color:var(--mute);margin-top:22px;line-height:1.7}
 @media (max-width:620px){.keys-cols{grid-template-columns:1fr}}
 .pg{position:fixed;right:var(--pad);bottom:16px;z-index:40;font-size:12px;color:#F4F3F1;mix-blend-mode:difference;pointer-events:none;display:flex;gap:14px;align-items:baseline}
+/* 分页标识弱化：不抢主视觉 */
+.pg .num{opacity:.42;font-weight:500}
+.pg #pgName{opacity:.42}
 .pg .num{font-size:14px;font-weight:700;letter-spacing:.04em}
 .hint{position:fixed;left:var(--pad);bottom:20px;z-index:40;font-size:12.5px;padding:8px 16px;border-radius:999px;background:rgba(30,33,26,.86);border:1px solid var(--line-d);color:rgba(244,243,241,.85);transition:opacity .6s,transform .6s var(--ease)}
 .hint.gone{opacity:0;transform:translateY(12px);pointer-events:none}
@@ -611,21 +646,31 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
           <g id="spokes"></g>
         </svg>
         <div class="ring-c"><b>五位一体</b><small>评估服务体系</small></div>
+        <div class="ring-tip" id="ringTip" role="status" aria-live="polite"></div>
       </div>
       <div class="ring-panel" aria-live="polite">
         <span class="en">Five in one</span>
         <div class="rp-body" id="rpBody">
-          <div class="rp-idx num" id="rpIdx">01</div>
+          <div class="rp-idx num" id="rpIdx">03<small>/05</small></div>
           <h3 class="rp-t" id="rpT"></h3>
           <p class="rp-d" id="rpD"></p>
+          <div class="rp-anchor" id="rpAnchor">
+            <button class="rp-q" type="button" aria-label="锚点评分说明" aria-expanded="false">?</button>
+            <span class="rp-anchor-txt">1 分 不达标　·　3 分 基本达标　·　5 分 优秀达标</span>
+            <div class="rp-pop" id="rpPop" role="tooltip">
+              <b>锚点评分说明</b>
+              <p>每项指标按 1 / 3 / 5 分三档锚点判分：1 分表示不达标，3 分表示基本达标，5 分表示优秀达标。同一套锚点贯穿所有批次，保证评估结果可横向比较。</p>
+            </div>
+          </div>
+          <p class="rp-note" id="rpNote">当前所处评估流程节点</p>
         </div>
-        <div class="rp-bar"><i id="rpBar"></i></div>
+        <div class="rp-bar"><i id="rpBar" class="step"></i></div>
       </div>
     </div>
     <div class="wrap stats">
       <div class="stat"><span class="num" data-count="6">0</span><p>个评价维度</p></div>
-      <div class="stat"><span class="num" data-count="23">0</span><p>项评价指标</p></div>
-      <div class="stat"><span class="num" data-count="5">0</span><p>个资源库支撑匹配、评估与询价</p></div>
+      <div class="stat"><span class="num" data-count="24">0</span><p>项二级评估指标</p></div>
+      <div class="stat"><span class="num" data-count="5">0</span><p>大类资源库支撑匹配、评估与询价</p></div>
       <div class="stat"><span class="num" data-count="11">0</span><p>个工作日出具评估结论</p></div>
     </div>
   </section>
@@ -648,7 +693,7 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
     <div class="wrap">
       <div class="sh">
         <div><span class="en rv">Six dimensions</span><h2 class="h2 rl"><span class="ln"><span>六维综合评价体系</span></span></h2></div>
-        <p class="rv" style="--d:.1s">23 项指标，每项都有 1 分、3 分、5 分的评分锚点，不同批次的分数可以直接比较。</p>
+        <p class="rv" style="--d:.1s">24 项二级指标，每项都有 1 分、3 分、5 分的评分锚点，不同批次的分数可以直接比较。</p>
       </div>
       <div class="duel rv">
         <div class="duel-side duel-old">
@@ -900,20 +945,25 @@ window.CONFIG = {
   ],
 
   five: [
-    { t: '立项评估', d: '解析申报材料，生成需求画像，判断业务痛点是否真实、是否重复建设。' },
-    { t: '造价核定', d: '功能点计数对标行业基准，逐项扣减可复用的底座、组件、数据与算力。' },
-    { t: '综合评分', d: '六个维度、23 项指标，每项按 1 分、3 分、5 分锚点判档，不同批次的分数可以直接比较。' },
-    { t: '企业匹配', d: '从企业库和技术库筛出候选企业，按场景适配度排序，只给前三家。' },
-    { t: '报告出具', d: '结论一页看完。评分、核定价、匹配结果和整改清单都挂有证据编号，可以复评。' }
+    { t: '立项评估', d: '解析申报材料，生成需求画像，判断业务痛点是否真实、是否重复建设。',
+      tip: '项目基础信息初审、TRL 成熟度初判' },
+    { t: '造价核定', d: '功能点计数对标行业基准，逐项扣减可复用的底座、组件、数据与算力。',
+      tip: '功能点计数、工程量核对、逐项核减' },
+    { t: '综合评分', d: '从 6 大评估维度、24 项二级指标开展打分，采用 1/3/5 分标准化锚点评分规则，保障各项目评估结果横向可比。',
+      tip: '六维 24 项指标锚点评分' },
+    { t: '企业匹配', d: '从企业库和技术库筛出候选企业，按场景适配度排序，只给前三家。',
+      tip: '资质门槛校验、适配度排序、前三推荐' },
+    { t: '报告出具', d: '结论一页看完。评分、核定价、匹配结果和整改清单都挂有证据编号，可以复评。',
+      tip: '结论汇总、证据编号挂接、可复评' }
   ],
 
   dims: [
-    { code: 'A', name: '需求必要性', full: '需求必要性与场景价值', w: 18, ind: ['业务痛点真实性与紧迫度', '服务覆盖面与使用频次', '绩效目标可量化程度', '重复建设与资源复用'] },
-    { code: 'B', name: '技术适配',   full: '技术方案与AI适配',     w: 20, ind: ['技术路线成熟度', '底座、数据、算力复用度', '智能体能力与场景适配', '可扩展性与信创兼容'] },
+    { code: 'A', name: '需求必要性', full: '需求必要性与场景价值', w: 17, ind: ['业务痛点真实性与紧迫度', '服务覆盖面与使用频次', '绩效目标可量化程度', '重复建设与资源复用'] },
+    { code: 'B', name: '技术适配',   full: '技术方案与AI适配',     w: 19, ind: ['技术路线成熟度', '底座、数据、算力复用度', '智能体能力与场景适配', '可扩展性与信创兼容', '存量系统迁移与割接保障'] },
     { code: 'C', name: '造价合理性', full: '预算与造价合理性',     w: 24, ind: ['功能规模与工程量真实性', '单价与市场对标', '重复计价与复用抵扣', '运维费用合理性'] },
-    { code: 'D', name: '企业能力',   full: '企业能力与履约',       w: 16, ind: ['资质与信用', '同类项目业绩', '团队配置与技术独特性', '本地交付与服务能力'] },
+    { code: 'D', name: '企业能力',   full: '企业能力与履约',       w: 20, ind: ['资质与信用', '同类项目业绩', '团队配置与技术独特性', '本地交付与服务能力'] },
     { code: 'E', name: '园区产业',   full: '园区与产业适配',       w: 8,  ind: ['园区注册与纳税关系', '重点产业匹配度', '招商引资与生态带动'] },
-    { code: 'F', name: '安全合规',   full: '安全合规与风险',       w: 14, ind: ['数据安全与个人信息保护', '等保、密评、算法备案', '内容安全与幻觉控制', '供应链与持续运营风险'] }
+    { code: 'F', name: '安全合规',   full: '安全合规与风险',       w: 12, ind: ['数据安全与个人信息保护', '等保、密评、算法备案', '内容安全与幻觉控制', '供应链与持续运营风险'] }
   ],
 
   waterfall: [
@@ -1045,10 +1095,11 @@ $('#idxFloatIn').innerHTML = C.pages.slice(1).map(function (p) { return '<img sr
 /* ================= 五位一体环 ================= */
 (function () {
   var ring = $('#ring'), svg = '', html = '', N = C.five.length;
+  var DEF = 2;   /* 默认落在【综合评分】——评估流程第 3 步 */
   C.five.forEach(function (f, i) {
     var a = (-90 + i * 360 / N) * Math.PI / 180, c = Math.cos(a), s = Math.sin(a);
     var cx = 300 + 220 * c, cy = 300 + 220 * s;
-    svg += '<line x1="' + (300 + 150 * c) + '" y1="' + (300 + 150 * s) + '" x2="' + cx + '" y2="' + cy + '" stroke="rgba(244,243,241,.18)"/>';
+    svg += '<line class="spoke" data-i="' + i + '" x1="' + (300 + 150 * c) + '" y1="' + (300 + 150 * s) + '" x2="' + cx + '" y2="' + cy + '" stroke="rgba(244,243,241,.18)"/>';
     svg += '<circle class="ndot" data-i="' + i + '" cx="' + cx + '" cy="' + cy + '" r="7"/>';
     var tx = c > .3 ? '0%' : (c < -.3 ? '-100%' : '-50%');
     var ty = s < -.7 ? '-100%' : (s > .7 ? '0%' : '-50%');
@@ -1056,27 +1107,67 @@ $('#idxFloatIn').innerHTML = C.pages.slice(1).map(function (p) { return '<img sr
   });
   $('#spokes').innerHTML = svg;
   ring.insertAdjacentHTML('beforeend', html);
-  var cur = 0, paused = false, bar = $('#rpBar'), body = $('#rpBody');
-  function sel(i) {
+  var cur = DEF, paused = true, bar = $('#rpBar'), body = $('#rpBody');
+  var tip = $('#ringTip'), idx = $('#rpIdx'), tEl = $('#rpT'), dEl = $('#rpD');
+  var noteEl = $('#rpNote'), anchorEl = $('#rpAnchor');
+  function sel(i, keep) {
     cur = i;
     $$('.node').forEach(function (n) { n.classList.toggle('on', +n.dataset.i === i); });
     $$('.ndot').forEach(function (n) { n.classList.toggle('on', +n.dataset.i === i); });
+    $$('.spoke').forEach(function (n) {
+      n.classList.toggle('on', +n.dataset.i === i);
+      n.setAttribute('stroke', +n.dataset.i === i ? 'rgba(203,249,2,.55)' : 'rgba(244,243,241,.18)');
+    });
     body.classList.add('swap');
     setTimeout(function () {
-      $('#rpIdx').innerHTML = pad(i + 1) + '<small>/' + pad(N) + '</small>';
-      $('#rpT').textContent = C.five[i].t;
-      $('#rpD').textContent = C.five[i].d;
+      idx.innerHTML = pad(i + 1) + '<small>/' + pad(N) + '</small>';
+      tEl.textContent = C.five[i].t;
+      dEl.textContent = C.five[i].d;
+      noteEl.textContent = '当前所处评估流程节点 · 第 ' + (i + 1) + ' 步 / 共 ' + N + ' 步';
+      /* 锚点说明只在综合评分环节出现 */
+      anchorEl.style.display = (C.five[i].t === '综合评分') ? '' : 'none';
       body.classList.remove('swap');
     }, reduced ? 0 : 220);
-    bar.classList.remove('run'); void bar.offsetWidth;
-    if (!paused && !reduced) bar.classList.add('run');
-  }
-  bar.addEventListener('animationend', function () { if (!paused) sel((cur + 1) % N); });
+    /* 进度条标记当前环节位置 */
+    bar.style.setProperty('--p', ((i + 1) / N).toFixed(3));
+    bar.classList.remove('run');
+  }  bar.addEventListener('animationend', function () { if (!paused) sel((cur + 1) % N); });
   ring.addEventListener('pointerenter', function () { paused = true; bar.classList.remove('run'); });
-  ring.addEventListener('pointerleave', function () { paused = false; sel(cur); });
-  ring.addEventListener('click', function (e) { var b = e.target.closest('.node'); if (b) { paused = true; sel(+b.dataset.i); } });
-  ring.addEventListener('focusin', function (e) { var b = e.target.closest('.node'); if (b) { paused = true; sel(+b.dataset.i); } });
-  sel(0);
+  ring.addEventListener('pointerleave', function () { paused = false; sel(cur, true); });
+  ring.addEventListener('click', function (e) {
+    var b = e.target.closest('.node');
+    if (b) { paused = true; sel(+b.dataset.i, true); }
+  });
+  ring.addEventListener('focusin', function (e) {
+    var b = e.target.closest('.node');
+    if (b) { paused = true; sel(+b.dataset.i, true); }
+  });
+  /* 节点 hover 提示：简短 tooltip */
+  $$('.node', ring).forEach(function (n) {
+    var f = C.five[+n.dataset.i];
+    if (!f || !f.tip) return;
+    n.addEventListener('mouseenter', function () {
+      tip.textContent = f.tip; tip.classList.add('on');
+    });
+    n.addEventListener('mouseleave', function () { tip.classList.remove('on'); });
+    n.addEventListener('focus', function () {
+      tip.textContent = f.tip; tip.classList.add('on');
+    });
+    n.addEventListener('blur', function () { tip.classList.remove('on'); });
+  });
+  /* 锚点问号浮窗 */
+  var q = $('.rp-q'), pop = $('#rpPop');
+  if (q && pop) {
+    q.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var open = pop.classList.toggle('on');
+      q.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', function () {
+      pop.classList.remove('on'); q.setAttribute('aria-expanded', 'false');
+    });
+  }
+  sel(DEF);
 })();
 
 /* ================= 六维卡片 ================= */
