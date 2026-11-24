@@ -264,20 +264,22 @@ ul{list-style:none}
 .dim:hover .dim-b,.dim:focus-visible .dim-b,.dim.open .dim-b{transform:none}
 .dim:hover .dim-f,.dim:focus-visible .dim-f,.dim.open .dim-f{transform:translateY(-16%);opacity:0}
 .dim-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.dim-code{font-family:var(--lat);font-weight:700;font-size:14px;color:var(--mute)}
-.dim-name{font-size:clamp(24px,2.1vw,34px);font-weight:900;line-height:1.2;letter-spacing:-.02em}
+.dim-code{font-family:var(--lat);font-weight:700;font-size:15px;color:var(--mute)}
+.dim-name{font-size:clamp(26px,2.3vw,38px);font-weight:900;line-height:1.2;letter-spacing:-.02em}
 .dim-w{display:flex;align-items:baseline;gap:10px}
 .dim-w .num{font-size:clamp(68px,6.2vw,108px);line-height:.85}
 .dim-w small{font-size:14px;color:var(--mute)}
 .dim-bar{height:4px;background:var(--line-l);margin-top:16px}
 .dim-bar i{display:block;height:100%;background:var(--ink);width:0;transition:width 1.4s var(--ease) .3s}
 .dims.in .dim-bar i{width:calc(var(--w) / 24 * 100%)}
-.dim-b{justify-content:flex-start;gap:14px}
+.dim-b{justify-content:flex-start;gap:16px}
 .dim-b .dim-top{align-items:center}
-.dim-b h4{font-size:15px;font-weight:500;color:rgba(244,243,241,.62)}
-.dim-b .dim-top .num{color:var(--lime);font-size:44px;line-height:1}
-.dim-b ul{margin-top:6px}
-.dim-b li{font-size:clamp(15px,1.15vw,17px);padding:9px 0;border-top:1px solid var(--line-d)}
+.dim-b h4{font-size:19px;font-weight:500;color:rgba(244,243,241,.68);line-height:1.35}
+.dim-b .dim-top .num{color:var(--lime);font-size:56px;line-height:1;font-weight:900}
+.dim-b ul{margin-top:4px}
+.dim-note{font-size:15px;line-height:1.55;color:rgba(244,243,241,.5);margin-top:-4px}
+.dim-b li{font-size:clamp(17px,1.32vw,20px);padding:11px 0;border-top:1px solid var(--line-d);line-height:1.4;display:flex;gap:9px;align-items:baseline}
+.dim-b li::before{content:'';width:2px;flex:0 0 auto;align-self:stretch;background:rgba(203,249,2,.45)}
 .veto{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:28px;font-size:14px;color:var(--mute)}
 .veto b{color:var(--ink);font-weight:700;margin-right:4px}
 
@@ -1239,12 +1241,12 @@ window.CONFIG = {
   ],
 
   dims: [
-    { code: 'A', name: '需求必要性', full: '需求必要性与场景价值', w: 17, ind: ['业务痛点真实性与紧迫度', '服务覆盖面与使用频次', '绩效目标可量化程度', '重复建设与资源复用'] },
-    { code: 'B', name: '技术适配',   full: '技术方案与AI适配',     w: 19, ind: ['技术路线成熟度', '底座、数据、算力复用度', '智能体能力与场景适配', '可扩展性与信创兼容', '存量系统迁移与割接保障'] },
-    { code: 'C', name: '造价合理性', full: '预算与造价合理性',     w: 24, ind: ['功能规模与工程量真实性', '单价与市场对标', '重复计价与复用抵扣', '运维费用合理性'] },
-    { code: 'D', name: '企业能力',   full: '企业能力与履约',       w: 20, ind: ['资质与信用', '同类项目业绩', '团队配置与技术独特性', '本地交付与服务能力'] },
-    { code: 'E', name: '园区产业',   full: '园区与产业适配',       w: 8,  ind: ['园区注册与纳税关系', '重点产业匹配度', '招商引资与生态带动'] },
-    { code: 'F', name: '安全合规',   full: '安全合规与风险',       w: 12, ind: ['数据安全与个人信息保护', '等保、密评、算法备案', '内容安全与幻觉控制', '供应链与持续运营风险'] }
+    { code: 'A', name: '需求必要性', full: '需求必要性与场景价值', w: 17, ind: ['业务痛点真实性与紧迫度', '服务覆盖面与使用频次', '绩效目标可量化程度', '重复建设与资源复用'], note: '痛点是否真实、覆盖多大、目标是否可量化、是否重复建设' },
+    { code: 'B', name: '技术适配',   full: '技术方案与AI适配',     w: 19, ind: ['技术路线成熟度', '底座、数据、算力复用度', '智能体能力与场景适配', '可扩展性与信创兼容', '存量系统迁移与割接保障'], note: '路线是否成熟、底座与数据能否复用、智能体能力是否匹配场景' },
+    { code: 'C', name: '造价合理性', full: '预算与造价合理性',     w: 24, ind: ['功能规模与工程量真实性', '单价与市场对标', '重复计价与复用抵扣', '运维费用合理性'], note: '工程量是否真实、单价是否对标、复用是否抵扣、运维是否合理' },
+    { code: 'D', name: '企业能力',   full: '企业能力与履约',       w: 20, ind: ['资质与信用', '同类项目业绩', '团队配置与技术独特性', '本地交付与服务能力'], note: '资质信用、同类业绩、团队与技术特色、本地交付' },
+    { code: 'E', name: '园区产业',   full: '园区与产业适配',       w: 8,  ind: ['园区注册与纳税关系', '重点产业匹配度', '招商引资与生态带动'], note: '园区关系、重点产业方向、招商与生态带动' },
+    { code: 'F', name: '安全合规',   full: '安全合规与风险',       w: 12, ind: ['数据安全与个人信息保护', '等保、密评、算法备案', '内容安全与幻觉控制', '供应链与持续运营风险', '服务水平与应急响应'], note: '数据安全、等保与备案、内容安全与幻觉控制、供应链风险' }
   ],
 
   waterfall: [
@@ -1484,6 +1486,7 @@ $('#dims').innerHTML = C.dims.map(function (d) {
     '<h3 class="dim-name">' + d.name + '</h3>' +
     '<div><div class="dim-w"><span class="num">' + d.w + '</span><small>权重</small></div><div class="dim-bar"><i style="--w:' + d.w + '"></i></div></div></div>' +
     '<div class="dim-b"><div class="dim-top"><h4>' + d.full + '</h4><span class="num">' + d.w + '</span></div>' +
+    '<p class="dim-note">' + d.note + '</p>' +
     '<ul>' + d.ind.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div></div>';
 }).join('');
 if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', function () { el.classList.toggle('open'); }); });
