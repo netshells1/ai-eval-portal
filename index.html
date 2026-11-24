@@ -347,6 +347,10 @@ ul{list-style:none}
 .ed-phase.now .ed-phase-b b{color:var(--paper)}
 .ed-phase.now .ed-phase-b small{color:rgba(244,243,241,.55)}
 .ed-phase.now .ed-phase-s{color:var(--lime)}
+/* 正在推进的阶段：呼吸提示点 */
+.ed-phase.live .ed-phase-n{position:relative}
+.ed-phase.live .ed-phase-n::after{content:"";position:absolute;inset:-3px;border-radius:50%;
+  border:1.5px solid var(--lime);opacity:.9;animation:edLive 1.5s var(--ease) infinite}
 .ed-phase.wait{opacity:.5}
 .ed-phase.wait .ed-phase-s{color:var(--mute)}
 
@@ -378,6 +382,11 @@ ul{list-style:none}
 .ed-nav-i.on .ed-nav-b b{color:var(--paper)}
 .ed-nav-i.on .ed-nav-b small{color:rgba(244,243,241,.55)}
 .ed-nav-i.on .ed-nav-s{color:var(--lime)}
+/* 正在推进的阶段：呼吸提示点，点它可恢复自动跟随 */
+.ed-nav-i.live .ed-nav-code{position:relative}
+.ed-nav-i.live .ed-nav-code::after{content:"";position:absolute;inset:-3px;border-radius:50%;
+  border:1.5px solid var(--lime);opacity:.9;animation:edLive 1.5s var(--ease) infinite}
+@keyframes edLive{0%{transform:scale(.9);opacity:.85}70%{transform:scale(1.22);opacity:0}100%{opacity:0}}
 
 .ed-pane{background:#fff;display:flex;flex-direction:column;overflow:hidden;min-height:0}
 .ed-pane-h{display:flex;align-items:center;gap:16px;padding:16px 22px 13px;flex-wrap:wrap;
@@ -1646,6 +1655,7 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
   var curProj = PROJ[0];
   var phase = 0;        /* 已推进到的阶段序号 */
   var view = 0;         /* 当前查看的阶段序号（可回看历史） */
+  var follow = true;    /* 视图是否跟随评估推进 */
   var revealed = {};    /* 各阶段已显示到的指标数 */
   var running = false;
   var summarizing = false;  /* 汇总阶段加权中 */
@@ -1668,11 +1678,13 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
   function renderPhases() {
     $('#edPhases').innerHTML = PHASES.map(function (ph, i) {
       var st = i < phase ? 'done' : (i === phase ? 'now' : 'wait');
+      /* 正在推进的阶段加 live 标记 */
+      var live = (i === phase && running) ? ' live' : '';
       /* 只有已完成的阶段才显示分数；汇总阶段总分最后才出 */
       var sub = '';
       if (i < phase) sub = ph.k === 'Z' ? totalScore(curProj).toFixed(1) : dimScore(ph.k, curProj).toFixed(1) + ' 分';
       else if (ph.k === 'Z' && phase >= PHASES.length - 1) sub = totalScore(curProj).toFixed(1) + ' 分';
-      return '<li class="ed-phase ' + st + '" data-i="' + i + '">' +
+      return '<li class="ed-phase ' + st + live + '" data-i="' + i + '">' +
         '<span class="ed-phase-n num">' + (i + 1) + '</span>' +
         '<span class="ed-phase-b"><b>' + esc(ph.n) + '</b><small>' + esc(ph.o) + '</small></span>' +
         '<span class="ed-phase-s num" data-v="' + i + '">' + (i < phase ? sub : '') + '</span>' +
@@ -1682,7 +1694,8 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
       li.addEventListener('click', function () {
         var i = +li.dataset.i;
         if (i > phase) return;      /* 尚未推进到的阶段不可点 */
-        stopAuto();
+        /* 手动查看不中断评估；查看历史即固定，点回当前阶段恢复跟随 */
+        follow = (i === phase);
         view = i;
         renderDesk();
       });
@@ -1694,6 +1707,8 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     $('#edNav').innerHTML = PHASES.map(function (ph, i) {
       var st = i < phase ? 'done' : (i === phase ? 'on' : 'lock');
       if (i === view) st = i < phase ? 'done cur' : 'on';
+      /* 正在推进的阶段加 live 标记，便于用户点回恢复自动跟随 */
+      var live = (i === phase && running) ? ' live' : '';
       /* 未出分的阶段不显示分值；汇总阶段总分最后才出 */
       var sc = '—';
       if (i < phase) sc = dimScore(ph.k, curProj).toFixed(1);
@@ -1702,7 +1717,7 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
       var code = ph.k === 'Z' ? 'Σ' : (i + 1);
       var nm = ph.k === 'Z' ? '汇总出分' : ph.n;
       var sub = ph.k === 'Z' ? '结论出具' : ph.o;
-      return '<button class="ed-nav-i ' + st + '" data-i="' + i + '"' + (i > phase ? ' disabled' : '') + '>' +
+      return '<button class="ed-nav-i ' + st + live + '" data-i="' + i + '"' + (i > phase ? ' disabled' : '') + '>' +
         '<span class="ed-nav-code">' + code + '</span>' +
         '<span class="ed-nav-b"><b>' + esc(nm) + '</b><small>' + esc(sub) + '</small></span>' +
         '<span class="ed-nav-s num">' + sc + '</span>' +
@@ -1712,7 +1727,9 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
       b.addEventListener('click', function () {
         var i = +b.dataset.i;
         if (i > phase) return;
-        stopAuto();
+        /* 手动查看不中断评估：仅切换视图，评估继续在后台推进。
+           查看历史阶段即固定在该阶段；点回正在推进的阶段恢复跟随 */
+        follow = (i === phase);
         view = i;
         renderDesk();
       });
@@ -1877,23 +1894,23 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
   }
 
   /* ---------- 进度 ---------- */
-  var shownPct = 0, pctRAF = null;
+  var shownPct = 0, targetPct = 0;
+  /* 真实进度：由 phase 与当前阶段已出分项数推算，避免不同入口算出不同的百分比 */
+  function realPct() {
+    var ph = PHASES[phase];
+    if (phase >= PHASES.length - 1) return 100;
+    var items = ph.k === 'Z' ? [] : DATA.filter(function (x) { return x.dim === ph.k; });
+    var shown = items.length ? (revealed[ph.k] == null ? 0 : revealed[ph.k]) : 0;
+    var base = (phase / (PHASES.length - 1)) * 100;
+    var step = (80 / (PHASES.length - 1)) * (items.length ? shown / items.length : 1);
+    return base + step;
+  }
+  /* 进度数字直接跟随目标值；条宽由 CSS transition 做平滑，避免依赖 rAF 被节流 */
   function setProgress(pct, text) {
     pct = Math.max(0, Math.min(100, pct));
-    /* 数字用 rAF 补间平滑递增，避免跳变 */
-    var from = shownPct, delta = pct - from, t0 = null;
-    if (pctRAF) cancelAnimationFrame(pctRAF);
-    function step(ts) {
-      if (t0 == null) t0 = ts;
-      var k = Math.min(1, (ts - t0) / 520);
-      /* easeOutCubic */
-      var e = 1 - Math.pow(1 - k, 3);
-      shownPct = from + delta * e;
-      $('#edProgPct').textContent = Math.round(shownPct) + '%';
-      if (k < 1) pctRAF = requestAnimationFrame(step);
-      else { pctRAF = null; shownPct = pct; }
-    }
-    pctRAF = requestAnimationFrame(step);
+    targetPct = pct;
+    shownPct = pct;
+    $('#edProgPct').textContent = Math.round(pct) + '%';
     $('#edProgBar').style.width = pct + '%';
     if (text != null) {
       var sp = $('#edProgStep');
@@ -1906,9 +1923,11 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     renderPhases();
     renderNav();
     renderPane();
-    var pct = (phase / (PHASES.length - 1)) * 100;
-    /* 进度标签跟随当前查看的阶段，回看历史时同步更新 */
-    setProgress(pct, PHASES[view].o + ' · ' + PHASES[view].n);
+    var pct = realPct();
+    /* 进度条反映真实评估进度：视图跟随时标签取当前查看阶段，
+       手动查看其他阶段时标签仍显示正在推进的阶段 */
+    var lbl = follow ? view : phase;
+    setProgress(pct, PHASES[lbl].o + ' · ' + PHASES[lbl].n);
   }
 
   /* ---------- 自动推进 ---------- */
@@ -1926,6 +1945,7 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     if (ph.k === 'Z') {
       if (!summarizing) {
         summarizing = true;
+        /* 汇总阶段呈现汇总视图 */
         view = phase;
         renderPhases();
         renderNav();
@@ -1951,21 +1971,24 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     var shown = (revealed[ph.k] == null ? 0 : revealed[ph.k]);
     if (shown < items.length) {
       revealed[ph.k] = shown + 1;
-      view = phase;
-      renderPane();
+      /* 用户手动查看其他阶段时，评估继续推进但不改变视图 */
+      if (follow) { view = phase; renderPane(); }
+      else renderNav();
       /* 进度：阶段内推进占 80%，阶段间占 20% */
-      var base = (phase / (PHASES.length - 1)) * 100;
-      var step = (80 / (PHASES.length - 1)) * (shown / items.length);
-      setProgress(base + step);
+      /* 标签始终显示评估正在推进的阶段 */
+      setProgress(realPct(), PHASES[phase].o + ' · ' + PHASES[phase].n);
       timer = setTimeout(advance, 560);
       return;
     }
     /* 本阶段完成，进入下一阶段 */
     if (phase < PHASES.length - 1) {
       phase++;
-      view = phase;
+      /* 视图跟随时才切换；否则保持用户正在查看的阶段 */
+      if (follow) view = phase;
       /* 汇总阶段由 advance 单独渲染（先显示加权中） */
-      if (PHASES[phase].k !== 'Z') renderDesk();
+      if (PHASES[phase].k !== 'Z') { if (follow) renderDesk(); else { renderPhases(); renderNav(); } }
+      /* 进度推进到新阶段起点，标签显示正在推进的阶段 */
+      setProgress(realPct(), PHASES[phase].o + ' · ' + PHASES[phase].n);
       timer = setTimeout(advance, 700);
       return;
     }
@@ -1982,6 +2005,7 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
   function start() {
     phase = 0;
     view = 0;
+    follow = true;
     revealed = {};
     running = true;
     $('#edProg').hidden = false;
@@ -1991,6 +2015,9 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     $('#edRun').classList.add('running');
     $('#edRun').classList.remove('done');
     $('#edRunT').textContent = '评估中…';
+    shownPct = 0; targetPct = 0;
+    $('#edProgPct').textContent = '0%';
+    $('#edProgBar').style.width = '0%';
     setProgress(0, '启动评估');
     renderDesk();
     timer = setTimeout(advance, 380);
@@ -2005,7 +2032,10 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     stopAuto();
     $('#edRun').classList.remove('done');
     $('#edRunT').textContent = '开始评估';
-    phase = 0; view = 0; revealed = {}; summarizing = false;
+    phase = 0; view = 0; follow = true; revealed = {}; summarizing = false;
+    shownPct = 0; targetPct = 0;
+    $('#edProgPct').textContent = '0%';
+    $('#edProgBar').style.width = '0%';
     setProgress(0, '等待启动');
     renderDesk();
   });
@@ -2019,7 +2049,10 @@ if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', funct
     $('#edRun').classList.remove('done');
     $('#edRunT').textContent = '开始评估';
     $('#edReset').hidden = true;
-    phase = 0; view = 0; revealed = {}; summarizing = false;
+    phase = 0; view = 0; follow = true; revealed = {}; summarizing = false;
+    shownPct = 0; targetPct = 0;
+    $('#edProgPct').textContent = '0%';
+    $('#edProgBar').style.width = '0%';
     setProgress(0, '等待启动');
     renderDesk();
   });
