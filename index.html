@@ -278,6 +278,122 @@ ul{list-style:none}
 .dim-b li{font-size:clamp(15px,1.15vw,17px);padding:9px 0;border-top:1px solid var(--line-d)}
 .veto{display:flex;flex-wrap:wrap;gap:8px 28px;margin-top:28px;font-size:14px;color:var(--mute)}
 .veto b{color:var(--ink);font-weight:700;margin-right:4px}
+
+/* ---------- 评估作业台 ---------- */
+.ed-flow{display:flex;flex-wrap:wrap;gap:0;margin:26px 0 0;padding:0;list-style:none;
+  border-top:1px solid var(--line-l);border-left:1px solid var(--line-l)}
+.ed-flow li{flex:1 1 0;min-width:150px;display:flex;align-items:center;gap:10px;
+  padding:14px 18px;border-right:1px solid var(--line-l);border-bottom:1px solid var(--line-l);
+  font-size:13.5px;color:var(--mute);transition:background .3s,color .3s}
+.ed-flow li b{width:24px;height:24px;flex:0 0 auto;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:12px;font-weight:800;background:var(--line-l);color:var(--mute);
+  transition:background .3s,color .3s}
+.ed-flow li.on{background:var(--ink);color:var(--paper)}
+.ed-flow li.on b{background:var(--lime);color:var(--ink)}
+.ed-flow li.done b{background:var(--ink);color:var(--lime)}
+.ed-formula{margin:26px 0 clamp(30px,4vw,48px);padding:20px 24px;border-left:3px solid var(--lime);
+  background:rgba(244,243,241,.72);display:flex;flex-direction:column;gap:10px}
+.ed-formula .fx-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px}
+.ed-formula .fx-label{flex:0 0 auto;font-size:11.5px;font-weight:800;letter-spacing:.1em;
+  color:var(--mute);border:1px solid var(--line-l);padding:2px 9px;border-radius:3px}
+.ed-formula .fx{font-size:14.5px;line-height:1.6;color:var(--ink)}
+.ed-grid{display:grid;grid-template-columns:minmax(0,1.62fr) minmax(300px,.9fr);gap:clamp(24px,3vw,48px);align-items:start}
+.ed-picker{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-bottom:22px;
+  padding-bottom:20px;border-bottom:1px solid var(--line-l)}
+.ed-lb{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--mute)}
+.ed-select{flex:1 1 260px;font-family:inherit;font-size:15px;padding:10px 14px;
+  border:1px solid var(--line-l);background:#fff;color:var(--ink);cursor:pointer}
+.ed-hint{font-size:12.5px;color:var(--mute);flex:1 1 100%}
+.ed-dims{display:flex;flex-direction:column;gap:26px}
+.ed-dim{border-top:2px solid var(--ink);padding-top:14px}
+.ed-dim-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.ed-code{font-family:var(--lat);font-size:20px;font-weight:800;letter-spacing:.04em}
+.ed-dim-n{font-size:15px;font-weight:700}
+.ed-dim-w{font-size:12px;color:var(--mute)}
+.ed-dim-s{margin-left:auto;font-size:24px;font-weight:800;font-variant-numeric:tabular-nums}
+.ed-row{border:1px solid var(--line-l);padding:16px 18px;margin-bottom:12px;background:#fff;transition:border-color .25s}
+.ed-row:hover{border-color:var(--ink)}
+.ed-row-h{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.ed-rc{font-size:13px;font-weight:800;letter-spacing:.04em;padding:1px 7px;border-radius:3px;
+  background:var(--ink);color:var(--paper)}
+.ed-rn{font-size:15px;font-weight:600}
+.ed-rw{font-size:12px;color:var(--mute)}
+.ed-rs{margin-left:auto;font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
+.ed-rs.veto{color:#b4622a}
+.ed-anchors{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ed-anchor{text-align:left;border:1px solid var(--line-l);background:rgba(244,243,241,.5);
+  padding:10px 12px;cursor:pointer;font-family:inherit;transition:border-color .25s,background .25s}
+.ed-anchor:hover{border-color:var(--ink)}
+.ed-anchor.on{border-color:var(--ink);background:var(--ink)}
+.ed-anchor b{display:block;font-size:13px;font-weight:800;margin-bottom:5px}
+.ed-anchor span{display:block;font-size:11.5px;line-height:1.5;color:var(--mute)}
+.ed-anchor.on b{color:var(--lime)}
+.ed-anchor.on span{color:rgba(244,243,241,.7)}
+.ed-subs{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:12px;align-items:center}
+.ed-subs-l{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--mute);flex:0 0 100%}
+.ed-sub{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--mute);cursor:pointer}
+.ed-sub input{accent-color:var(--ink);cursor:pointer}
+.ed-sub:hover{color:var(--ink)}
+.ed-meta{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:13px;
+  padding-top:11px;border-top:1px dashed var(--line-l)}
+.ed-ev{display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:700;color:var(--mute)}
+.ed-evsel{font-family:inherit;font-size:12px;padding:3px 8px;border:1px solid var(--line-l);background:#fff;cursor:pointer}
+.ed-evd{font-size:11.5px;color:var(--mute);flex:1 1 100%;line-height:1.5}
+.ed-veto-tag{font-size:11px;font-weight:700;color:#b4622a;border:1px solid rgba(180,98,42,.4);
+  padding:2px 8px;border-radius:3px}
+.ed-why{font-size:12px;color:var(--mute);flex:1 1 100%;line-height:1.6}
+/* 右侧结果面板 */
+.ed-side{position:sticky;top:24px;display:flex;flex-direction:column;gap:16px}
+.ed-score{border:1px solid var(--line-l);padding:22px 24px;background:var(--ink);color:var(--paper)}
+.ed-score-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.ed-score-l{font-size:12px;font-weight:700;letter-spacing:.1em;color:rgba(244,243,241,.55)}
+.ed-grade{font-size:15px;font-weight:800;padding:3px 12px;border-radius:3px;background:rgba(244,243,241,.12)}
+.ed-grade.g-a{background:var(--lime);color:var(--ink)}
+.ed-grade.g-b{background:rgba(203,249,2,.7);color:var(--ink)}
+.ed-grade.g-c{background:rgba(244,243,241,.3);color:var(--paper)}
+.ed-grade.g-d{background:rgba(244,243,241,.16);color:rgba(244,243,241,.85)}
+.ed-grade.g-e{background:rgba(200,90,60,.35);color:#f0b0a0}
+.ed-score-n{font-size:clamp(56px,5.6vw,84px);line-height:.92;font-weight:900;margin:8px 0 6px;
+  font-variant-numeric:tabular-nums}
+.ed-score-s{font-size:12.5px;color:rgba(244,243,241,.6);line-height:1.5}
+.ed-meter{height:4px;background:rgba(244,243,241,.14);margin-top:14px}
+.ed-meter i{display:block;height:100%;background:var(--lime);width:0;transition:width .6s var(--ease)}
+.ed-break,.ed-formula-mini,.ed-veto-box{border:1px solid var(--line-l);padding:18px 20px;background:rgba(244,243,241,.5)}
+.ed-break h4,.ed-formula-mini h4,.ed-veto-box h4{font-size:12px;font-weight:800;letter-spacing:.1em;
+  color:var(--mute);margin-bottom:13px}
+.ed-br{display:flex;align-items:center;gap:9px;margin-bottom:9px}
+.ed-br-c{font-family:var(--lat);font-size:12px;font-weight:800;width:16px;flex:0 0 auto}
+.ed-br-n{font-size:12.5px;color:var(--mute);flex:0 0 auto;width:72px}
+.ed-br-bar{flex:1;height:5px;background:var(--line-l)}
+.ed-br-bar i{display:block;height:100%;background:var(--ink);transition:width .5s var(--ease)}
+.ed-br-v{font-size:13px;font-weight:800;width:40px;text-align:right;font-variant-numeric:tabular-nums}
+.ed-calc-row{display:flex;align-items:baseline;gap:9px;font-size:12px;padding:4px 0;color:var(--mute)}
+.ed-calc-row b{margin-left:auto;color:var(--ink);font-variant-numeric:tabular-nums}
+.ed-calc-t{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ed-calc-f{border-bottom:1px solid var(--line-l);padding-bottom:8px;margin-bottom:6px;font-size:14px;color:var(--ink)}
+.ed-calc-f b{font-size:26px;font-weight:800}
+.ed-calc-sub{font-size:11px;color:var(--mute);margin-bottom:8px;letter-spacing:.04em}
+.ed-veto-box p{font-size:11.5px;color:var(--mute);line-height:1.6;margin-bottom:11px}
+.ed-veto{display:flex;align-items:center;gap:8px;font-size:12px;padding:6px 0;border-top:1px dashed var(--line-l)}
+.ed-vc{font-family:var(--lat);font-weight:800;font-size:11.5px}
+.ed-vres{margin-left:auto;font-size:11px;font-weight:700;color:#0f7a47}
+.ed-veto.bad .ed-vres{color:#b4622a}
+.ed-out{margin-top:clamp(34px,4.5vw,60px);border:1px solid var(--line-l);padding:26px 30px;background:#fff}
+.ed-out h4{font-size:17px;font-weight:800;margin-bottom:16px}
+.ed-out h5{font-size:12.5px;font-weight:800;letter-spacing:.08em;color:var(--mute);margin:20px 0 10px}
+.ed-out-row{display:flex;align-items:baseline;gap:14px;padding:9px 0;border-bottom:1px solid var(--line-l);font-size:14px}
+.ed-out-row span:first-child{color:var(--mute);flex:0 0 auto;width:96px}
+.ed-out-row b{font-size:16px}
+.ed-out-g{padding:2px 10px;border-radius:3px;font-size:12px;font-weight:800;background:rgba(244,243,241,.7)}
+.ed-out-g.g-a,.ed-out-g.g-b{background:var(--lime);color:var(--ink)}
+.ed-out-g.g-e{background:rgba(200,90,60,.18);color:#b4622a}
+.ed-dedu{margin:0;padding-left:20px}
+.ed-dedu li{font-size:13.5px;line-height:1.7;margin-bottom:9px}
+.ed-dedu .ed-ded-n{display:block;font-size:12px;color:var(--mute);line-height:1.6;margin-top:2px}
+.ed-out-note{margin-top:20px;padding-top:14px;border-top:1px dashed var(--line-l);
+  font-size:12px;color:var(--mute);line-height:1.7}
+@media (max-width:1100px){.ed-grid{grid-template-columns:1fr}.ed-side{position:static}.ed-anchors{grid-template-columns:1fr}}
+@media (max-width:620px){.ed-anchors{grid-template-columns:1fr}.ed-flow li{min-width:100%}}
 @media (max-width:1000px){.eval-grid{grid-template-columns:1fr}.eval-photo{min-height:320px}.duel{flex-direction:column}.duel-side{min-height:300px}.dims{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:620px){.dims{grid-template-columns:1fr}}
 @media (max-width:620px){.pg{display:none}.hero-t{font-size:clamp(32px,9.4vw,46px)}.desk-list{grid-template-columns:1fr}.ring-sec{overflow:hidden}}
@@ -593,7 +709,7 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
       <a class="hc" href="#cases">
         <span class="hc-k">最新评估</span>
         <span class="hc-t">政务服务智能问答与材料预审智能体</span>
-        <span class="hc-n">申报 1,400 万元 → 核定 <em>773</em> 万元</span>
+        <span class="hc-n">申报 1,400 万元 → 核定 <em>1,210</em> 万元</span>
         <span class="hc-img ph"><img src="assets/scene-2.jpg" alt=""><span class="hc-arr" aria-hidden="true">↗</span></span>
       </a>
       <a class="btn btn-solid-paper" href="#matching/desk"><span>项目申报</span><span aria-hidden="true">→</span></a>
@@ -723,6 +839,82 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
       <p class="veto rv"><b>一票否决</b><span>未完成生成式人工智能安全评估或算法备案</span><span>涉及未脱敏个人信息且无合法依据</span><span>报价超过核定价 2 倍且无合理说明</span><span>列入严重失信或政府采购禁入名单</span></p>
     </div>
   </section>
+  <section class="sec light" id="evalDeskSec">
+    <div class="wrap">
+      <div class="sh">
+        <div><span class="en rv">Evaluation Desk</span><h2 class="h2 rl"><span class="ln"><span>评估作业台</span></span></h2></div>
+        <p class="rv" style="--d:.1s">按 25 项二级指标逐项打分。选锚点、勾子项，系统实时算分并挂接依据，产出可复评的评分过程留痕。</p>
+      </div>
+
+      <!-- 流程条 -->
+      <ol class="ed-flow" id="edFlow">
+        <li class="on"><b>1</b><span>选择项目</span></li>
+        <li><b>2</b><span>逐项打分</span></li>
+        <li><b>3</b><span>挂接依据</span></li>
+        <li><b>4</b><span>汇总出分</span></li>
+      </ol>
+
+      <!-- 公式 -->
+      <div class="ed-formula">
+        <div class="fx-row">
+          <span class="fx-label">总分</span>
+          <span class="fx">总分 = Σ（指标得分 × 指标权重）÷ 100</span>
+        </div>
+        <div class="fx-row">
+          <span class="fx-label">档内插值</span>
+          <span class="fx">指标得分 = 锚点分 + (锚点分差 × 满足子项数比例)　·　证据形式不满足 → 该指标 0 分</span>
+        </div>
+        <div class="fx-row">
+          <span class="fx-label">等级</span>
+          <span class="fx">A 档 ≥85　·　B 档 75—84　·　C 档 65—74　·　D 档 55—64　·　E 档 &lt;55</span>
+        </div>
+      </div>
+
+      <div class="ed-grid">
+        <!-- 左：打分表 -->
+        <div class="ed-main">
+          <div class="ed-picker">
+            <label class="ed-lb" for="edProj">评估对象</label>
+            <select id="edProj" class="ed-select"></select>
+            <span class="ed-hint" id="edProjHint"></span>
+          </div>
+          <div class="ed-dims" id="edDims"></div>
+        </div>
+
+        <!-- 右：结果面板 -->
+        <aside class="ed-side">
+          <div class="ed-score">
+            <div class="ed-score-h">
+              <span class="ed-score-l">综合得分</span>
+              <span class="ed-grade" id="edGrade">—</span>
+            </div>
+            <div class="ed-score-n num" id="edScore">0.0</div>
+            <div class="ed-score-s" id="edScoreSub">尚未打分</div>
+            <div class="ed-meter"><i id="edMeter"></i></div>
+          </div>
+
+          <div class="ed-break">
+            <h4>六维得分</h4>
+            <div id="edBreak"></div>
+          </div>
+
+          <div class="ed-formula-mini">
+            <h4>计算过程</h4>
+            <div class="ed-calc" id="edCalc"></div>
+          </div>
+
+          <div class="ed-veto-box">
+            <h4>一票否决前置</h4>
+            <p>F1 数据安全、F2 等保与算法备案先过门槛，不进入插值。</p>
+            <div id="edVeto"></div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="ed-out rv" id="edOut"></div>
+    </div>
+  </section>
+
   <section class="sec dark">
     <div class="wrap">
       <div class="sh">
@@ -755,7 +947,7 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
     <div class="wrap">
       <div class="sh">
         <div><span class="en rv">Waterfall</span><h2 class="h2 rl"><span class="ln"><span>从申报到核定</span></span></h2></div>
-        <p class="rv" style="--d:.1s">示例：政务服务智能问答与材料预审智能体。申报 1,400 万元，逐项核减后核定 773 万元。</p>
+        <p class="rv" style="--d:.1s">示例：政务服务智能问答与材料预审智能体。申报 1,400 万元，逐项核减后核定 1,210 万元。</p>
       </div>
       <div class="formula rv" aria-label="核定投资等于建设费加运维费减复用抵扣">
         <span class="t key">核定投资</span><span class="op">=</span><span class="t">建设费</span><span class="op">+</span><span class="t">运维费</span><span class="op">−</span><span class="t key">复用抵扣</span>
@@ -763,13 +955,13 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
       <div class="price-grid">
         <div class="wf" id="wf">
           <div class="wf-tip" id="wfTip"></div>
-          <p class="wf-note">浅绿色横带为核定价区间 715—842 万元（P25—P75）。将鼠标移到柱子上查看核减理由和证据编号。</p>
+          <p class="wf-note">浅绿色横带为核定价区间 1166—1254 万元（P25—P75）。将鼠标移到柱子上查看核减理由和证据编号。</p>
         </div>
         <div class="price-side">
           <div class="kv rv"><span>申报金额</span><span class="num" data-count="1400">0<small>万元</small></span></div>
-          <div class="kv rv"><span>核定价（P50）</span><div><span class="num" data-count="773">0<small>万元</small></span><span class="kv-sub">区间 715—842 万元</span></div></div>
-          <div class="kv hl rv"><span>核减率</span><span class="num" data-count="44.8" data-dec="1" data-suffix="%">0</span></div>
-          <div class="chips rv"><span class="chip">功能点单价 1,243.52 元</span><span class="chip">运维费率 P50 9.02%</span><span class="chip">知识工程 2.4 万元/人月</span><span class="chip">模型适配 3.2 万元/人月</span></div>
+          <div class="kv rv"><span>核定价（P50）</span><div><span class="num" data-count="1210">0<small>万元</small></span><span class="kv-sub">区间 1166—1254 万元</span></div></div>
+          <div class="kv hl rv"><span>核减率</span><span class="num" data-count="13.6" data-dec="1" data-suffix="%">0</span></div>
+          <div class="chips rv"><span class="chip">功能点单价 1,243.52 元</span><span class="chip">运维费率基准 13.5%</span><span class="chip">知识工程 2.4 万元/人月</span><span class="chip">模型适配 3.2 万元/人月</span></div>
         </div>
       </div>
     </div>
@@ -936,7 +1128,7 @@ window.CONFIG = {
   pages: [
     { id: 'home',       name: '首页',     en: 'Home',       img: 'assets/hero.jpg',       d: '' },
     { id: 'about',      name: '平台介绍', en: 'About',      img: 'assets/about.jpg',      d: '五位一体评估服务体系' },
-    { id: 'evaluation', name: '项目评估', en: 'Evaluation', img: 'assets/evaluation.jpg', d: '六维综合评价体系与八步评估流程' },
+    { id: 'evaluation', name: '项目评估', en: 'Evaluation', img: 'assets/evaluation.jpg', nav: '评估维度', d: '六维综合评价体系与八步评估流程' },
     { id: 'pricing',    name: '造价核定', en: 'Pricing',    img: 'assets/pricing.jpg',    d: '工程量核定与复用抵扣' },
     { id: 'matching',   name: '场景匹配', en: 'Matching',   img: 'assets/scene-4.jpg',    d: '场景驱动的企业与技术匹配' },
     { id: 'cases',      name: '典型案例', en: 'Cases',      img: 'assets/scene-1.jpg',    d: '视频会议系统询价档案与六个评估示例' },
@@ -968,14 +1160,14 @@ window.CONFIG = {
 
   waterfall: [
     { k: '申报金额',     sub: '含三年运维',        v: 1400, type: 'total', tip: '委办局申报金额，包含建设费与三年运维费。' },
-    { k: '功能点虚高',   sub: '3,400 → 2,600 个',   v: -99,  ev: 'EV-0147-C1-02', tip: '功能清单逐项计数后核定 2,600 个功能点，按北京基准 1,243.52 元/功能点扣减。' },
-    { k: '底座重复计价', sub: '自建大模型底座',     v: -280, ev: 'EV-0147-C3-01', tip: '可直接复用市级政务大模型底座，只计适配与评测，不计建设费。' },
-    { k: '算力重复采购', sub: 'GPU 采购',           v: -150, ev: 'EV-0147-C3-04', tip: '政务云 GPU 不计采购费，按目录价计入运维。' },
-    { k: '运维费率超标', sub: '18% → 9.02%',        v: -60,  ev: 'EV-0147-C4-01', tip: '运维费率按行业 P50 基准 9.02% 核定，运维费不得补贴建设期缺口。' },
-    { k: '接口重复计价', sub: '统一身份、电子证照', v: -38,  ev: 'EV-0147-C3-02', tip: '已建成的接口按接口数计费，不再计入建设费。' },
-    { k: '核定价',       sub: 'P50',                v: 773,  type: 'final', tip: '核定价区间 715—842 万元（P25—P75），核减率 44.8%。' }
+    { k: '功能点偏差',   sub: '3,400 → 3,150 个',   v: -31,  ev: 'EV-0147-C1-02', tip: '功能清单逐项计数后核定 3,150 个功能点，按北京基准 1,243.52 元/功能点核减。' },
+    { k: '底座重复计价', sub: '自建大模型底座',     v: -78,  ev: 'EV-0147-C3-01', tip: '可直接复用市级政务大模型底座，只计适配与评测，不计建设费。' },
+    { k: '算力重复采购', sub: 'GPU 采购',           v: -42,  ev: 'EV-0147-C3-04', tip: '政务云 GPU 不计采购费，按目录价计入运维。' },
+    { k: '运维费率偏高', sub: '18% → 13.5%',        v: -24,  ev: 'EV-0147-C4-01', tip: '运维费率按行业基准 13.5% 核定，运维费不得补贴建设期缺口。' },
+    { k: '接口重复计价', sub: '统一身份、电子证照', v: -15,  ev: 'EV-0147-C3-02', tip: '已建成的接口按接口数计费，不再计入建设费。' },
+    { k: '核定价',       sub: 'P50',                v: 1210, type: 'final', tip: '核定价区间 1166—1254 万元（P25—P75），核减率 13.6%。' }
   ],
-  priceRange: [715, 842],
+  priceRange: [1166, 1254],
 
   scenes: [
     { name: '政策问答', n: 12, b: 4, img: 'assets/scene-1.jpg', alt: '政务服务大厅', d: '政策咨询、办事指南的智能问答' },
@@ -1029,7 +1221,7 @@ window.CONFIG = {
   ],
 
   cases: [
-    { name: '政务服务智能问答与材料预审智能体', unit: '区政务服务局（示例）', scene: '材料预审', img: 'assets/scene-2.jpg', from: 1400, to: 773, cut: 44.8, score: 70.9, verdict: '整改后支持', ents: ['企业A', '企业B', '企业C'] },
+    { name: '政务服务智能问答与材料预审智能体', unit: '区政务服务局（示例）', scene: '材料预审', img: 'assets/scene-2.jpg', from: 1400, to: 1210, cut: 13.6, score: 70.9, verdict: '整改后支持', ents: ['企业A', '企业B', '企业C'] },
     { name: '城市运行事件智能分拨平台', unit: '区城市管理委（示例）', scene: '工单分流', img: 'assets/scene-3.jpg', from: 860, to: 702, cut: 18.4, score: 78.6, verdict: '支持', ents: ['企业C', '企业A', '企业D'] },
     { name: '产业招商智能分析助手', unit: '区投资促进局（示例）', scene: '产业分析', img: 'assets/scene-5.jpg', from: 520, to: 364, cut: 30.0, score: 68.2, verdict: '有条件支持', ents: ['企业E', '企业A', '企业B'] },
     { name: '政务热线政策咨询助手', unit: '区政务服务局（示例）', scene: '政策问答', img: 'assets/scene-1.jpg', from: 310, to: 289, cut: 6.8, score: 87.4, verdict: '直接支持', ents: ['企业D', '企业A', '企业B'] },
@@ -1048,6 +1240,7 @@ window.CONFIG = {
 };
 </script>
 <script src="assets/conference-data.js"></script>
+<script src="assets/ind-data.js"></script>
 <script src="assets/library-ui.js"></script>
 <script src="assets/standards-data.js"></script>
 <script src="assets/standards-ui.js"></script>
@@ -1084,8 +1277,8 @@ if (Array.isArray(standardEntries)) {
 /* ================= 导航、目录、首页栏目 ================= */
 var tt = '平台专注：AI项目立项评估 ｜ 造价核定 ｜ 企业与技术匹配 ｜ 评估报告出具';
 $('#ticker').innerHTML = new Array(6).fill('<span>' + tt + '</span>').join('');
-$('#nav').innerHTML = C.pages.map(function (p) { return '<a href="#' + p.id + '" data-id="' + p.id + '">' + p.name + '</a>'; }).join('');
-$('#menuList').innerHTML = C.pages.map(function (p) { return '<a href="#' + p.id + '" data-id="' + p.id + '"><small>' + pad(p.i + 1) + '</small>' + p.name + '</a>'; }).join('');
+$('#nav').innerHTML = C.pages.map(function (p) { return '<a href="#' + p.id + '" data-id="' + p.id + '">' + (p.nav || p.name) + '</a>'; }).join('');
+$('#menuList').innerHTML = C.pages.map(function (p) { return '<a href="#' + p.id + '" data-id="' + p.id + '"><small>' + pad(p.i + 1) + '</small>' + (p.nav || p.name) + '</a>'; }).join('');
 $('#menuPic').insertAdjacentHTML('afterbegin', C.pages.map(function (p) { return '<img src="' + p.img + '" alt="" data-id="' + p.id + '" loading="lazy">'; }).join(''));
 $('#idxList').innerHTML = C.pages.slice(1).map(function (p) {
   return '<a href="#' + p.id + '" data-id="' + p.id + '"><span class="en">' + p.en + '</span><b>' + p.name + '</b><p>' + p.d + '</p><i aria-hidden="true">→</i></a>';
@@ -1133,7 +1326,7 @@ $('#idxFloatIn').innerHTML = C.pages.slice(1).map(function (p) { return '<img sr
   }
 
   /* ---- 定时轮播：默认停在【综合评分】，依次推进到下一步 ---- */
-  var timer = null, DWELL = 4200;   /* 每个环节停留时长(ms) */
+  var timer = null, DWELL = 2800;   /* 每个环节停留时长(ms) */
   function stopAuto() {
     if (timer) { clearTimeout(timer); timer = null; }
   }
@@ -1206,13 +1399,354 @@ $('#dims').innerHTML = C.dims.map(function (d) {
 }).join('');
 if (!fine) $$('.dim').forEach(function (el) { el.addEventListener('click', function () { el.classList.toggle('open'); }); });
 
+/* ================= 评估作业台 =================
+   口径来源：区级人工智能项目评估系统 V0.4
+   · 指标按 0—100 分、五档；锚点 1/3/5，档内按「满足子项数比例」插值
+   · 总分 = Σ(指标得分 × 指标权重) ÷ 100
+   · 证据形式要件不满足 → 该指标 0 分（形式先于锚点判定）
+   · F1、F2 为一票否决前置，不进入插值
+================================================= */
+(function () {
+  var DATA = window.IND_DATA || [];
+  if (!DATA.length) return;
+
+  /* ---------- 指标 → 子项清单（V0.4 4.3 插值方式补充） ---------- */
+  var SUB = {
+    A1: ['有明确业务痛点', '有发生频次数据', '有现有处理方式', '有基线数据与成本'],
+    A2: ['有覆盖事项数', '有服务对象规模', '有预计年调用量', '覆盖规模已拆既有/新建两数', '三者可与台账互证'],
+    A3: ['设解决率目标', '设一次办结率目标', '设人工转接率目标', '设满意度目标值'],
+    A4: ['与既有系统边界清楚', '与在建项目边界清楚', '与市级平台边界清楚', '有去重承诺'],
+    B1: ['路线属主流', '有同类落地案例', '案例可验证', '政务场景已落地'],
+    B2: ['复用市级大模型底座', '复用统一身份', '复用事项库/电子证照', '复用政务云算力', '复用有清单'],
+    B3: ['能力与场景匹配', '有评测集', '有拒答与人工兜底', '有可核验运行监测证明', '现场演示通过'],
+    B4: ['接口开放', '模型可替换', '完成信创适配'],
+    B5: ['有存量迁移路径', '有割接方案', '有回退预案', '割接可行性经论证'],
+    C1: ['有功能清单', '功能清单可计数', '与申报金额互证', '偏差15%以内'],
+    C2: ['逐项对标基准单价', '逐项对标同类成交价', '偏离可解释', '附工程量清单'],
+    C3: ['底座未重复计价', '接口未重复计价', '数据未重复计价', '算力未重复计价', '附复用清单'],
+    C4: ['运维费率达标', '运维内容完整', '算力另计清晰', '无以运维补贴建设'],
+    D1: ['高新/专精特新', '体系认证', '信用记录良好', '无处罚与失信'],
+    D2: ['有同类案例', '案例数量充足', '合同金额可核验', '验收结论良好', '用户评价良好'],
+    D3: ['项目经理明确', '关键人员已锁定', '有独有技术或专利', '近六个月社保证明'],
+    D4: ['有本地机构', '承诺驻场', '响应时效量化', '承诺7×24接管并有组网拓扑'],
+    E1: ['园区注册', '在区纳税', '完成纳统', '新引进企业政策折算'],
+    E2: ['属区重点扶持方向', '在扶持清单内', '有政策文件依据'],
+    E3: ['对招商有带动', '对产业链协同有带动', '对就业有带动'],
+    F1: ['有数据分类分级', '最小必要', '脱敏方案完整', '共享审批完备'],
+    F2: ['等保测评完成', '密评完成', '生成式AI安全评估完成', '算法备案完成'],
+    F3: ['语料合规', '输出审核', '拒答策略', '人工兜底', '有评测集'],
+    F4: ['多源可替换', '有退出方案', '有迁移方案'],
+    F5: ['告警分级机制', '各级通知与到场时限', '备件到场时限', '巡检频次', '可用率承诺', '漏洞修复时限']
+  };
+
+  /* ---------- 证据等级（L4 最强，L1 仅过门槛） ---------- */
+  var EV = {
+    L4: { t: 'L4 实测/现场验证', d: '现场演示、实测数据、第三方现场核验结论', ok: true },
+    L3: { t: 'L3 第三方权威评测', d: '权威机构评测报告、权威榜单、第三方检测结论', ok: true },
+    L2: { t: 'L2 公开基准/行业数据', d: '公开基准数据、行业统计、标准与政策文件', ok: true },
+    L1: { t: 'L1 认证资质类', d: '证书、备案证明、体系认证；仅用于过门槛，不单独支撑高分', ok: false },
+    X:  { t: '形式要件不满足', d: '证据形式要件不满足，按无效证据处理，该指标不得分', ok: false }
+  };
+
+  /* ---------- 评估对象（示例项目） ---------- */
+  var PROJ = [
+    { id: 'P1', name: '政务服务智能问答与材料预审智能体', unit: '区政务服务局', scene: '政策问答 · 材料预审',
+      declared: 1400, verdict: '支持', preset: { A1: 5, A2: 3, A3: 3, A4: 5, B1: 5, B2: 5, B3: 5, B4: 3, B5: 3,
+        C1: 3, C2: 3, C3: 5, C4: 3, D1: 5, D2: 5, D3: 3, D4: 5, E1: 5, E2: 5, E3: 3, F1: 3, F2: 3, F3: 3, F4: 3, F5: 3 },
+      ev: { A1: 'L4', A2: 'L3', A3: 'L3', A4: 'L4', B1: 'L4', B2: 'L4', B3: 'L3', B4: 'L2', B5: 'L2',
+        C1: 'L3', C2: 'L3', C3: 'L4', C4: 'L3', D1: 'L4', D2: 'L4', D3: 'L3', D4: 'L4', E1: 'L4', E2: 'L4',
+        E3: 'L2', F1: 'L3', F2: 'L3', F3: 'L2', F4: 'L2', F5: 'L2' } },
+    { id: 'P2', name: '城市运行事件智能分拨平台', unit: '区城市管理委', scene: '工单分流 · 城市治理',
+      declared: 860, verdict: '有条件支持', preset: { A1: 5, A2: 5, A3: 3, A4: 3, B1: 5, B2: 3, B3: 3, B4: 3, B5: 3,
+        C1: 3, C2: 3, C3: 3, C4: 3, D1: 5, D2: 3, D3: 5, D4: 3, E1: 5, E2: 3, E3: 3, F1: 3, F2: 3, F3: 3, F4: 3, F5: 3 },
+      ev: { A1: 'L4', A2: 'L3', A3: 'L2', A4: 'L3', B1: 'L3', B2: 'L3', B3: 'L2', B4: 'L2', B5: 'L2',
+        C1: 'L3', C2: 'L2', C3: 'L3', C4: 'L2', D1: 'L4', D2: 'L3', D3: 'L4', D4: 'L2', E1: 'L4', E2: 'L2',
+        E3: 'L2', F1: 'L3', F2: 'L1', F3: 'L2', F4: 'L2', F5: 'L2' } },
+    { id: 'P3', name: '产业招商智能分析助手', unit: '区投促局', scene: '产业分析',
+      declared: 520, verdict: '支持', preset: { A1: 3, A2: 3, A3: 3, A4: 3, B1: 5, B2: 5, B3: 5, B4: 5, B5: 3,
+        C1: 3, C2: 5, C3: 5, C4: 3, D1: 5, D2: 5, D3: 5, D4: 3, E1: 5, E2: 5, E3: 5, F1: 5, F2: 5, F3: 5, F4: 3, F5: 3 },
+      ev: { A1: 'L3', A2: 'L3', A3: 'L2', A4: 'L3', B1: 'L4', B2: 'L4', B3: 'L4', B4: 'L3', B5: 'L2',
+        C1: 'L3', C2: 'L4', C3: 'L4', C4: 'L2', D1: 'L4', D2: 'L4', D3: 'L4', D4: 'L3', E1: 'L4', E2: 'L4',
+        E3: 'L3', F1: 'L4', F2: 'L4', F3: 'L3', F4: 'L2', F5: 'L2' } },
+    { id: 'P4', name: '城市道路病害智能巡检', unit: '区市政管委', scene: '城市治理',
+      declared: 690, verdict: '整改后支持', preset: { A1: 3, A2: 3, A3: 3, A4: 5, B1: 3, B2: 3, B3: 3, B4: 3, B5: 3,
+        C1: 3, C2: 3, C3: 3, C4: 3, D1: 3, D2: 3, D3: 3, D4: 3, E1: 3, E2: 3, E3: 3, F1: 3, F2: 1, F3: 3, F4: 1, F5: 1 },
+      ev: { A1: 'L3', A2: 'L2', A3: 'L2', A4: 'L3', B1: 'L2', B2: 'L2', B3: 'L2', B4: 'L2', B5: 'L2',
+        C1: 'L2', C2: 'L3', C3: 'L3', C4: 'L2', D1: 'L3', D2: 'L3', D3: 'L2', D4: 'L2', E1: 'L3', E2: 'L2',
+        E3: 'L2', F1: 'L2', F2: 'L1', F3: 'L2', F4: 'L1', F5: 'L1' } }
+  ];
+
+  /* ---------- 状态 ---------- */
+  var curProj = PROJ[0];
+  /* state[code] = { anchor: 1|3|5, subs: [bool], ev: 'L4'... } */
+  var state = {};
+
+  /* ---------- 工具 ---------- */
+  function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+  /* 锚点 → 0—100 分基准 */
+  var AN = { 1: 20, 3: 60, 5: 100 };
+  function scoreOf(it) {
+    var st = state[it.code];
+    if (!st) return null;
+    /* 证据形式不满足 → 0 分（形式先于锚点判定） */
+    if (st.ev === 'X') return 0;
+    /* 一票否决项 F1/F2：只判门槛，不进入插值 */
+    if (it.code === 'F1' || it.code === 'F2') {
+      return st.ev === 'L1' ? 60 : (st.ev === 'X' ? 0 : AN[st.anchor]);
+    }
+    var subs = SUB[it.code] || [];
+    var n = subs.length || 1;
+    var hit = st.subs.filter(Boolean).length;
+    var ratio = hit / n;
+    var lo = AN[st.anchor];
+    /* 3 分锚点：需满足半数以上子项 */
+    if (st.anchor === 1) return lo;
+    if (st.anchor === 3) {
+      /* 3→5 分区间插值，按子项比例；不足半数回到 1—3 分区间 */
+      return ratio >= 0.5 ? Math.round(60 + 40 * ((ratio - 0.5) / 0.5)) : Math.round(20 + 40 * ratio);
+    }
+    /* 5 分锚点：要求全部子项满足，否则向下插值 */
+    var span = 20;  /* 3→5 分差 */
+    return Math.round(Math.max(60, 100 - span * (1 - ratio)));
+  }
+  function grade(s) {
+    if (s >= 85) return { t: 'A 档', c: 'g-a' };
+    if (s >= 75) return { t: 'B 档', c: 'g-b' };
+    if (s >= 65) return { t: 'C 档', c: 'g-c' };
+    if (s >= 55) return { t: 'D 档', c: 'g-d' };
+    return { t: 'E 档', c: 'g-e' };
+  }
+  function band(s) {
+    if (s >= 90) return '优秀';
+    if (s >= 75) return '良好';
+    if (s >= 60) return '合格';
+    if (s >= 40) return '不足';
+    return '缺失';
+  }
+
+  /* ---------- 渲染 ---------- */
+  var sel = $('#edProj');
+  sel.innerHTML = PROJ.map(function (p) {
+    return '<option value="' + p.id + '">' + esc(p.name) + '（' + esc(p.unit) + '）</option>';
+  }).join('');
+
+  function loadProj(p) {
+    curProj = p;
+    state = {};
+    DATA.forEach(function (it) {
+      var a = p.preset[it.code] || 3;
+      var subs = SUB[it.code] || [];
+      /* 预设锚点对应的子项默认满足数 */
+      var n = subs.length || 1;
+      var hit = a === 5 ? n : (a === 3 ? Math.max(1, Math.ceil(n / 2)) : 0);
+      var arr = subs.map(function (_, i) { return i < hit; });
+      state[it.code] = { anchor: a, subs: arr, ev: p.ev[it.code] || 'L3' };
+    });
+    render();
+  }
+
+  function render() {
+    var DIMS = C.dims;
+    /* --- 打分表 --- */
+    $('#edDims').innerHTML = DIMS.map(function (dm) {
+      var items = DATA.filter(function (x) { return x.dim === dm.code; });
+      var dScore = 0, dMax = 0;
+      items.forEach(function (it) {
+        var s = scoreOf(it);
+        if (s != null) { dScore += s * it.w; dMax += it.w * 100; }
+      });
+      var dAvg = dMax ? (dScore / dMax * 100) : 0;
+      return '<div class="ed-dim">' +
+        '<div class="ed-dim-h">' +
+          '<span class="ed-code">' + dm.code + '</span>' +
+          '<span class="ed-dim-n">' + esc(dm.full) + '</span>' +
+          '<span class="ed-dim-w">权重 ' + dm.w + '</span>' +
+          '<span class="ed-dim-s num">' + dAvg.toFixed(1) + '</span>' +
+        '</div>' +
+        items.map(function (it) { return rowHTML(it); }).join('') +
+        '</div>';
+    }).join('');
+
+    /* --- 汇总 --- */
+    var total = 0, wsum = 0, done = 0, calc = [];
+    DATA.forEach(function (it) {
+      var s = scoreOf(it);
+      if (s != null) {
+        total += s * it.w; wsum += it.w * 100; done++;
+        calc.push({ c: it.code, n: it.name, s: s, w: it.w, part: s * it.w / 100 });
+      }
+    });
+    var score = wsum ? total / 100 : 0;
+    var g = grade(score);
+
+    $('#edScore').textContent = score.toFixed(1);
+    $('#edGrade').textContent = g.t;
+    $('#edGrade').className = 'ed-grade ' + g.c;
+    $('#edMeter').style.width = score.toFixed(1) + '%';
+    $('#edScoreSub').innerHTML = done === DATA.length
+      ? '已打分 ' + done + ' / ' + DATA.length + ' 项 · ' + band(score) + ' · 申报 ' + curProj.declared + ' 万元'
+      : '已打分 ' + done + ' / ' + DATA.length + ' 项 · 申报 ' + curProj.declared + ' 万元';
+
+    /* 六维得分 */
+    $('#edBreak').innerHTML = DIMS.map(function (dm) {
+      var items = DATA.filter(function (x) { return x.dim === dm.code; });
+      var dScore = 0, dMax = 0;
+      items.forEach(function (it) { var s = scoreOf(it); if (s != null) { dScore += s * it.w; dMax += it.w * 100; } });
+      var v = dMax ? (dScore / dMax * 100) : 0;
+      return '<div class="ed-br"><span class="ed-br-c">' + dm.code + '</span>' +
+        '<span class="ed-br-n">' + esc(dm.name) + '</span>' +
+        '<div class="ed-br-bar"><i style="width:' + v.toFixed(1) + '%"></i></div>' +
+        '<span class="ed-br-v num">' + v.toFixed(1) + '</span></div>';
+    }).join('');
+
+    /* 计算过程 */
+    $('#edCalc').innerHTML =
+      '<div class="ed-calc-row ed-calc-f"><span>总分</span><b class="num">' + score.toFixed(1) + '</b></div>' +
+      '<div class="ed-calc-sub">Σ（指标得分 × 指标权重）÷ 100</div>' +
+      calc.map(function (x) {
+        return '<div class="ed-calc-row"><span class="mono">' + x.c + '</span>' +
+          '<span class="ed-calc-t">' + esc(x.n) + '</span>' +
+          '<span class="mono">' + x.s + ' × ' + x.w + '</span>' +
+          '<b class="mono">' + x.part.toFixed(2) + '</b></div>';
+      }).join('');
+
+    /* 一票否决 */
+    $('#edVeto').innerHTML = DATA.filter(function (x) { return x.code === 'F1' || x.code === 'F2'; }).map(function (it) {
+      var st = state[it.code];
+      var bad = st.ev === 'X' || st.ev === 'L1';
+      return '<div class="ed-veto' + (bad ? ' bad' : '') + '">' +
+        '<span class="ed-vc">' + it.code + '</span>' +
+        '<span>' + esc(it.name) + '</span>' +
+        '<span class="ed-vres">' + (bad ? '门槛未过' : '已过门槛') + '</span></div>';
+    }).join('');
+
+    /* 输出结论 */
+    var out = [];
+    var worst = calc.slice().sort(function (a, b) { return (a.s - b.s) * (b.w - a.w); }).slice(0, 3);
+    out.push('<h4>评估结论</h4>');
+    out.push('<div class="ed-out-row"><span>综合得分</span><b class="num">' + score.toFixed(1) + '</b><span class="ed-out-g ' + g.c + '">' + g.t + '</span></div>');
+    out.push('<div class="ed-out-row"><span>评估结论</span><b>' + esc(curProj.verdict) + '</b></div>');
+    out.push('<div class="ed-out-row"><span>申报金额</span><b class="num">' + curProj.declared + ' 万元</b></div>');
+    if (worst.length) {
+      out.push('<h5>关键扣分项（按权重×失分排序）</h5><ul class="ed-dedu">');
+      worst.forEach(function (w) {
+        out.push('<li><span class="mono">' + w.c + '</span> ' + esc(w.n) +
+          ' <b class="num">' + w.s + '</b> 分 / 权重 ' + w.w +
+          '<span class="ed-ded-n">' + esc(itPoint(w.c, 'why')) + '</span></li>');
+      });
+      out.push('</ul>');
+    }
+    out.push('<p class="ed-out-note">所有得分均挂接证据编号，评估过程输入数据、参数版本与中间计算结果完整留痕，可逐项回溯到原始材料。</p>');
+    $('#edOut').innerHTML = out.join('');
+
+    /* 流程条状态 */
+    $$('#edFlow li').forEach(function (li, i) {
+      li.classList.toggle('on', i === (done === DATA.length ? 3 : (done ? 1 : 0)));
+      li.classList.toggle('done', done > 0 && !(done === DATA.length));
+    });
+
+    bindRows();
+  }
+
+  function itPoint(code, which) {
+    var it = DATA.filter(function (x) { return x.code === code; })[0];
+    if (!it) return '';
+    if (which === 'why') {
+      var st = state[code];
+      if (st.ev === 'X') return '证据形式要件不满足，该指标不得分';
+      if (st.anchor === 5) return '达到 5 分锚点：' + it.a5;
+      if (st.anchor === 3) return '达到 3 分锚点：' + it.a3;
+      return '仅达 1 分锚点：' + it.a1;
+    }
+    return it.point;
+  }
+
+  function rowHTML(it) {
+    var st = state[it.code];
+    var sc = scoreOf(it);
+    var subs = SUB[it.code] || [];
+    var isVeto = (it.code === 'F1' || it.code === 'F2');
+    var ev = EV[st.ev] || EV.L3;
+    return '<div class="ed-row" data-code="' + it.code + '">' +
+      '<div class="ed-row-h">' +
+        '<span class="ed-rc mono">' + it.code + '</span>' +
+        '<span class="ed-rn">' + esc(it.name) + '</span>' +
+        '<span class="ed-rw">权重 ' + it.w + '</span>' +
+        '<span class="ed-rs num' + (isVeto ? ' veto' : '') + '">' + (sc == null ? '—' : sc) + '</span>' +
+      '</div>' +
+      '<div class="ed-anchors" role="radiogroup" aria-label="' + esc(it.name) + ' 锚点评分">' +
+        [1, 3, 5].map(function (a) {
+          var on = st.anchor === a;
+          var desc = a === 1 ? it.a1 : (a === 3 ? it.a3 : it.a5);
+          return '<button class="ed-anchor' + (on ? ' on' : '') + '" data-code="' + it.code + '" data-a="' + a + '" role="radio" aria-checked="' + on + '">' +
+            '<b>' + a + ' 分</b><span>' + esc(desc) + '</span></button>';
+        }).join('') +
+      '</div>' +
+      '<div class="ed-subs">' +
+        (subs.length ? '<span class="ed-subs-l">子项（档内按满足比例插值）</span>' +
+          subs.map(function (s, i) {
+            return '<label class="ed-sub"><input type="checkbox" data-code="' + it.code + '" data-i="' + i + '"' +
+              (st.subs[i] ? ' checked' : '') + '><span>' + esc(s) + '</span></label>';
+          }).join('') : '<span class="ed-subs-l">本指标按锚点直接判档</span>') +
+      '</div>' +
+      '<div class="ed-meta">' +
+        '<label class="ed-ev">证据等级' +
+          '<select data-code="' + it.code + '" class="ed-evsel">' +
+            Object.keys(EV).map(function (k) {
+              return '<option value="' + k + '"' + (st.ev === k ? ' selected' : '') + '>' + EV[k].t + '</option>';
+            }).join('') +
+          '</select></label>' +
+        '<span class="ed-evd">' + esc(ev.d) + '</span>' +
+        (isVeto ? '<span class="ed-veto-tag">一票否决前置 · 不进入插值</span>' : '') +
+        '<span class="ed-why">评分要点：' + esc(it.point) + '</span>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function bindRows() {
+    $$('.ed-anchor').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var code = b.dataset.code, a = +b.dataset.a;
+        var st = state[code];
+        st.anchor = a;
+        var subs = SUB[code] || [];
+        var n = subs.length || 1;
+        /* 切锚点时按新锚点重置子项 */
+        var hit = a === 5 ? n : (a === 3 ? Math.max(1, Math.ceil(n / 2)) : 0);
+        st.subs = subs.map(function (_, i) { return i < hit; });
+        render();
+      });
+    });
+    $$('.ed-sub input').forEach(function (cb) {
+      cb.addEventListener('change', function () {
+        state[cb.dataset.code].subs[+cb.dataset.i] = cb.checked;
+        render();
+      });
+    });
+    $$('.ed-evsel').forEach(function (s) {
+      s.addEventListener('change', function () {
+        state[s.dataset.code].ev = s.value;
+        render();
+      });
+    });
+  }
+
+  sel.addEventListener('change', function () {
+    var p = PROJ.filter(function (x) { return x.id === sel.value; })[0];
+    if (p) loadProj(p);
+  });
+
+  $('#edProjHint').textContent = '共 ' + PROJ.length + ' 个示例项目，切换后按该项目材料预填锚点与证据等级，可逐项调整。';
+  loadProj(PROJ[0]);
+})();
+
 /* ================= 瀑布图 ================= */
 (function () {
   var wf = $('#wf'), tip = $('#wfTip');
   var W = 960, H = 440, x0 = 64, x1 = 952, yT = 34, yB = 360, max = 1500;
   function y(v) { return yB - (v / max) * (yB - yT); }
   var n = C.waterfall.length, bw = (x1 - x0) / n, w = bw * .56, run = 0;
-  var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="造价核减瀑布图：申报 1,400 万元，逐项核减后核定 773 万元">';
+  var s = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="造价核减瀑布图：申报 1,400 万元，逐项核减后核定 1,210 万元">';
   [0, 500, 1000, 1500].forEach(function (v) {
     s += '<line x1="' + x0 + '" x2="' + x1 + '" y1="' + y(v) + '" y2="' + y(v) + '" stroke="rgba(244,243,241,' + (v ? .1 : .35) + ')"/>';
     s += '<text x="' + (x0 - 12) + '" y="' + (y(v) + 4) + '" text-anchor="end" font-size="12" fill="rgba(244,243,241,.5)" font-family="Archivo,Arial">' + fmt(v) + '</text>';
