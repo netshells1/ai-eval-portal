@@ -26,10 +26,10 @@
           <p>从窗口扫描材料，到 OCR 识别、规则预审和智能问答，沿着一次受理过程，查看设备为何配置、单价从哪里来、哪些参数还要现场验证。</p>
           <a class="btn btn-lime" href="#hardware-list">查看硬件核价清单 ↓</a>
         </div>
-        <article class="quote-sheet hw-budget">
+        <article class="quote-sheet hw-budget" data-project-id="P1">
           <h2>项目整体评估示例</h2>
-          <dl><div><dt>申报金额</dt><dd>1,400 <small>万元</small></dd></div>
-          <div><dt>核定价（P50）</dt><dd>1,210 <small>万元</small></dd></div></dl>
+          <dl><div><dt>申报金额</dt><dd><span id="caseDeclared"></span> <small>万元</small></dd></div>
+          <div><dt>核定价（P50）</dt><dd><span id="casePrice"></span> <small>万元</small></dd></div></dl>
           <p>含建设与三年运维。下方硬件方案独立测算，两者尚未逐项对账。</p>
           <div class="hw-links"><a href="evaluation.html#evalDeskSec">查看评估作业台 ↗</a><a href="pricing.html#wf">查看造价核定 ↗</a></div>
         </article>
@@ -61,6 +61,8 @@
 </main>
 
 <script src="assets/portal-data.js"></script>
+<script src="assets/ind-data.js"></script>
+<script src="assets/project-evaluation.js"></script>
 <script src="assets/portal-shell.js"></script>
 <script src="assets/hardware-case-data.js"></script>
 <script src="assets/pages/cases.js"></script>

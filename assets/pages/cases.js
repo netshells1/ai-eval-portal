@@ -1,6 +1,22 @@
 window.initPortalPage = function ({ C, $, $$, fine, fmt }) {
   var VC = { '直接支持': 'v1', '支持': 'v2', '有条件支持': 'v3', '整改后支持': 'v4', '不予支持': 'v5' };
-  $('#caseGrid').innerHTML = C.cases.map(function (c, i) {
+  const { projects, totalScore } = window.ProjectEvaluation;
+  const byId = new Map(projects.map(project => [project.id, project]));
+  const featured = byId.get($('.hw-budget').dataset.projectId);
+  $('#caseDeclared').textContent = fmt(featured.declared);
+  $('#casePrice').textContent = fmt(featured.price);
+
+  const cards = C.cases.map(card => {
+    if (!card.projectId) return card;
+    const project = byId.get(card.projectId);
+    return {
+      ...card, name: project.name, unit: project.unit,
+      from: project.declared, to: project.price, verdict: project.verdict,
+      cut: (project.declared - project.price) / project.declared * 100,
+      score: totalScore(project)
+    };
+  });
+  $('#caseGrid').innerHTML = cards.map(function (c, i) {
     var ents = c.ents.length ? c.ents.map(function (e) { return '<span class="tag">' + e + '</span>'; }).join('') : '<span class="tag">' + c.veto + '</span>';
     return '<article class="case ph rv" tabindex="0" style="--d:' + ((i % 3) * .08).toFixed(2) + 's"><img src="' + c.img + '" alt="" loading="lazy"><span class="case-scene">' + c.scene + '</span>' +
       '<div class="case-f"><h3>' + c.name + '</h3><small>' + c.unit + '</small><span class="v ' + VC[c.verdict] + '">' + c.verdict + '</span></div>' +
