@@ -340,11 +340,13 @@
     $('#edVeto').innerHTML = GATES.map(function (g) {
       var ok = g.check(p);
       return '<div class="ed-veto' + (ok ? '' : ' bad') + '">' +
-        '<span class="ed-vc">' + g.id + '</span>' +
-        '<span class="ed-vt">' + esc(g.name) + '<em>' + esc(g.basis) + '</em></span>' +
-        '<span class="ed-vres">' + (ok ? '已过门槛' : '门槛未过') + '</span>' +
+        '<div class="ed-veto-top">' +
+          '<span class="ed-vc">' + g.id + '</span>' +
+          '<span class="ed-vres">' + (ok ? '已过门槛' : '门槛未过') + '</span>' +
         '</div>' +
-        '<div class="ed-veto-note">' + (ok ? '✓ ' : '✕ ') + esc(g.note(p)) + '</div>';
+        '<span class="ed-vt">' + esc(g.name) + '<em>' + esc(g.basis) + '</em></span>' +
+        '<span class="ed-veto-note">' + (ok ? '✓ ' : '✕ ') + esc(g.note(p)) + '</span>' +
+        '</div>';
     }).join('');
   }
 
