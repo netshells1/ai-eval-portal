@@ -13,31 +13,47 @@
     const entries = dataset.entries;
     const normalize = value => String(value || '').normalize('NFKC').toLowerCase()
       .replace(/[\s\p{P}\p{S}]/gu, '');
-    const indexed = entries.map(entry => {
+    const indexEntry = entry => {
       const topics = entry.blocks.filter(block => block.type === 'image').map(block => block.title);
       return { entry, key: normalize([entry.region, entry.province, entry.city, entry.level, entry.title, ...topics].join(' ')) };
-    });
+    };
+    const nationalIndexed = entries.filter(entry => entry.level === '国家级').map(indexEntry);
+    const regionalIndexed = entries.filter(entry => entry.level !== '国家级').map(indexEntry);
     const escape = value => String(value ?? '').replace(/[&<>"']/g, ch =>
       ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]);
     const searchIcon = '<span class="std-search-icon" aria-hidden="true"></span>';
     host.innerHTML = `<div class="std-wrap">
-      <div class="std-tools">
-        <div class="std-caption"><h2>地区目录</h2><span class="std-count" role="status" aria-live="polite" aria-atomic="true"></span></div>
-        <div class="std-inputs">
-          <label class="std-search">${searchIcon}<input type="search" autocomplete="off" placeholder="搜索地区、标准名称、文号或图题" aria-label="搜索地区、标准名称、文号或图题"></label>
-          <select class="std-level" aria-label="筛选标准层级"><option value="">全部层级</option></select>
+      <section class="std-block std-national" aria-labelledby="std-national-title">
+        <div class="std-tools">
+          <div class="std-caption"><h2 id="std-national-title">国家政策类</h2><span class="std-count std-national-count" role="status" aria-live="polite" aria-atomic="true"></span></div>
+          <div class="std-inputs">
+            <label class="std-search">${searchIcon}<input type="search" data-national-query autocomplete="off" placeholder="搜索政策名称、文号或发布机构" aria-label="搜索国家政策类"></label>
+          </div>
         </div>
-      </div>
-      <ul class="std-grid" aria-label="地区标准目录"></ul>
-      <div class="std-empty" hidden>
-        <h3>没有找到匹配的标准</h3><p>试试地区简称或文号中的数字。</p><button type="button" data-reset>清除筛选</button>
-      </div>
+        <ul class="std-policy-list" aria-label="国家政策类"></ul>
+        <div class="std-empty std-national-empty" hidden>
+          <h3>没有找到匹配的政策</h3><p>试试文号中的数字，或发布机构简称。</p><button type="button" data-reset-national>清除搜索</button>
+        </div>
+      </section>
+      <section class="std-block std-regional" aria-labelledby="std-regional-title">
+        <div class="std-tools">
+          <div class="std-caption"><h2 id="std-regional-title">地方政策类</h2><span class="std-count std-regional-count" role="status" aria-live="polite" aria-atomic="true"></span></div>
+          <div class="std-inputs">
+            <label class="std-search">${searchIcon}<input type="search" data-regional-query autocomplete="off" placeholder="搜索地区、标准名称、文号或图题" aria-label="搜索地区、标准名称、文号或图题"></label>
+            <select class="std-level" aria-label="筛选标准层级"><option value="">所有层级</option><option value="省级">省级</option><option value="市级">市级</option></select>
+          </div>
+        </div>
+        <ul class="std-grid std-regional-grid" aria-label="地方政策类"></ul>
+        <div class="std-empty std-regional-empty" hidden>
+          <h3>没有找到匹配的标准</h3><p>试试地区简称或文号中的数字。</p><button type="button" data-reset-regional>清除筛选</button>
+        </div>
+      </section>
     </div>
     <dialog class="std-dialog std-dossier" aria-labelledby="std-dossier-title">
       <div class="std-dialog-layout">
         <header class="std-dialog-bar"><span class="std-dialog-region"></span><button type="button" class="std-close" data-close-doc aria-label="关闭标准详情">关闭 <span aria-hidden="true">×</span></button></header>
         <div class="std-doc-scroll" data-native-scroll tabindex="-1">
-          <div class="std-doc-head"><h2 id="std-dossier-title"></h2><div class="std-citation"><a class="std-source" target="_blank" rel="noopener noreferrer">AI询价喵 · 询价依据摘录 ↗</a><small>适用范围和计费要求以发布机构文件原文为准。</small></div></div>
+          <div class="std-doc-head"><h2 id="std-dossier-title"></h2><div class="std-citation"><a class="std-source" target="_blank" rel="noopener noreferrer">查看询价依据摘录 ↗</a><small>适用范围和计费要求以发布机构文件原文为准。</small></div></div>
           <div class="std-outline" hidden><label>定位到 <select aria-label="定位到详情条目"></select></label></div>
           <div class="std-doc-body"></div>
         </div>
@@ -54,9 +70,11 @@
       </div>
     </dialog>`;
     const get = selector => host.querySelector(selector);
-    const search = get('input[type=search]');
+    const nationalSearch = get('[data-national-query]');
+    const regionalSearch = get('[data-regional-query]');
     const levelSelect = get('.std-level');
-    const grid = get('.std-grid');
+    const nationalList = get('.std-policy-list');
+    const regionalGrid = get('.std-regional-grid');
     const dossier = get('.std-dossier');
     const reader = get('.std-reader');
     const stage = get('.std-image-stage');
@@ -64,10 +82,6 @@
     const source = get('.std-source');
     if (/^https?:\/\//i.test(dataset.sourceUrl)) source.href = dataset.sourceUrl;
     else source.hidden = true;
-    for (const level of new Set(entries.map(entry => entry.level).filter(Boolean))) {
-      levelSelect.add(new Option(level, level));
-    }
-    levelSelect.hidden = levelSelect.options.length < 3;
     let openEntry, images = [], imageIndex = 0, zoom = 1;
 
     function summarize(entry) {
@@ -79,17 +93,50 @@
       if (!parts.length && counts.paragraph) parts.push('文字依据');
       return parts.join(' · ');
     }
-    function renderList() {
-      const terms = search.value.trim().split(/\s+/u).map(normalize).filter(Boolean);
-      const filtered = indexed.filter(({ entry, key }) =>
-        (!levelSelect.value || entry.level === levelSelect.value) && terms.every(word => key.includes(word)));
-      get('.std-count').textContent = (levelSelect.value || terms.length ? '找到 ' : '共 ') + filtered.length + ' 条';
-      get('.std-empty').hidden = !!filtered.length;
-      grid.innerHTML = filtered.map(({ entry }) => `<li><button type="button" class="std-card" data-entry="${escape(entry.id)}" aria-haspopup="dialog">
+    function policyMeta(title) {
+      const quoted = title.match(/《([^》]+)》/);
+      const shortTitle = quoted ? quoted[1] : title;
+      const parenDoc = title.match(/[（(]([^）)]*[〔\[]\d{4}[〕\]][^）)]*)[）)]/);
+      const stdDoc = title.match(/(?:GB|SJ)\/T\s*[\d.\-]+/i);
+      const csbmk = title.match(/CSBMK[®\s]*-?\s*\d+/i);
+      const code = parenDoc ? parenDoc[1].trim()
+        : stdDoc ? stdDoc[0].replace(/\s+/g, ' ')
+        : csbmk ? csbmk[0].replace(/\s+/g, '')
+        : '政策文件';
+      const afterClose = title.match(/[）》)]\s*([^《）》)]+)\s*$/);
+      const issuer = afterClose ? afterClose[1].trim() : '';
+      return { code, shortTitle, issuer };
+    }
+    function searchTerms(input) {
+      return input.value.trim().split(/\s+/u).map(normalize).filter(Boolean);
+    }
+    function nationalCard(entry) {
+      const meta = policyMeta(entry.title);
+      return `<li><button type="button" class="std-policy" data-entry="${escape(entry.id)}" aria-haspopup="dialog">
+        <span class="std-policy-meta"><span class="std-policy-code">${escape(meta.code)}</span><small>${escape(summarize(entry))}</small></span>
+        <strong class="std-policy-title">${escape(meta.shortTitle)}</strong>
+        <span class="std-policy-foot">${meta.issuer ? `<span class="std-policy-issuer">${escape(meta.issuer)}</span>` : '<span></span>'}<span class="std-card-action">查看详情 <span aria-hidden="true">↗</span></span></span>
+      </button></li>`;
+    }
+    function regionalCard(entry) {
+      return `<li><button type="button" class="std-card" data-entry="${escape(entry.id)}" aria-haspopup="dialog">
         <span class="std-card-top"><strong>${escape(entry.region)}</strong><span class="std-tag">${escape(entry.level)}</span></span>
         <span class="std-card-title">${escape(entry.title)}</span>
         <span class="std-card-foot"><small>${escape(summarize(entry))}</small><span class="std-card-action">查看详情 <span aria-hidden="true">↗</span></span></span>
-        </button></li>`).join('');
+      </button></li>`;
+    }
+    function renderList() {
+      const nationalTerms = searchTerms(nationalSearch);
+      const regionalTerms = searchTerms(regionalSearch);
+      const nationalFiltered = nationalIndexed.filter(({ key }) => nationalTerms.every(word => key.includes(word)));
+      const regionalFiltered = regionalIndexed.filter(({ entry, key }) =>
+        (!levelSelect.value || entry.level === levelSelect.value) && regionalTerms.every(word => key.includes(word)));
+      get('.std-national-count').textContent = (nationalTerms.length ? '找到 ' : '共 ') + nationalFiltered.length + ' 条';
+      get('.std-regional-count').textContent = (levelSelect.value || regionalTerms.length ? '找到 ' : '共 ') + regionalFiltered.length + ' 条';
+      get('.std-national-empty').hidden = !!nationalFiltered.length;
+      get('.std-regional-empty').hidden = !!regionalFiltered.length;
+      nationalList.innerHTML = nationalFiltered.map(({ entry }) => nationalCard(entry)).join('');
+      regionalGrid.innerHTML = regionalFiltered.map(({ entry }) => regionalCard(entry)).join('');
     }
     function tableMarkup(block, index) {
       const renderRow = row => '<tr>' + row.map(cell => {
@@ -104,7 +151,9 @@
     function showEntry(entry) {
       openEntry = entry;
       images = entry.blocks.filter(block => block.type === 'image');
-      get('.std-dialog-region').textContent = entry.region + ' · ' + entry.level + '标准';
+      get('.std-dialog-region').textContent = entry.level === '国家级'
+        ? '国家政策类'
+        : entry.region + ' · ' + entry.level + '标准';
       get('#std-dossier-title').textContent = entry.title;
       let tableNumber = 0, imageNumber = 0;
       get('.std-doc-body').innerHTML = entry.blocks.map(block => {
@@ -169,7 +218,8 @@
     reader.addEventListener('click', closeOnBackdrop);
     largeImage.addEventListener('load', sizeImage);
     window.addEventListener('resize', sizeImage);
-    search.addEventListener('input', renderList);
+    nationalSearch.addEventListener('input', renderList);
+    regionalSearch.addEventListener('input', renderList);
     levelSelect.addEventListener('change', renderList);
     get('.std-outline select').addEventListener('change', event => {
       const section = document.getElementById(event.target.value);
@@ -184,10 +234,14 @@
       if (button.hasAttribute('data-entry')) {
         const entry = entries.find(row => String(row.id) === button.dataset.entry);
         if (entry) showEntry(entry);
-      } else if (button.hasAttribute('data-reset')) {
-        search.value = levelSelect.value = '';
+      } else if (button.hasAttribute('data-reset-national')) {
+        nationalSearch.value = '';
         renderList();
-        search.focus();
+        nationalSearch.focus();
+      } else if (button.hasAttribute('data-reset-regional')) {
+        regionalSearch.value = levelSelect.value = '';
+        renderList();
+        regionalSearch.focus();
       } else if (button.hasAttribute('data-close-doc')) dossier.close();
       else if (button.hasAttribute('data-close-image')) reader.close();
       else if (button.hasAttribute('data-image')) showImage(Number(button.dataset.image));

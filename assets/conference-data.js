@@ -4,7 +4,7 @@ window.ConferenceData = {
     "id": "20260106000002",
     "name": "视频会议系统",
     "sourceUrl": "https://www.aixjm.cn/inquiry/detail?id=20260106000002&inquiryId=692&inquiryTaskId=20260106000011",
-    "sourceLabel": "AI询价喵 · 视频会议系统"
+    "sourceLabel": "视频会议系统询价档案"
   },
   "statusLabels": {
     "1": "优于要求",

@@ -28,22 +28,27 @@
   <section class="sec dark">
     <div class="wrap">
       <div class="sh">
-        <div><h2 class="h2 rl"><span class="ln"><span>从申报到核定</span></span></h2></div>
-        <p class="rv" style="--d:.1s">示例：政务服务智能问答与材料预审智能体。申报 1,400 万元，逐项核减后核定 1,210 万元。</p>
+        <div><span class="en rv">Waterfall</span><h2 class="h2 rl"><span class="ln"><span>从申报到核定</span></span></h2></div>
       </div>
       <div class="formula rv" aria-label="核定投资等于建设费加运维费减复用抵扣">
         <span class="t key">核定投资</span><span class="op">=</span><span class="t">建设费</span><span class="op">+</span><span class="t">运维费</span><span class="op">−</span><span class="t key">复用抵扣</span>
       </div>
+      <div class="price-pick rv" style="--d:.12s">
+        <div class="price-pick-main">
+          <label class="price-lb" for="priceProj">投标项目</label>
+          <select id="priceProj" class="price-select"></select>
+        </div>
+      </div>
       <div class="price-grid">
         <div class="wf" id="wf">
           <div class="wf-tip" id="wfTip"></div>
-          <p class="wf-note" style="display: none;">浅绿色横带为核定价区间 1166—1254 万元（P25—P75）。将鼠标移到柱子上查看核减理由和证据编号。</p>
+          <p class="wf-note" id="wfNote">浅绿色横带为核定价区间。将鼠标移到柱子上查看核减理由和证据编号。</p>
         </div>
         <div class="price-side">
-          <div class="kv rv"><span>申报金额</span><span class="num" data-count="1400">0<small>万元</small></span></div>
-          <div class="kv rv"><span>核定价（P50）</span><div><span class="num" data-count="1210">0<small>万元</small></span><span class="kv-sub">区间 1166—1254 万元</span></div></div>
-          <div class="kv hl rv"><span>核减率</span><span class="num" data-count="13.6" data-dec="1" data-suffix="%">0</span></div>
-          <div class="chips rv"><span class="chip">功能点单价 1,243.52 元</span><span class="chip">运维费率基准 13.5%</span><span class="chip">知识工程 2.4 万元/人月</span><span class="chip">模型适配 3.2 万元/人月</span></div>
+          <div class="kv rv"><span>申报金额</span><span class="num" id="kvDeclared" data-count="1400">0<small>万元</small></span></div>
+          <div class="kv rv"><span>核定价（P50）</span><div><span class="num" id="kvPrice" data-count="1210">0<small>万元</small></span><span class="kv-sub" id="kvRange">区间 —</span></div></div>
+          <div class="kv hl rv"><span>核减率</span><span class="num" id="kvCut" data-count="13.6" data-dec="1" data-suffix="%">0</span></div>
+          <div class="chips rv" id="priceChips"></div>
         </div>
       </div>
     </div>

@@ -66,37 +66,46 @@
     { k: 'Z', n: '汇总出分',   o: '结论出具',   d: '加权汇总、等级判定与结论生成' }
   ];
 
-  /* ---------- 评估对象（示例投标项目） ---------- */
-  var PROJ = [
-    { id: 'P1', name: '政务服务智能问答与材料预审智能体', unit: '区政务服务局', bidder: '北京方寸无忧科技发展有限公司', scene: '政策问答 · 材料预审',
-      declared: 1400, price: 1210, verdict: '整改后支持', date: '2026-11-18',
+  /* ---------- 评估对象：投标项目基础信息与造价核定共用 CONFIG.bidProjects ---------- */
+  var SCORE = {
+    P1: {
       preset: { A1: 5, A2: 3, A3: 3, A4: 5, B1: 5, B2: 5, B3: 5, B4: 3, B5: 3,
         C1: 3, C2: 3, C3: 5, C4: 3, D1: 5, D2: 5, D3: 3, D4: 5, E1: 5, E2: 5, E3: 3, F1: 3, F2: 3, F3: 3, F4: 3, F5: 3 },
       ev: { A1: 'L4', A2: 'L3', A3: 'L3', A4: 'L4', B1: 'L4', B2: 'L4', B3: 'L3', B4: 'L2', B5: 'L2',
         C1: 'L3', C2: 'L3', C3: 'L4', C4: 'L3', D1: 'L4', D2: 'L4', D3: 'L3', D4: 'L4', E1: 'L4', E2: 'L4',
-        E3: 'L2', F1: 'L3', F2: 'L3', F3: 'L2', F4: 'L2', F5: 'L2' } },
-    { id: 'P2', name: '城市运行事件智能分拨平台', unit: '区城市管理委', bidder: '河北因朵科技有限公司', scene: '工单分流 · 城市治理',
-      declared: 860, price: 782, verdict: '有条件支持', date: '2026-11-20',
+        E3: 'L2', F1: 'L3', F2: 'L3', F3: 'L2', F4: 'L2', F5: 'L2' }
+    },
+    P2: {
       preset: { A1: 5, A2: 5, A3: 3, A4: 3, B1: 5, B2: 3, B3: 3, B4: 3, B5: 3,
         C1: 3, C2: 3, C3: 3, C4: 3, D1: 5, D2: 3, D3: 5, D4: 3, E1: 5, E2: 3, E3: 3, F1: 3, F2: 3, F3: 3, F4: 3, F5: 3 },
       ev: { A1: 'L4', A2: 'L3', A3: 'L2', A4: 'L3', B1: 'L3', B2: 'L3', B3: 'L2', B4: 'L2', B5: 'L2',
         C1: 'L3', C2: 'L2', C3: 'L3', C4: 'L2', D1: 'L4', D2: 'L3', D3: 'L4', D4: 'L2', E1: 'L4', E2: 'L2',
-        E3: 'L2', F1: 'L3', F2: 'L1', F3: 'L2', F4: 'L2', F5: 'L2' } },
-    { id: 'P3', name: '产业招商智能分析助手', unit: '区投促局', bidder: '北京云湃智算科技有限公司', scene: '产业分析',
-      declared: 520, price: 494, verdict: '支持', date: '2026-11-21',
+        E3: 'L2', F1: 'L3', F2: 'L1', F3: 'L2', F4: 'L2', F5: 'L2' }
+    },
+    P3: {
       preset: { A1: 3, A2: 3, A3: 3, A4: 3, B1: 5, B2: 5, B3: 5, B4: 5, B5: 3,
         C1: 3, C2: 5, C3: 5, C4: 3, D1: 5, D2: 5, D3: 5, D4: 3, E1: 5, E2: 5, E3: 5, F1: 5, F2: 5, F3: 5, F4: 3, F5: 3 },
       ev: { A1: 'L3', A2: 'L3', A3: 'L2', A4: 'L3', B1: 'L4', B2: 'L4', B3: 'L4', B4: 'L3', B5: 'L2',
         C1: 'L3', C2: 'L4', C3: 'L4', C4: 'L2', D1: 'L4', D2: 'L4', D3: 'L4', D4: 'L3', E1: 'L4', E2: 'L4',
-        E3: 'L3', F1: 'L4', F2: 'L4', F3: 'L3', F4: 'L2', F5: 'L2' } },
-    { id: 'P4', name: '城市道路病害智能巡检', unit: '区市政管委', bidder: '企业E', scene: '城市治理',
-      declared: 690, price: 581, verdict: '整改后支持', date: '2026-11-22',
+        E3: 'L3', F1: 'L4', F2: 'L4', F3: 'L3', F4: 'L2', F5: 'L2' }
+    },
+    P4: {
       preset: { A1: 3, A2: 3, A3: 3, A4: 5, B1: 3, B2: 3, B3: 3, B4: 3, B5: 3,
         C1: 3, C2: 3, C3: 3, C4: 3, D1: 3, D2: 3, D3: 3, D4: 3, E1: 3, E2: 3, E3: 3, F1: 3, F2: 1, F3: 3, F4: 1, F5: 1 },
       ev: { A1: 'L3', A2: 'L2', A3: 'L2', A4: 'L3', B1: 'L2', B2: 'L2', B3: 'L2', B4: 'L2', B5: 'L2',
         C1: 'L2', C2: 'L3', C3: 'L3', C4: 'L2', D1: 'L3', D2: 'L3', D3: 'L2', D4: 'L2', E1: 'L3', E2: 'L2',
-        E3: 'L2', F1: 'L2', F2: 'L1', F3: 'L2', F4: 'L1', F5: 'L1' } }
-  ];
+        E3: 'L2', F1: 'L2', F2: 'L1', F3: 'L2', F4: 'L1', F5: 'L1' }
+    }
+  };
+  var PROJ = (C.bidProjects || []).map(function (b) {
+    var s = SCORE[b.id] || { preset: {}, ev: {} };
+    return {
+      id: b.id, name: b.name, unit: b.unit, scene: b.scene,
+      declared: b.declared, price: b.price, verdict: b.verdict, date: b.date,
+      preset: s.preset, ev: s.ev
+    };
+  });
+  if (!PROJ.length) return;
 
   /* ---------- 工具 ---------- */
   function esc(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
@@ -172,7 +181,7 @@
 
   function renderMeta(p) {
     $('#edProjMeta').innerHTML =
-      '<div class="ed-meta-i"><span>申报单位</span><b>' + esc(p.bidder || p.unit) + '</b></div>' +
+      '<div class="ed-meta-i"><span>申报单位</span><b>' + esc(p.unit) + '</b></div>' +
       '<div class="ed-meta-i"><span>申报金额</span><b class="num">' + p.declared + ' <small>万元</small></b></div>' +
       '<div class="ed-meta-i"><span>核定价</span><b class="num">' + p.price + ' <small>万元</small></b></div>' +
       '<div class="ed-meta-i"><span>受理日期</span><b>' + esc(p.date) + '</b></div>';
@@ -390,14 +399,10 @@
     $('#edVeto').innerHTML = DATA.filter(function (x) { return x.code === 'F1' || x.code === 'F2'; }).map(function (it) {
       var ev = p.ev[it.code];
       var bad = (ev === 'X' || ev === 'L1');
-      var subs = SUB[it.code] || [];
-      var subsHtml = subs.map(function (s, i) {
-        return '<li>' + esc(s) + '</li>';
-      }).join('');
       return '<div class="ed-veto' + (bad ? ' bad' : '') + '">' +
-        '<div><span class="ed-vc">' + it.code + '</span><span>' + esc(it.name) + '</span><span class="ed-vres">' + (bad ? '门槛未过' : '已过门槛') + '</span></div>' +
-        (subsHtml ? '<ul>' + subsHtml + '</ul>' : '') +
-        '</div>';
+        '<span class="ed-vc">' + it.code + '</span>' +
+        '<span>' + esc(it.name) + '</span>' +
+        '<span class="ed-vres">' + (bad ? '门槛未过' : '已过门槛') + '</span></div>';
     }).join('');
   }
 

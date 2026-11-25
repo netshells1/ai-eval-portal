@@ -38,6 +38,10 @@
       add('technology', r, r.企业ID, r.核心技术标签.split('；')[0], r.企业名称,
         '企业技术能力', '企业库工作表', 'capability');
     }
+    for (const r of book.foundations || []) {
+      add('technology', r, r.底座ID, r.技术名称, r.提供方,
+        r.方案领域 || '开源底座', '公开底座与平台', 'foundation');
+    }
     for (const r of book.projects) {
       add('projects', r, r.场景ID, r.场景名称, r.需求单位, r.场景领域, '场景库工作表', 'project');
     }
@@ -87,13 +91,31 @@
     const quoted = quotesByItem.get(item.id) || [];
     const options = conf.items.map(i =>
       `<option value="${attr(i.id)}" ${i.id === item.id ? 'selected' : ''}>${text(i.name)}</option>`).join('');
-    const table = quoted.map(q => `<tr><th scope="row">${text(q.deviceName || q.rawName || '设备信息未提供')}<small>${text([q.brand, q.model].filter(Boolean).join(' · ') || '品牌型号未提供')}</small></th>
-      <td class="lib-number">${text(labelPrice(q))}</td><td>${q.parameters.length ? q.parameters.filter(p => p.status === 1 || p.status === 2).length + ' / ' + q.parameters.length : '未提供'}</td><td><a class="lib-link" href="database.html#quote-${attr(q.id)}">${text(q.code || "凭证明细")} ↗</a><small>#${text(q.id)}</small></td></tr>`).join('');
-    return `<div class="lib-section"><div class="lib-sectionhead"><h4>按询价项核对凭证</h4><label class="lib-selectwrap"><span class="lib-a11y">选择询价项</span><select data-inquiry>${options}</select></label></div>
-      <p class="lib-inline">申报数量 ${text(fallback(item.quantity))}${item.applicationUnit ? ' ' + text(item.applicationUnit) : ''} · ${quoted.length} 条来源凭证</p>
-      <div class="lib-tablebox"><table><thead><tr><th>设备 / 型号</th><th>凭证单价</th><th>符合或优于 / 参数总数</th><th>凭证编号</th></tr></thead><tbody>${table}</tbody></table></div>
-      ${note('点击凭证编号查看来源、报价口径以及逐项匹配结果。相同设备名称可能有不同型号、配置和计量单位。')}</div>
-      ${sourceLink(item.sourceUrl || conf.project.sourceUrl, '在 AI 询价喵查看该询价项')}`;
+    const rows = quoted.map(q => {
+      const matched = q.parameters.filter(p => p.status === 1 || p.status === 2).length;
+      const total = q.parameters.length;
+      const unit = q.unit ? '元 / ' + q.unit : '元（计量单位未提供）';
+      return `<tr>
+        <th scope="row"><strong>${text(q.deviceName || q.rawName || '设备信息未提供')}</strong><small>${text([q.brand, q.model].filter(Boolean).join(' · ') || '品牌型号未提供')}</small></th>
+        <td data-label="凭证单价"><strong class="archive-price">${text(q.unitPrice == null ? '未提供' : showNumber(q.unitPrice))}</strong>${q.unitPrice == null ? '' : '<small>' + text(unit) + '</small>'}</td>
+        <td data-label="参数符合或优于"><span class="archive-match">${total ? matched + ' / ' + total : '未提供'}</span>${total ? '<meter min="0" max="' + total + '" value="' + matched + '" aria-label="符合或优于的参数"></meter>' : ''}</td>
+        <td data-label="来源凭证"><a class="archive-voucher" href="database.html#quote-${attr(q.id)}">${text(q.code || '凭证明细')} ↗</a><small>#${text(q.id)}</small></td>
+      </tr>`;
+    }).join('');
+    return `<div class="archive-layout">
+      <aside class="archive-picker">
+        <label for="archive-item">选择询价项</label>
+        <select id="archive-item" data-inquiry>${options}</select>
+        <dl class="archive-facts"><div><dt>设备类别</dt><dd>${text(fallback(item.category))}</dd></div>
+        <div><dt>申报数量</dt><dd>${text(fallback(item.quantity))}${item.applicationUnit ? ' ' + text(item.applicationUnit) : ''}</dd></div></dl>
+        <div class="archive-source">${sourceLink(item.sourceUrl || conf.project.sourceUrl, '查看询价原文')}</div>
+      </aside>
+      <section class="archive-ledger" aria-labelledby="archive-ledger-title">
+        <header><h3 id="archive-ledger-title">报价凭证对照</h3><span>${quoted.length} 条凭证</span></header>
+        <table aria-label="${attr(item.name)}报价凭证"><thead><tr><th scope="col">设备 / 型号</th><th scope="col">凭证单价</th><th scope="col">参数符合或优于 / 总数</th><th scope="col">来源凭证</th></tr></thead><tbody>${rows}</tbody></table>
+        <p class="archive-footnote">报价按各凭证的原始单位展示。点凭证编号可核对原始报价和逐项参数。</p>
+      </section></div>`;
+
   }
 
   function quoteDetail(row) {
@@ -154,6 +176,9 @@
       }
       add('评估依据', ['主要挂接指标']);
       reference('代表案例ID', 'technology');
+    } else if (row.kind === 'foundation') {
+      add('方案与技术能力', ['方案/能力名称','核心技术标签','技术路线成熟度','产品线/交付形态','方案领域','细分行业','服务类型']);
+      add('评估依据', ['主要挂接指标','提供方']);
     } else if (row.kind === 'project') {
       groups.push(section('场景需求', note(r['场景描述（痛点）'])));
       add('立项信息', ['需求单位','场景领域','细分领域','所处阶段','拟投资金额（万元）','建设周期起','建设周期止','拟建设地点']);
@@ -188,6 +213,9 @@
   const pageSize = 6;
   function renderDetail(row) {
     const content = host.querySelector('.lib-detail');
+    const nextId = row?.id || '';
+    if (content.dataset.record !== nextId) content.scrollTop = 0;
+    content.dataset.record = nextId;
     content.innerHTML = row ? `<header class="lib-detailhead"><div class="lib-type"><i></i>${text(row.group)}<span>${text(row.source)}</span></div>
       <h3 tabindex="-1">${text(row.title)}</h3></header>${detailBody(row)}` :
       '<div class="lib-detailblank">选择一条记录即可查看详情</div>';
@@ -216,7 +244,7 @@
     const tabs = Object.entries(labels).map(([key, label]) => `<button type="button" role="tab" id="lib-tab-${key}" aria-controls="lib-tabpanel" data-group="${key}" aria-selected="${state.group === key}" tabindex="${key === state.group ? '0' : '-1'}">${label}<small>${entries[key].length}</small></button>`).join('');
     let context = '';
     if (state.group === 'technology') {
-      context = '按企业能力、案例中的可复用要素和可共享设备检索，每条记录可追溯到原表。';
+      context = '覆盖企业技术能力、开源底座、大模型开放平台、案例复用要素与可共享设备，每条可追溯到来源。';
     } else if (state.group === 'prices') {
       context = '工作表收录 ' + window.ResourceData.prices.length + ' 项设备价格基准，视频会议系统另有 ' +
         conf.quotes.length + ' 条询价凭证。可按分类分开查看。';
@@ -229,8 +257,8 @@
       ${allGroups(state.group).length > 1 ? `<label class="lib-selectwrap"><span class="lib-a11y">筛选记录分类</span><select data-filter><option value="">全部分类</option>${filters}</select></label>` : ''}</div></div>
       ${context ? note(context) : ''}
       ${trail.length ? '<button type="button" class="lib-back" data-back>← 返回上一条浏览记录</button>' : ''}
-      <div class="lib-layout"><div class="lib-results"><div class="lib-list"></div><div class="lib-pager"></div></div>
-      <article class="lib-detail" aria-label="记录详情"></article></div></div></div>`;
+      <div class="lib-layout"><div class="lib-results"><div class="lib-list" data-native-scroll></div><div class="lib-pager"></div></div>
+      <article class="lib-detail" tabindex="0" data-native-scroll aria-label="记录详情"></article></div></div></div>`;
     renderResults();
   }
   function jump(group, id, fromLink) {
@@ -297,7 +325,7 @@
           (current + (e.key === 'ArrowRight' ? 1 : -1) + keys.length) % keys.length;
         jump(keys[next], null, false);
         host.querySelector('[aria-selected="true"]').focus();
-      } else if (e.target.closest('input,select,button,a')) e.stopPropagation();
+      } else if (e.target.closest('input,select,button,a,.lib-detail')) e.stopPropagation();
     });
     host.addEventListener('click', e => {
       const button = e.target.closest('button');
@@ -320,6 +348,7 @@
         state.page += Number(button.dataset.page);
         state.id = matchingRows()[state.page * pageSize]?.id || '';
         state.paramStatus = ''; renderResults();
+        host.querySelector('.lib-list').scrollTo(0, 0);
         host.querySelector('[data-pick]')?.focus({ preventScroll: true });
       }
     });
