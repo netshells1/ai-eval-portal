@@ -13,8 +13,6 @@ var PIDS = C.pages.map(function (p) { return p.id; });
 var PAGE = {}; C.pages.forEach(function (p, i) { p.i = i; PAGE[p.id] = p; });
 function fmt(n, d) { d = d || 0; return Number(n).toLocaleString('zh-CN', { minimumFractionDigits: d, maximumFractionDigits: d }); }
 function pad(n) { return String(n).padStart(2, '0'); }
-var tt = '平台专注：AI项目立项评估 ｜ 造价核定 ｜ 企业与技术匹配 ｜ 评估报告出具';
-$('#ticker').innerHTML = new Array(6).fill('<span>' + tt + '</span>').join('');
 $('#nav').innerHTML = C.pages.map(function (p) { return '<a href="' + pageUrl(p.id) + '" data-id="' + p.id + '">' + (p.nav || p.name) + '</a>'; }).join('');
 $('#menuList').innerHTML = C.pages.map(function (p) { return '<a href="' + pageUrl(p.id) + '" data-id="' + p.id + '"><small>' + pad(p.i + 1) + '</small>' + (p.nav || p.name) + '</a>'; }).join('');
 $('#menuPic').insertAdjacentHTML('afterbegin', C.pages.map(function (p) { return '<img src="' + (p.id === 'home' ? 'assets/footer.jpg' : p.img) + '" alt="" data-id="' + p.id + '" loading="lazy">'; }).join(''));

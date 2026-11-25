@@ -67,11 +67,6 @@ ul{list-style:none}
 /* ---------- header ---------- */
 .top{position:fixed;left:0;right:0;top:0;z-index:50;transition:background .5s}
 .top.solid{background:rgba(30,33,26,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.ticker{height:30px;overflow:hidden;border-bottom:1px solid var(--line-d);font-size:12px;color:rgba(244,243,241,.62);transition:height .45s var(--ease),opacity .45s}
-.top.solid .ticker{height:0;opacity:0;border-bottom-color:transparent}
-.ticker-track{display:flex;width:max-content;line-height:30px;animation:marq 48s linear infinite}
-.ticker-track span{padding-right:72px}
-@keyframes marq{to{transform:translateX(-50%)}}
 .hd{
   height:var(--hd);padding-inline:clamp(20px,3.5vw,72px);
   display:grid;grid-template-columns:auto 1fr auto;align-items:center;column-gap:clamp(18px,2vw,40px)
@@ -226,11 +221,12 @@ ul{list-style:none}
 /* 静态步进指示：标出当前环节在五步中的位置 */
 .rp-bar i.step{transform:scaleX(var(--p,.6));transition:transform .5s var(--ease)}
 @keyframes fill{to{transform:scaleX(1)}}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line-d);margin-top:clamp(72px,11vh,132px)}
-.stat{padding:30px 24px 0 0}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--line-d);margin-top:clamp(72px,11vh,132px)}
+.stat{padding:30px 12px 0;text-align:center}
 .stat .num{font-size:clamp(60px,6.8vw,120px);line-height:.95;display:block}
 .stat p{font-size:15px;color:rgba(244,243,241,.7);margin-top:12px}
-@media (max-width:1000px){.ring-grid{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.node{font-size:13px;padding:6px 12px 6px 7px}}
+@media (max-width:1000px){.ring-grid{grid-template-columns:1fr}.node{font-size:13px;padding:6px 12px 6px 7px}}
+@media (max-width:600px){.stats{grid-template-columns:1fr}}
 
 /* ---------- evaluation ---------- */
 .eval-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(20px,2.4vw,40px)}

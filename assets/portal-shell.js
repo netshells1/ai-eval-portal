@@ -5,7 +5,6 @@
   main.insertAdjacentHTML('beforebegin', `<a class="sr" href="#main">跳到正文</a>
 <!-- ========== 顶部 ========== -->
 <div class="top" id="top">
-  <div class="ticker" aria-hidden="true"><div class="ticker-track" id="ticker"></div></div>
   <header class="hd">
     <a class="brand" href="index.html" aria-label="人工智能项目评估平台 首页">
       <img class="brand-mark" src="assets/brand-mark.svg" width="34" height="34" alt="">
