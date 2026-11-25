@@ -58,11 +58,19 @@
 #library-app .lib-metrics em{font-weight:500;font-size:.43em;font-style:normal;color:#616657}
 #library-app .lib-metrics span,#library-app .lib-price-readout small{font-size:12px;color:#545d49}
 :is(#library-app,#conference-archive) .lib-tablebox{max-width:100%;overflow-x:auto;scrollbar-width:thin}
-#library-app table{width:100%;border-collapse:collapse;text-align:left;font-size:14px}
-#library-app th,#library-app td{padding:10px 8px;vertical-align:top;border-bottom:1px solid #d8dacf;font-weight:400}
-#library-app thead th{background:#ecefe3;color:#4a5241;font-size:12px;font-weight:600}
-#library-app tbody th{font-weight:600}
-#library-app tbody th small,#library-app tbody td small,#library-app .lib-params li small{display:block;font-weight:400;color:#646a5e;font-size:12px}
+:is(#library-app,#conference-archive) table{width:100%;border-collapse:collapse;text-align:left;font-size:14px}
+:is(#library-app,#conference-archive) th,:is(#library-app,#conference-archive) td{padding:10px 8px;vertical-align:top;border-bottom:1px solid #d8dacf;font-weight:400}
+:is(#library-app,#conference-archive) thead th{background:#ecefe3;color:#4a5241;font-size:12px;font-weight:600}
+:is(#library-app,#conference-archive) tbody th{font-weight:600}
+:is(#library-app,#conference-archive) tbody th small,:is(#library-app,#conference-archive) tbody td small,#library-app .lib-params li small{display:block;font-weight:400;color:#646a5e;font-size:12px}
+#conference-archive table{table-layout:fixed}
+#conference-archive th,#conference-archive td{padding:12px 16px;overflow-wrap:anywhere}
+#conference-archive table th:nth-child(1),#conference-archive table td:nth-child(1){width:36%}
+#conference-archive table th:nth-child(2),#conference-archive table td:nth-child(2),
+#conference-archive table th:nth-child(3),#conference-archive table td:nth-child(3),
+#conference-archive table th:nth-child(4),#conference-archive table td:nth-child(4){width:21.333%}
+#conference-archive .lib-sectionhead .lib-selectwrap{flex:0 1 min(280px,100%)}
+#conference-archive .lib-sectionhead .lib-selectwrap select{width:100%}
 :is(#library-app,#conference-archive) .lib-number{font-variant-numeric:tabular-nums}
 :is(#library-app,#conference-archive) .lib-link,:is(#library-app,#conference-archive) .lib-source,:is(#library-app,#conference-archive) .lib-back{display:inline-block;border:0;padding:2px 0;background:none;color:#3b5622;text-align:left;font-weight:650;font-size:14px;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
 :is(#library-app,#conference-archive) .lib-link:hover,:is(#library-app,#conference-archive) .lib-source:hover,:is(#library-app,#conference-archive) .lib-back:hover{color:#1f310e}
