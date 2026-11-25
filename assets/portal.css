@@ -73,11 +73,11 @@ ul{list-style:none}
 }
 .brand{
   display:grid;grid-template-columns:auto auto;grid-template-rows:auto auto;
-  align-items:center;column-gap:clamp(12px,1vw,18px);
+  justify-self:start;align-items:center;column-gap:clamp(10px,.7vw,12px);
   white-space:nowrap;font-size:clamp(20px,1.32vw,25px)
 }
 .brand>span{display:contents}
-.brand-mark{grid-column:1;grid-row:1/span 2;align-self:center;height:2.25em;width:auto;display:block}
+.brand-mark{grid-column:1;grid-row:1/span 2;align-self:center;height:1.6em;width:auto;display:block}
 .brand b{grid-column:2;grid-row:1;display:block;font-size:clamp(20px,1.32vw,25px);font-weight:700;letter-spacing:.015em;line-height:1.25}
 .brand small{grid-column:2;grid-row:2;display:block;margin-top:3px;font-size:clamp(12px,.72vw,14px);color:rgba(244,243,241,.72);line-height:1.4}
 .nav{
