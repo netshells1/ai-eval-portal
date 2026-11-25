@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 150 56" width="150" height="56">
+
+  <linearGradient id="gJP" gradientUnits="userSpaceOnUse" x1="10" y1="6" x2="140" y2="50">
+    <stop offset="0" stop-color="#2B9BF0"/>
+    <stop offset=".28" stop-color="#4C6FE0"/>
+    <stop offset=".56" stop-color="#8E5FD8"/>
+    <stop offset=".78" stop-color="#A857C8"/>
+    <stop offset="1" stop-color="#D62E92"/>
+  </linearGradient>
+  <mask id="mJP">
+    <rect width="150" height="56" fill="#FFFFFF"/>
+    <g fill="#000000">
+  <!-- detached parallelogram bar (top-left) -->
+  <path d="M31 7 L55 7 L41 25 L17 25 Z"/>
+
+  <!-- J: diagonal stem continuing into a curved hook foot -->
+  <path d="M61 5 L86 5 L46 43
+           C39 50 26 53 15 48
+           C6 44 4 33 11 27
+           C13 25 16 24 19 25
+           L26 40
+           C22 42 23 47 29 47
+           C35 47 41 42 45 35 Z"/>
+
+  <!-- P: diagonal stem -->
+  <path d="M101 5 L125 5 L93 52 L69 52 Z"/>
+
+  <!-- P: bowl (outer) -->
+  <path d="M101 5 L125 5
+           C139 5 143 17 133 29
+           L129 34
+           C121 44 110 48 99 48
+           L81 48 L89 33 L100 33
+           C107 33 112 30 116 24
+           L119 19
+           C122 14 120 11 115 11
+           L93 11 Z"/>
+
+  <!-- P: counter (the hole) -->
+  <path d="M107 19
+           C112 19 115 23 111 29
+           L106 36 L90 36 L97 25 Z"/></g>
+  </mask>
+  <g mask="url(#mJP)"><rect width="150" height="56" fill="url(#gJP)"/></g>
+</svg>

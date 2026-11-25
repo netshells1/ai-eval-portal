@@ -7,7 +7,7 @@
 <div class="top" id="top">
   <header class="hd">
     <a class="brand" href="index.html" aria-label="京西智评 首页">
-      <img class="brand-mark" src="assets/brand-mark.svg" width="34" height="34" alt="">
+      <img class="brand-mark" src="assets/brand-mark.svg" width="132" height="67" alt="">
       <span><b>京西智评</b><small>信息化项目评估平台</small></span>
     </a>
     <nav class="nav" id="nav" aria-label="主导航"></nav>
