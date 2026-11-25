@@ -17,6 +17,7 @@ window.initPortalPage = function ({ C, $, $$, fmt }) {
     else if (d.type === 'final') { top = y(d.v); bot = y(0); fill = '#CBF902'; lab = fmt(d.v); col = '#CBF902'; }
     else { top = y(run); bot = y(run + d.v); run += d.v; fill = 'rgba(244,243,241,.14)'; stroke = 'rgba(244,243,241,.6)'; cls += ' down'; lab = '−' + fmt(-d.v); }
     d._lab = lab;
+    d._runBefore = run;
     var dl = (i * .12).toFixed(2);
     s += '<rect class="' + cls + '" data-i="' + i + '" tabindex="0" aria-label="' + d.k + ' ' + lab + ' 万元" x="' + bx + '" y="' + top + '" width="' + w + '" height="' + Math.max(2, bot - top) + '" fill="' + fill + '" stroke="' + stroke + '" style="transition-delay:' + dl + 's"/>';
     s += '<text class="wf-fade" style="transition-delay:' + (+dl + .6).toFixed(2) + 's" x="' + cx + '" y="' + (top - 10) + '" text-anchor="middle" font-size="17" font-weight="800" fill="' + col + '" font-family="Archivo,Arial">' + lab + '</text>';
@@ -28,15 +29,27 @@ window.initPortalPage = function ({ C, $, $$, fmt }) {
   wf.insertAdjacentHTML('afterbegin', s);
   function show(el) {
     var d = C.waterfall[+el.dataset.i], b = el.getBoundingClientRect(), wb = wf.getBoundingClientRect();
-    tip.innerHTML = '<b>' + d.k + '　' + d._lab + ' 万元</b>' + d.tip + (d.ev ? '<small>证据编号 ' + d.ev + '</small>' : '');
-    var left = Math.max(0, Math.min(wb.width - 270, b.left - wb.left + b.width / 2 - 135));
+    var detail = '<b>' + d.k + '　' + d._lab + ' 万元</b>' + d.tip;
+    /* 计算明细显示 */
+    if (d.type === 'final') {
+      detail += '<div class="wf-calc">核定价为瀑布图终点，处于区间 ' + C.priceRange[0] + '—' + C.priceRange[1] + ' 万元内</div>';
+    } else if (d.type !== 'total') {
+      var showAfter = d._runBefore + d.v;
+      detail += '<div class="wf-calc"><span>上步余额</span><span class="num">' + fmt(d._runBefore) + '</span></div>' +
+        '<div class="wf-calc"><span>本步调整</span><span class="num">' + fmt(d.v) + '</span></div>' +
+        '<div class="wf-calc"><span>调整后</span><span class="num">' + fmt(showAfter) + '</span></div>';
+    }
+    if (d.ev) detail += '<small>证据编号 ' + d.ev + '</small>';
+    tip.innerHTML = detail;
+    var left = Math.max(0, Math.min(wb.width - 300, b.left - wb.left + b.width / 2 - 150));
     tip.style.left = left + 'px';
     tip.style.top = Math.max(-10, b.top - wb.top - tip.offsetHeight - 14) + 'px';
     tip.classList.add('on');
   }
   $$('.wf-bar', wf).forEach(function (el) {
-    el.addEventListener('pointerenter', function () { show(el); });
-    el.addEventListener('focus', function () { show(el); });
+    // Tooltip functionality disabled per design request
+    // el.addEventListener('pointerenter', function () { show(el); });
+    // el.addEventListener('focus', function () { show(el); });
     el.addEventListener('pointerleave', function () { tip.classList.remove('on'); });
     el.addEventListener('blur', function () { tip.classList.remove('on'); });
   });

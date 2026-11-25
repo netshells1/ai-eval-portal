@@ -28,7 +28,10 @@ window.initPortalPage = function ({ C, $, $$, pad, reduced }) {
       idx.innerHTML = pad(i + 1) + '<small>/' + pad(N) + '</small>';
       tEl.textContent = C.five[i].t;
       dEl.textContent = C.five[i].d;
-      if (noteEl) noteEl.textContent = '当前所处评估流程节点 · 第 ' + (i + 1) + ' 步 / 共 ' + N + ' 步';
+      if (noteEl) {
+        var totalInd = C.dims.reduce(function (sum, d) { return sum + d.ind.length; }, 0);
+        noteEl.textContent = '25 项二级评估指标';
+      }
       /* 锚点说明只在综合评分环节出现 */
       if (anchorEl) anchorEl.style.display = (C.five[i].t === '综合评分') ? '' : 'none';
       body.classList.remove('swap');
