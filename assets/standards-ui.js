@@ -53,7 +53,7 @@
       <div class="std-dialog-layout">
         <header class="std-dialog-bar"><span class="std-dialog-region"></span><button type="button" class="std-close" data-close-doc aria-label="关闭标准详情">关闭 <span aria-hidden="true">×</span></button></header>
         <div class="std-doc-scroll" data-native-scroll tabindex="-1">
-          <div class="std-doc-head"><h2 id="std-dossier-title"></h2><div class="std-citation"><a class="std-source" target="_blank" rel="noopener noreferrer">AI询价喵 · 询价依据摘录 ↗</a><small>适用范围和计费要求以发布机构文件原文为准。</small></div></div>
+          <div class="std-doc-head"><h2 id="std-dossier-title"></h2><div class="std-citation"><a class="std-source" target="_blank" rel="noopener noreferrer">查看询价依据摘录 ↗</a><small>适用范围和计费要求以发布机构文件原文为准。</small></div></div>
           <div class="std-outline" hidden><label>定位到 <select aria-label="定位到详情条目"></select></label></div>
           <div class="std-doc-body"></div>
         </div>
