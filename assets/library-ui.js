@@ -206,6 +206,9 @@
   const pageSize = 6;
   function renderDetail(row) {
     const content = host.querySelector('.lib-detail');
+    const nextId = row?.id || '';
+    if (content.dataset.record !== nextId) content.scrollTop = 0;
+    content.dataset.record = nextId;
     content.innerHTML = row ? `<header class="lib-detailhead"><div class="lib-type"><i></i>${text(row.group)}<span>${text(row.source)}</span></div>
       <h3 tabindex="-1">${text(row.title)}</h3></header>${detailBody(row)}` :
       '<div class="lib-detailblank">选择一条记录即可查看详情</div>';
@@ -247,8 +250,8 @@
       ${allGroups(state.group).length > 1 ? `<label class="lib-selectwrap"><span class="lib-a11y">筛选记录分类</span><select data-filter><option value="">全部分类</option>${filters}</select></label>` : ''}</div></div>
       ${context ? note(context) : ''}
       ${trail.length ? '<button type="button" class="lib-back" data-back>← 返回上一条浏览记录</button>' : ''}
-      <div class="lib-layout"><div class="lib-results"><div class="lib-list"></div><div class="lib-pager"></div></div>
-      <article class="lib-detail" aria-label="记录详情"></article></div></div></div>`;
+      <div class="lib-layout"><div class="lib-results"><div class="lib-list" data-native-scroll></div><div class="lib-pager"></div></div>
+      <article class="lib-detail" tabindex="0" data-native-scroll aria-label="记录详情"></article></div></div></div>`;
     renderResults();
   }
   function jump(group, id, fromLink) {
@@ -315,7 +318,7 @@
           (current + (e.key === 'ArrowRight' ? 1 : -1) + keys.length) % keys.length;
         jump(keys[next], null, false);
         host.querySelector('[aria-selected="true"]').focus();
-      } else if (e.target.closest('input,select,button,a')) e.stopPropagation();
+      } else if (e.target.closest('input,select,button,a,.lib-detail')) e.stopPropagation();
     });
     host.addEventListener('click', e => {
       const button = e.target.closest('button');
@@ -338,6 +341,7 @@
         state.page += Number(button.dataset.page);
         state.id = matchingRows()[state.page * pageSize]?.id || '';
         state.paramStatus = ''; renderResults();
+        host.querySelector('.lib-list').scrollTo(0, 0);
         host.querySelector('[data-pick]')?.focus({ preventScroll: true });
       }
     });
