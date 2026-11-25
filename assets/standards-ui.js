@@ -25,25 +25,25 @@
     host.innerHTML = `<div class="std-wrap">
       <section class="std-block std-national" aria-labelledby="std-national-title">
         <div class="std-tools">
-          <div class="std-caption"><h2 id="std-national-title">国家政策类询价标准</h2><span class="std-count std-national-count" role="status" aria-live="polite" aria-atomic="true"></span></div>
+          <div class="std-caption"><h2 id="std-national-title">国家政策类</h2><span class="std-count std-national-count" role="status" aria-live="polite" aria-atomic="true"></span></div>
           <div class="std-inputs">
-            <label class="std-search">${searchIcon}<input type="search" data-national-query autocomplete="off" placeholder="搜索政策名称、文号或发布机构" aria-label="搜索国家政策类询价标准"></label>
+            <label class="std-search">${searchIcon}<input type="search" data-national-query autocomplete="off" placeholder="搜索政策名称、文号或发布机构" aria-label="搜索国家政策类"></label>
           </div>
         </div>
-        <ul class="std-policy-list" aria-label="国家政策类询价标准"></ul>
+        <ul class="std-policy-list" aria-label="国家政策类"></ul>
         <div class="std-empty std-national-empty" hidden>
           <h3>没有找到匹配的政策</h3><p>试试文号中的数字，或发布机构简称。</p><button type="button" data-reset-national>清除搜索</button>
         </div>
       </section>
       <section class="std-block std-regional" aria-labelledby="std-regional-title">
         <div class="std-tools">
-          <div class="std-caption"><h2 id="std-regional-title">地区目录</h2><span class="std-count std-regional-count" role="status" aria-live="polite" aria-atomic="true"></span></div>
+          <div class="std-caption"><h2 id="std-regional-title">地方政策类</h2><span class="std-count std-regional-count" role="status" aria-live="polite" aria-atomic="true"></span></div>
           <div class="std-inputs">
             <label class="std-search">${searchIcon}<input type="search" data-regional-query autocomplete="off" placeholder="搜索地区、标准名称、文号或图题" aria-label="搜索地区、标准名称、文号或图题"></label>
             <select class="std-level" aria-label="筛选标准层级"><option value="">所有层级</option><option value="省级">省级</option><option value="市级">市级</option></select>
           </div>
         </div>
-        <ul class="std-grid std-regional-grid" aria-label="地区标准目录"></ul>
+        <ul class="std-grid std-regional-grid" aria-label="地方政策类"></ul>
         <div class="std-empty std-regional-empty" hidden>
           <h3>没有找到匹配的标准</h3><p>试试地区简称或文号中的数字。</p><button type="button" data-reset-regional>清除筛选</button>
         </div>
@@ -152,7 +152,7 @@
       openEntry = entry;
       images = entry.blocks.filter(block => block.type === 'image');
       get('.std-dialog-region').textContent = entry.level === '国家级'
-        ? '国家政策类标准'
+        ? '国家政策类'
         : entry.region + ' · ' + entry.level + '标准';
       get('#std-dossier-title').textContent = entry.title;
       let tableNumber = 0, imageNumber = 0;
