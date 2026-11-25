@@ -137,7 +137,7 @@
       ${note('软硬件分类按设备描述整理。价格按凭证的原始数量和计量单位展示，仅作询价参考。')}
       ${section('凭证来源', `<p class="lib-bodycopy">${text(q.sourceTitle || '导出凭证未列来源标题')}</p>${note('附件 inquiry_vouchers.csv · 第 ' + q.row + ' 行，参数明细见 param_match_detail.csv。')}${sourceLink(q.sourceUrl, '打开原始来源')} ${sourceLink(item?.sourceUrl || conf.project.sourceUrl, '打开询价项')}`)}
       <div class="lib-section"><div class="lib-sectionhead"><h4>技术参数比对</h4>${filter}</div>${parametersHTML ? `<ol class="lib-params">${parametersHTML}</ol>` : note('这条凭证没有导出参数比对明细。')}</div>
-      <a class="lib-link" href="cases.html?item=${encodeURIComponent(q.itemId)}#conference-archive">返回视频会议询价档案 ↗</a>`;
+      <a class="lib-link" href="database.html?item=${encodeURIComponent(q.itemId)}#conference-archive">返回视频会议询价档案 ↗</a>`;
   }
 
   const percentFields = new Set(['离散度(±%)', '年降幅(%)', '运维费率(年)']);
@@ -256,6 +256,7 @@
       <div class="lib-controls"><label class="lib-search"><span class="lib-glass" aria-hidden="true"></span><input type="search" data-query autocomplete="off" aria-label="搜索${labels[state.group]}" placeholder="${hints[state.group]}" value="${attr(state.query)}"></label>
       ${allGroups(state.group).length > 1 ? `<label class="lib-selectwrap"><span class="lib-a11y">筛选记录分类</span><select data-filter><option value="">全部分类</option>${filters}</select></label>` : ''}</div></div>
       ${context ? note(context) : ''}
+      ${state.group === 'prices' ? '<a class="lib-link" href="#conference-archive">按询价项查看视频会议历史凭证 ↓</a>' : ''}
       ${trail.length ? '<button type="button" class="lib-back" data-back>← 返回上一条浏览记录</button>' : ''}
       <div class="lib-layout"><div class="lib-results"><div class="lib-list" data-native-scroll></div><div class="lib-pager"></div></div>
       <article class="lib-detail" tabindex="0" data-native-scroll aria-label="记录详情"></article></div></div></div>`;
@@ -297,7 +298,8 @@
     conf = window.ConferenceData || blank;
     byItem = new Map(conf.items.map(i => [i.id, i]));
     quotesByItem = new Map(conf.items.map(i => [i.id, conf.quotes.filter(q => q.itemId === i.id)]));
-    if (archive) { mountArchive(archive); return; }
+    if (archive) mountArchive(archive);
+    if (!host) return;
     host.dataset.ready = 'true';
     entries = makeRows();
     state = newState('companies', null);

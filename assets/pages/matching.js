@@ -1,7 +1,7 @@
 window.initPortalPage = function ({ C, $, $$, pad, fmt, reduced, countTo }) {
   const EASE = 'cubic-bezier(.16,1,.3,1)';
   const r1 = value => Math.round(value * 10 + 1e-6) / 10;
-  $('.hs-end').insertAdjacentHTML('beforebegin', C.scenes.map(function (s) {
+  $('#hsTrack').insertAdjacentHTML('beforeend', C.scenes.map(function (s) {
     return '<article class="scard"><div class="scard-cap"><span>已评估 ' + s.n + ' 项</span><span>可复用底座 ' + s.b + ' 个</span></div>' +
       '<div class="scard-img ph"><img src="' + s.img + '" alt="' + s.alt + '" loading="lazy"></div><h3>' + s.name + '</h3><p>' + s.d + '</p></article>';
   }).join(''));

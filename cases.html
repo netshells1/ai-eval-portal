@@ -12,7 +12,7 @@
 <script>document.documentElement.classList.add('js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('rm');</script>
 <link rel="stylesheet" href="assets/portal.css">
 <link rel="stylesheet" href="assets/case-feature.css">
-<link rel="stylesheet" href="assets/library-ui.css">
+
 </head>
 <body>
 <main id="main" tabindex="-1" class="view on" data-page="cases">
@@ -21,25 +21,32 @@
       <p class="crumb"><a href="index.html">首页</a><span>/</span><span>典型案例</span></p>
       <div class="inquiry-spread">
         <div class="inquiry-intro">
-          <p class="inquiry-kicker">询价案例<span> / </span>会议系统集成</p>
-          <h1>视频会议系统</h1>
-          <p>同一型号的导播服务器，两份凭证给出了不同的单价。沿着这份询价档案，可以逐项查看设备规格、报价单位和参数符合情况。</p>
-          <a class="btn btn-lime" href="#conference-archive">查看完整询价档案 <span aria-hidden="true">↗</span></a>
+          <p class="inquiry-kicker">政务服务<span> / </span>硬件核价案例</p>
+          <h1>政务服务智能问答<br>与材料预审智能体</h1>
+          <p>从窗口扫描材料，到 OCR 识别、规则预审和智能问答，沿着一次受理过程，查看设备为何配置、单价从哪里来、哪些参数还要现场验证。</p>
+          <a class="btn btn-lime" href="#hardware-list">查看硬件核价清单 ↓</a>
         </div>
-        <article class="quote-sheet" aria-label="同型号报价对照">
-          <header><span>同型号报价对照</span></header>
-          <h2>导播服务器</h2><p class="quote-model">现代中庆 <strong>M2600</strong></p>
-          <div id="featuredQuotes"></div>
-          <p class="quote-foot">点开凭证，可核对该报价对应的技术参数。</p>
+        <article class="quote-sheet hw-budget" data-project-id="P1">
+          <h2>项目整体评估示例</h2>
+          <dl><div><dt>申报金额</dt><dd><span id="caseDeclared"></span> <small>万元</small></dd></div>
+          <div><dt>核定价（P50）</dt><dd><span id="casePrice"></span> <small>万元</small></dd></div></dl>
+          <p>含建设与三年运维。下方硬件方案独立测算，两者尚未逐项对账。</p>
+          <div class="hw-links"><a href="evaluation.html#evalDeskSec">查看评估作业台 ↗</a><a href="pricing.html#wf">查看造价核定 ↗</a></div>
         </article>
       </div>
-      <dl class="inquiry-metrics" id="inquiryMetrics"></dl>
     </div>
   </header>
-  <section class="sec light" id="conference-archive" aria-labelledby="conference-title">
+  <section class="sec light hw-section" id="hardware-list" aria-labelledby="hardware-title">
     <div class="wrap">
-      <h2 class="h2" id="conference-title">视频会议询价档案</h2>
-      <div id="conference-items"></div>
+      <h2 id="hardware-title">硬件配置与核价清单</h2>
+      <p class="hw-intro">按 40 个受理窗口、6 个分厅或便民点、16 台自助终端测算。范围为硬件及配套；软件开发、语料加工、集成实施和三年运维另计。</p>
+      <div class="hw-summary" id="hwSummary"></div>
+      <div class="hw-review"><strong>评估时先核两件事</strong>
+        <p>现有政务云 GPU 可复用多少？确认可用卡数、时段与推理负载后，再确定新增算力数量。<a href="#hardware-1">查看推理一体机 ↗</a></p>
+        <p>窗口扫描后，OCR 能否达到每节点每分钟 30 页？该项仍待结合实际引擎和材料样本实测。<a href="#hardware-3">查看参数记录 ↗</a></p>
+      </div>
+      <div id="hwGroups"></div>
+      <details class="hw-samples" id="hwSamples"><summary>工作簿所列成交参考样本</summary><ul id="hwSampleList"></ul></details>
     </div>
   </section>
   <section class="sec light">
@@ -54,9 +61,10 @@
 </main>
 
 <script src="assets/portal-data.js"></script>
+<script src="assets/ind-data.js"></script>
+<script src="assets/project-evaluation.js"></script>
 <script src="assets/portal-shell.js"></script>
-<script src="assets/conference-data.js"></script>
-<script src="assets/library-ui.js"></script>
+<script src="assets/hardware-case-data.js"></script>
 <script src="assets/pages/cases.js"></script>
 <script src="assets/portal-media.js"></script>
 <script src="assets/portal.js"></script>

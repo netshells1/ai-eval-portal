@@ -9,7 +9,7 @@ window.CONFIG = {
     { id: 'evaluation', name: '项目评估', en: 'Evaluation', img: 'assets/evaluation.jpg', nav: '评估维度', d: '六维综合评价体系与八步评估流程' },
     { id: 'pricing',    name: '造价核定', en: 'Pricing',    img: 'assets/pricing.jpg',    d: '工程量核定与复用抵扣' },
     { id: 'matching',   name: '场景匹配', en: 'Matching',   img: 'assets/matching.jpg',    d: '场景驱动的企业与技术匹配' },
-    { id: 'cases',      name: '典型案例', en: 'Cases',      img: 'assets/cases.jpg',    d: '视频会议系统询价档案与六个评估示例' },
+    { id: 'cases',      name: '典型案例', en: 'Cases',      img: 'assets/cases.jpg',    d: '政务问答与材料预审硬件核价案例及评估示例' },
     { id: 'database',   name: '资源库',   en: 'Database',   img: 'assets/database.jpg',   d: '企业、技术与底座、项目与场景和软硬件价格' },
     { id: 'standards',  name: '询价标准', en: 'Standards',  img: 'assets/service.jpg',    d: '各地区信息化项目预算编制与费用测算依据' }
   ],
@@ -152,11 +152,11 @@ window.CONFIG = {
   ],
 
   cases: [
-    { name: '政务服务智能问答与材料预审智能体', unit: '区政务服务局（示例）', scene: '材料预审', img: 'assets/scene-2.jpg', from: 1400, to: 1210, cut: 13.6, score: 70.9, verdict: '整改后支持', ents: ['企业A', '企业B', '企业C'] },
-    { name: '城市运行事件智能分拨平台', unit: '区城市管理委（示例）', scene: '工单分流', img: 'assets/scene-3.jpg', from: 860, to: 702, cut: 18.4, score: 78.6, verdict: '支持', ents: ['企业C', '企业A', '企业D'] },
-    { name: '产业招商智能分析助手', unit: '区投资促进局（示例）', scene: '产业分析', img: 'assets/scene-5.jpg', from: 520, to: 364, cut: 30.0, score: 68.2, verdict: '有条件支持', ents: ['企业E', '企业A', '企业B'] },
+    { projectId: 'P1', scene: '材料预审', img: 'assets/scene-2.jpg', ents: ['企业A', '企业B', '企业C'] },
+    { projectId: 'P2', scene: '工单分流', img: 'assets/scene-3.jpg', ents: ['企业C', '企业A', '企业D'] },
+    { projectId: 'P3', scene: '产业分析', img: 'assets/scene-5.jpg', ents: ['企业E', '企业A', '企业B'] },
     { name: '政务热线政策咨询助手', unit: '区政务服务局（示例）', scene: '政策问答', img: 'assets/scene-1.jpg', from: 310, to: 289, cut: 6.8, score: 87.4, verdict: '直接支持', ents: ['企业D', '企业A', '企业B'] },
-    { name: '城市道路病害智能巡检', unit: '区城市管理委（示例）', scene: '城市治理', img: 'assets/scene-4.jpg', from: 680, to: 571, cut: 16.0, score: 79.3, verdict: '支持', ents: ['企业C', '企业D', '企业A'] },
+    { projectId: 'P4', scene: '城市治理', img: 'assets/scene-4.jpg', ents: ['企业C', '企业D', '企业A'] },
     { name: '惠企政策精准推送智能体', unit: '区科信局（示例）', scene: '政策问答', img: 'assets/evaluation.jpg', from: 450, to: 198, cut: 56.0, score: 52.4, verdict: '不予支持', ents: [], veto: '未完成算法备案，触发否决项' }
   ],
 
