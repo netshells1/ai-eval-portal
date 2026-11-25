@@ -493,7 +493,10 @@ ul{list-style:none}
 .ed-veto-box{border:1px solid var(--line-l);padding:18px 20px;background:#fff}
 .ed-veto-box h4{font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--mute);margin-bottom:11px}
 .ed-veto-box p{font-size:12.5px;color:var(--mute);line-height:1.6;margin-bottom:11px}
-.ed-veto{display:flex;align-items:center;gap:8px;font-size:13px;padding:6px 0;border-top:1px dashed var(--line-l)}
+.ed-veto{display:flex;flex-direction:column;gap:8px;font-size:13px;padding:6px 0;border-top:1px dashed var(--line-l)}
+.ed-veto>div{display:flex;align-items:center;gap:8px}
+.ed-veto ul{margin:0;padding-left:20px;list-style:disc;font-size:12px;color:var(--mute);line-height:1.5}
+.ed-veto ul li{margin:3px 0}
 .ed-vc{font-family:var(--lat);font-weight:800;font-size:12.5px}
 .ed-vres{margin-left:auto;font-size:12px;font-weight:700;color:#0f7a47}
 .ed-veto.bad .ed-vres{color:#b4622a}
@@ -534,9 +537,12 @@ ul{list-style:none}
 .wf-bar:hover{opacity:.82}
 .wf-fade{opacity:0;transition:opacity .8s var(--ease)}
 .wf.in .wf-fade{opacity:1}
-.wf-tip{position:absolute;z-index:5;pointer-events:none;width:270px;background:var(--paper);color:var(--ink);padding:14px 16px;border-radius:4px;font-size:13.5px;line-height:1.6;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .35s var(--ease)}
+.wf-tip{position:absolute;z-index:5;pointer-events:none;width:300px;background:var(--paper);color:var(--ink);padding:14px 16px;border-radius:4px;font-size:13.5px;line-height:1.6;opacity:0;transform:translateY(8px);transition:opacity .25s,transform .35s var(--ease)}
 .wf-tip.on{opacity:1;transform:none}
 .wf-tip b{display:block;font-size:15px;margin-bottom:4px}
+.wf-calc{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;padding:6px 8px;background:rgba(203,249,2,.08);border-left:3px solid #CBF902;font-size:12px}
+.wf-calc span:first-child{color:var(--mute)}
+.wf-calc .num{font-weight:700;font-family:var(--lat)}
 .wf-tip small{display:block;color:var(--mute);margin-top:6px}
 .wf-note{font-size:13px;color:rgba(244,243,241,.55);margin-top:14px}
 .price-side figure{border-radius:4px;overflow:hidden;position:relative}
