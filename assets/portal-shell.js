@@ -6,9 +6,9 @@
 <!-- ========== 顶部 ========== -->
 <div class="top" id="top">
   <header class="hd">
-    <a class="brand" href="index.html" aria-label="人工智能项目评估平台 首页">
+    <a class="brand" href="index.html" aria-label="京西智评 首页">
       <img class="brand-mark" src="assets/brand-mark.svg" width="34" height="34" alt="">
-      <span><b>人工智能项目评估平台</b><small>专注AI项目立项评估、造价核定与企业匹配</small></span>
+      <span><b>京西智评</b><small>信息化项目评估平台</small></span>
     </a>
     <nav class="nav" id="nav" aria-label="主导航"></nav>
     <div class="hd-act">

@@ -186,7 +186,7 @@ window.addEventListener('message', function (event) {
   if (!data || !PIDS.includes(data.page)) return;
   if (data.portalSlide === 'location' && typeof data.hash === 'string') {
     slideUrl = pageUrl(data.page) + (data.hash.startsWith('#') ? data.hash : '');
-    document.title = PAGE[data.page].name + ' · 人工智能项目评估平台';
+    document.title = PAGE[data.page].name + ' · 京西智评';
   } else if (data.portalSlide === 'exit') fsToggle();
   else if (data.portalSlide === 'close') window.close();
 });
