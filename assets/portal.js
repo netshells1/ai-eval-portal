@@ -83,8 +83,15 @@ function positionTarget() {
   const target = location.hash.slice(1);
   if (!target) return;
   let el = document.getElementById(target);
+  if (curPage === 'cases' && target === 'conference-archive') {
+    location.replace('database.html' + location.search + '#conference-archive');
+    return;
+  }
+  if (curPage === 'database' && target === 'conference-archive' && !$('#lib-tab-prices[aria-selected="true"]')) {
+    window.PortalLibrary.open('prices');
+  }
   if (curPage === 'database' && target === 'library-case-entry') {
-    location.replace('cases.html#conference-archive');
+    location.replace('database.html#conference-archive');
     return;
   }
   if (curPage === 'database' && /^quote-\d+$/.test(target)) {
@@ -128,13 +135,10 @@ $('#menuList').addEventListener('pointerover', function (e) { var a = e.target.c
 $('#menuList').addEventListener('focusin', function (e) { var a = e.target.closest('a'); if (a) showPic(a.dataset.id); });
 
 /* ================= 快捷键面板、提示 ================= */
-function openKeys() { keys.classList.add('open'); keys.setAttribute('aria-hidden', 'false'); setTimeout(function () { $('#keysClose').focus({ preventScroll: true }); }, 50); hideHint(); }
+function openKeys() { keys.classList.add('open'); keys.setAttribute('aria-hidden', 'false'); setTimeout(function () { $('#keysClose').focus({ preventScroll: true }); }, 50); }
 function closeKeys() { keys.classList.remove('open'); keys.setAttribute('aria-hidden', 'true'); }
 $('#keysClose').addEventListener('click', closeKeys);
 keys.addEventListener('click', function (e) { if (e.target === keys) closeKeys(); });
-var hint = $('#hint'), hintT;
-function hideHint() { hint.classList.add('gone'); clearTimeout(hintT); }
-hint.addEventListener('click', openKeys);
 var toastEl = $('#toast'), toastT;
 function toast(msg, ms) { toastEl.textContent = msg; toastEl.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(function () { toastEl.classList.remove('show'); }, ms || 2600); }
 
@@ -221,9 +225,7 @@ function fsToggle() {
   else fsOn();
 }
 function startShow() {
-  hideHint();
   Promise.resolve(fsOn()).then(function () { go('home'); });
-  toast('演示开始：→ 下一页，← 上一页，Esc 退出全屏');
 }
 var qArm = 0;
 function closeShow() {
@@ -243,7 +245,6 @@ addEventListener('keydown', function (e) {
   if (!(t instanceof Element)) return;
   if (t.isContentEditable || t.closest('input,textarea,select,[role="textbox"],[role="combobox"],[role="tablist"],dialog,[role="dialog"]:not(#keys):not(#menu)')) return;
   var interactive = !!t.closest('a,button,[tabindex="0"]');
-  if (k !== 'Shift') hideHint();
   if (k === 'Escape') { if (keys.classList.contains('open')) closeKeys(); else if (menu.classList.contains('open')) closeMenu(); else if (document.fullscreenElement) document.exitFullscreen().catch(function () {}); return; }
   if (k === '?' || (k === '/' && e.shiftKey)) { e.preventDefault(); if (keys.classList.contains('open')) closeKeys(); else openKeys(); return; }
   if (keys.classList.contains('open')) return;
@@ -273,7 +274,6 @@ function start() {
   $('#pgNum').textContent = pad(page.i + 1) + ' / ' + pad(PIDS.length);
   $('#pgName').textContent = page.name;
   calcHeader(); onScroll(); armIn(view); positionTarget();
-  hintT = setTimeout(hideHint, 8000);
 }
 window.PortalMedia.enter(start);
 })();

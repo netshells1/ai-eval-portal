@@ -729,7 +729,6 @@ ul{list-style:none}
 .menu-pic img.on{opacity:1;transform:none}
 .menu-pic .cap{position:absolute;left:28px;bottom:26px;z-index:2}
 .menu-close{position:absolute;top:calc(30px + (var(--hd) - 44px) / 2);right:var(--pad);z-index:3}
-.menu-foot{font-size:13px;color:rgba(244,243,241,.5);margin-top:36px}
 @media (max-width:900px){.menu{grid-template-columns:1fr}.menu-pic{display:none}}
 kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px;height:28px;padding:0 8px;border:1px solid rgba(244,243,241,.3);border-bottom-width:2px;border-radius:4px;font-family:var(--lat);font-size:12.5px;font-weight:700;line-height:1}
 .keys{position:fixed;inset:0;z-index:90;display:grid;place-items:center;background:rgba(30,33,26,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .35s,visibility 0s .35s}
@@ -748,11 +747,9 @@ kbd{display:inline-flex;align-items:center;justify-content:center;min-width:30px
 @media (max-width:620px){.keys-cols{grid-template-columns:1fr}}
 .pg{position:fixed;right:var(--pad);bottom:16px;z-index:40;font-size:12px;color:#F4F3F1;mix-blend-mode:difference;pointer-events:none;display:flex;gap:14px;align-items:baseline}
 .pg .num{font-size:14px;font-weight:700;letter-spacing:.04em}
-.hint{position:fixed;left:var(--pad);bottom:20px;z-index:40;font-size:12.5px;padding:8px 16px;border-radius:999px;background:rgba(30,33,26,.86);border:1px solid var(--line-d);color:rgba(244,243,241,.85);transition:opacity .6s,transform .6s var(--ease)}
-.hint.gone{opacity:0;transform:translateY(12px);pointer-events:none}
 .toast{position:fixed;left:50%;top:22px;z-index:95;visibility:hidden;transform:translate(-50%,calc(-100% - 40px));background:var(--paper);color:var(--ink);padding:12px 22px;border-radius:999px;font-size:14px;font-weight:500;transition:transform .5s var(--ease);max-width:92vw;text-align:center}
 .toast.show{transform:translate(-50%,0);visibility:visible}
-@media print{.view{display:block!important}.pre,.top,.menu,.keys,.pg,.hint,.toast{display:none!important}.sec,.hero{break-after:page}.js .ln>span,.js .rv{transform:none!important;opacity:1!important}.hs{height:auto!important}.hs-sticky{position:relative;height:auto}.hs-track{transform:none!important;flex-wrap:wrap}}
+@media print{.view{display:block!important}.pre,.top,.menu,.keys,.pg,.toast{display:none!important}.sec,.hero{break-after:page}.js .ln>span,.js .rv{transform:none!important;opacity:1!important}.hs{height:auto!important}.hs-sticky{position:relative;height:auto}.hs-track{transform:none!important;flex-wrap:wrap}}
 
 /* Background films share the still image's crop and stay behind the text. */
 .pre{background:linear-gradient(90deg,#171d18e6,#192019a6),url(opening-city.jpg) center/cover,var(--ink-2)}

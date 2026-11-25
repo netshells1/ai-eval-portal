@@ -24,7 +24,6 @@
   <button class="btn btn-line menu-close" id="menuClose">关闭</button>
   <div class="menu-list">
     <nav id="menuList" aria-label="目录"></nav>
-    <p class="menu-foot">按 <kbd>M</kbd> 打开或关闭目录，按数字键 <kbd>1</kbd>—<kbd>8</kbd> 直接切换页面。</p>
   </div>
   <div class="menu-pic" id="menuPic"><span class="cap" id="menuCap"></span></div>
 </div>
@@ -52,6 +51,5 @@
 </div>
 
 <div class="pg" aria-hidden="true"><span class="num" id="pgNum">01 / 08</span><span id="pgName">首页</span></div>
-<button class="hint" id="hint">按 <kbd>?</kbd> 查看快捷键，<kbd>Enter</kbd> 开始演示</button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>`);
 })();

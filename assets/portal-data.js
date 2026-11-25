@@ -9,7 +9,7 @@ window.CONFIG = {
     { id: 'evaluation', name: '项目评估', en: 'Evaluation', img: 'assets/evaluation.jpg', nav: '评估维度', d: '六维综合评价体系与八步评估流程' },
     { id: 'pricing',    name: '造价核定', en: 'Pricing',    img: 'assets/pricing.jpg',    d: '工程量核定与复用抵扣' },
     { id: 'matching',   name: '场景匹配', en: 'Matching',   img: 'assets/matching.jpg',    d: '场景驱动的企业与技术匹配' },
-    { id: 'cases',      name: '典型案例', en: 'Cases',      img: 'assets/cases.jpg',    d: '视频会议系统询价档案与六个评估示例' },
+    { id: 'cases',      name: '典型案例', en: 'Cases',      img: 'assets/cases.jpg',    d: '政务问答与材料预审硬件核价案例及评估示例' },
     { id: 'database',   name: '资源库',   en: 'Database',   img: 'assets/database.jpg',   d: '企业、技术与底座、项目与场景和软硬件价格' },
     { id: 'standards',  name: '询价标准', en: 'Standards',  img: 'assets/service.jpg',    d: '各地区信息化项目预算编制与费用测算依据' }
   ],

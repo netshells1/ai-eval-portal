@@ -22,7 +22,7 @@
 .inquiry-kicker span { color: var(--lime); padding-inline: .5em; }
 .inquiry-intro h1 {
   margin: 12px 0 18px;
-  font-size: clamp(44px, 5.6vw, 88px);
+  font-size: clamp(32px, 4.4vw, 72px);
   font-weight: 900;
   line-height: 1.15;
   letter-spacing: -.055em;
@@ -107,7 +107,6 @@
   letter-spacing: -.045em;
 }
 /* On the catalogue, keep floating presentation hints clear of the record controls. */
-body:has(.view.on[data-page="standards"]) #hint { display: none; }
 @media (max-width: 760px) {
   body:has(.view.on[data-page="standards"]) .pg { display: none; }
   .standards-mast-row { align-items: flex-start; flex-direction: column; gap: 18px; }
@@ -183,4 +182,50 @@ body:has(.view.on[data-page="standards"]) #hint { display: none; }
  .archive-ledger tbody th{align-self:center}
  .archive-footnote{border-top:1px solid #d4dacb;padding-top:12px;margin-top:0}
 }
-@media(max-width:610px){body:has(#conference-archive) :is(#hint,.pg){display:none}}
+@media(max-width:610px){body:has(#conference-archive) .pg{display:none}}
+
+/* Independent equipment estimate for the public-service agent. */
+.hw-budget h2{margin:4px 0 20px;font-size:clamp(21px,2vw,30px)}
+.hw-budget dl>div{display:flex;align-items:baseline;justify-content:space-between;border-top:1px solid #c5cabb;padding:10px 0;gap:12px}
+.hw-budget dd{font:700 clamp(24px,2.4vw,40px)/1.2 var(--lat)}
+.hw-budget dd small,.hw-budget p{font:500 14px/1.65 var(--cn)}
+.hw-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px}
+.hw-section a,.hw-links a{text-decoration:underline;text-underline-offset:4px;font-weight:650}
+.hw-section{scroll-margin-top:var(--hd);padding-block:clamp(40px,6vw,88px)}
+.hw-section h2{font-size:clamp(29px,3.4vw,52px);line-height:1.22}
+.hw-intro{margin:12px 0 24px;max-width:64em;color:#56604e}
+.hw-summary{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;padding:clamp(18px,2.2vw,32px);background:#293024;color:#f2f3e9}
+.hw-summary span,.hw-summary p{display:block;font-size:14px;color:#d5dbcb}
+.hw-summary strong{display:block;color:var(--lime);font:750 clamp(32px,3.8vw,55px)/1.25 var(--lat)}
+.hw-summary small{font-size:16px}
+.hw-review{margin:18px 0 26px;padding-left:15px;border-left:3px solid #718855}
+.hw-review p{margin:6px 0;font-size:15px}
+.hw-group,.hw-samples{border-top:1px solid #bec6b6}
+.hw-group summary,.hw-samples summary{cursor:pointer}
+.hw-group>summary,.hw-device>summary{display:grid;grid-template-columns:1fr auto auto auto;align-items:baseline;gap:clamp(8px,1.4vw,22px);list-style:none}
+.hw-group summary::-webkit-details-marker{display:none}
+.hw-group>summary{padding:18px 12px;background:#e9ece3}
+.hw-group>summary strong{font-size:clamp(16px,1.5vw,22px)}
+.hw-group>summary:after,.hw-device>summary:after{content:'+';font:500 18px/1 var(--lat)}
+.hw-group[open]>summary:after,.hw-device[open]>summary:after{content:'−'}
+.hw-device{scroll-margin-top:calc(var(--hd) + 18px);background:#fcfcf8;border-top:1px solid #d7dcce}
+.hw-device>summary,.hw-detail{padding:14px clamp(12px,2vw,28px)}
+.hw-device>summary span:first-child{font-weight:650}
+.hw-grade,.hw-status{background:#e6ebde;padding:2px 7px;font-size:13px}
+.hw-status[data-pending=true]{background:#f1dfb7;color:#664a13}
+.hw-detail dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 24px}
+.hw-detail dt{font-size:13px;color:#55634a}
+.hw-detail dd,.hw-checks p{font-size:15px}
+.hw-detail h4{margin:20px 0 4px}
+.hw-checks li,.hw-samples li{padding:8px 0;border-bottom:1px solid #d9ddcf}
+.hw-checks b{margin-right:10px}
+.hw-samples{padding:16px 0;margin-top:12px}
+#library-app:not(:has([data-group="prices"][aria-selected="true"])) + #conference-archive{display:none}
+@media(max-width:650px){
+ .hw-detail dl{grid-template-columns:1fr}
+ .hw-group>summary,.hw-device>summary{gap:5px 10px;font-size:14px}
+ .hw-device>summary{grid-template-columns:1fr auto auto}
+ .hw-device>summary span:first-child{grid-column:1/-1}
+ .hw-grade{justify-self:start}
+ .hw-summary p{line-height:1.85}
+}
