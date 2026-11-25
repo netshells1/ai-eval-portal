@@ -46,6 +46,26 @@
     F5: ['告警分级机制', '各级通知与到场时限', '备件到场时限', '巡检频次', '可用率承诺', '漏洞修复时限']
   };
 
+  /* ---------- 一票否决前置：四条刚性门槛（依据法规条款，全部替换原 F1/F2 展示） ---------- */
+  var GATES = [
+    { id: 'G1', name: '未完成生成式人工智能安全评估或算法备案',
+      basis: '生成式人工智能服务管理暂行办法、算法推荐管理规定',
+      check: function (p) { var e = p.ev.F2 || 'L3'; return e !== 'X' && e !== 'L1'; },
+      note: function (p) { var e = p.ev.F2 || 'L3'; return e === 'X' ? '生成式AI安全评估与算法备案材料缺失' : (e === 'L1' ? '仅提供备案证明，未见安全评估报告' : '安全评估与算法备案材料齐备'); } },
+    { id: 'G2', name: '涉及未脱敏个人信息且无合法依据',
+      basis: '个人信息保护法、数据安全法',
+      check: function (p) { var e = p.ev.F1 || 'L3'; return e !== 'X' && e !== 'L1'; },
+      note: function (p) { var e = p.ev.F1 || 'L3'; return e === 'X' ? '个人信息处理缺少合法依据与脱敏方案' : (e === 'L1' ? '仅提供合规声明，未见脱敏与共享审批材料' : '已落实分类分级、最小必要与脱敏审批'); } },
+    { id: 'G3', name: '报价超过核定价 2 倍且无合理说明',
+      basis: '采购需求管理办法、招标投标法实施条例',
+      check: function (p) { return !(p.declared > p.price * 2); },
+      note: function (p) { return p.declared > p.price * 2 ? '申报 ' + p.declared + ' 万元，为核定价 ' + p.price + ' 万元的 ' + (p.declared / p.price).toFixed(1) + ' 倍' : '申报 ' + p.declared + ' 万元 / 核定价 ' + p.price + ' 万元，未超 2 倍'; } },
+    { id: 'G4', name: '列入严重失信或政府采购禁入名单',
+      basis: '政府采购法、严重失信主体名单管理规定',
+      check: function (p) { var d = p.ev.D1 || 'L3'; var f = p.ev.F5 || 'L3'; var worst = (d === 'X' || f === 'X') ? 'X' : (d === 'L1' || f === 'L1' ? 'L1' : 'L3'); return worst !== 'X' && worst !== 'L1'; },
+      note: function (p) { var d = p.ev.D1 || 'L3'; var f = p.ev.F5 || 'L3'; if (d === 'X' || f === 'X') return '信用核查记录显示存在失信或禁入情形'; if (d === 'L1' || f === 'L1') return '仅提供承诺函，未见信用中国与政府采购严重违法记录查询结果'; return '信用记录与禁入名单核查均未见异常'; } }
+  ];
+
   /* ---------- 证据等级 ---------- */
   var EV = {
     L4: { t: 'L4 实测/现场验证', d: '现场演示、实测数据、第三方现场核验结论' },
@@ -147,10 +167,7 @@
     return { t: '1 分锚点', c: 'a1' };
   }
   function vetoPassed(p) {
-    return !['F1', 'F2'].some(function (c) {
-      var e = p.ev[c];
-      return e === 'X' || e === 'L1';
-    });
+    return GATES.every(function (g) { return g.check(p); });
   }
   function totalScore(p) {
     var t = 0;
@@ -402,16 +419,17 @@
       '</div>';
   }
 
-  /* ---------- 一票否决（右侧常驻） ---------- */
+  /* ---------- 一票否决前置（右侧常驻） ---------- */
   function renderVeto() {
     var p = curProj;
-    $('#edVeto').innerHTML = DATA.filter(function (x) { return x.code === 'F1' || x.code === 'F2'; }).map(function (it) {
-      var ev = p.ev[it.code];
-      var bad = (ev === 'X' || ev === 'L1');
-      return '<div class="ed-veto' + (bad ? ' bad' : '') + '">' +
-        '<span class="ed-vc">' + it.code + '</span>' +
-        '<span>' + esc(it.name) + '</span>' +
-        '<span class="ed-vres">' + (bad ? '门槛未过' : '已过门槛') + '</span></div>';
+    $('#edVeto').innerHTML = GATES.map(function (g) {
+      var ok = g.check(p);
+      return '<div class="ed-veto' + (ok ? '' : ' bad') + '">' +
+        '<span class="ed-vc">' + g.id + '</span>' +
+        '<span class="ed-vt">' + esc(g.name) + '<em>' + esc(g.basis) + '</em></span>' +
+        '<span class="ed-vres">' + (ok ? '已过门槛' : '门槛未过') + '</span>' +
+        '</div>' +
+        '<div class="ed-veto-note">' + (ok ? '✓ ' : '✕ ') + esc(g.note(p)) + '</div>';
     }).join('');
   }
 
