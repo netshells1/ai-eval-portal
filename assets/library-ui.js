@@ -87,13 +87,31 @@
     const quoted = quotesByItem.get(item.id) || [];
     const options = conf.items.map(i =>
       `<option value="${attr(i.id)}" ${i.id === item.id ? 'selected' : ''}>${text(i.name)}</option>`).join('');
-    const table = quoted.map(q => `<tr><th scope="row">${text(q.deviceName || q.rawName || '设备信息未提供')}<small>${text([q.brand, q.model].filter(Boolean).join(' · ') || '品牌型号未提供')}</small></th>
-      <td class="lib-number">${text(labelPrice(q))}</td><td>${q.parameters.length ? q.parameters.filter(p => p.status === 1 || p.status === 2).length + ' / ' + q.parameters.length : '未提供'}</td><td><a class="lib-link" href="database.html#quote-${attr(q.id)}">${text(q.code || "凭证明细")} ↗</a><small>#${text(q.id)}</small></td></tr>`).join('');
-    return `<div class="lib-section"><div class="lib-sectionhead"><h4>按询价项核对凭证</h4><label class="lib-selectwrap"><span class="lib-a11y">选择询价项</span><select data-inquiry>${options}</select></label></div>
-      <p class="lib-inline">申报数量 ${text(fallback(item.quantity))}${item.applicationUnit ? ' ' + text(item.applicationUnit) : ''} · ${quoted.length} 条来源凭证</p>
-      <div class="lib-tablebox"><table><thead><tr><th>设备 / 型号</th><th>凭证单价</th><th>符合或优于 / 参数总数</th><th>凭证编号</th></tr></thead><tbody>${table}</tbody></table></div>
-      ${note('点击凭证编号查看来源、报价口径以及逐项匹配结果。相同设备名称可能有不同型号、配置和计量单位。')}</div>
-      ${sourceLink(item.sourceUrl || conf.project.sourceUrl, '在 AI 询价喵查看该询价项')}`;
+    const rows = quoted.map(q => {
+      const matched = q.parameters.filter(p => p.status === 1 || p.status === 2).length;
+      const total = q.parameters.length;
+      const unit = q.unit ? '元 / ' + q.unit : '元（计量单位未提供）';
+      return `<tr>
+        <th scope="row"><strong>${text(q.deviceName || q.rawName || '设备信息未提供')}</strong><small>${text([q.brand, q.model].filter(Boolean).join(' · ') || '品牌型号未提供')}</small></th>
+        <td data-label="凭证单价"><strong class="archive-price">${text(q.unitPrice == null ? '未提供' : showNumber(q.unitPrice))}</strong>${q.unitPrice == null ? '' : '<small>' + text(unit) + '</small>'}</td>
+        <td data-label="参数符合或优于"><span class="archive-match">${total ? matched + ' / ' + total : '未提供'}</span>${total ? '<meter min="0" max="' + total + '" value="' + matched + '" aria-label="符合或优于的参数"></meter>' : ''}</td>
+        <td data-label="来源凭证"><a class="archive-voucher" href="database.html#quote-${attr(q.id)}">${text(q.code || '凭证明细')} ↗</a><small>#${text(q.id)}</small></td>
+      </tr>`;
+    }).join('');
+    return `<div class="archive-layout">
+      <aside class="archive-picker">
+        <label for="archive-item">选择询价项</label>
+        <select id="archive-item" data-inquiry>${options}</select>
+        <dl class="archive-facts"><div><dt>设备类别</dt><dd>${text(fallback(item.category))}</dd></div>
+        <div><dt>申报数量</dt><dd>${text(fallback(item.quantity))}${item.applicationUnit ? ' ' + text(item.applicationUnit) : ''}</dd></div></dl>
+        <div class="archive-source">${sourceLink(item.sourceUrl || conf.project.sourceUrl, '查看询价原文')}</div>
+      </aside>
+      <section class="archive-ledger" aria-labelledby="archive-ledger-title">
+        <header><h3 id="archive-ledger-title">报价凭证对照</h3><span>${quoted.length} 条凭证</span></header>
+        <table aria-label="${attr(item.name)}报价凭证"><thead><tr><th scope="col">设备 / 型号</th><th scope="col">凭证单价</th><th scope="col">参数符合或优于 / 总数</th><th scope="col">来源凭证</th></tr></thead><tbody>${rows}</tbody></table>
+        <p class="archive-footnote">报价按各凭证的原始单位展示。点凭证编号可核对原始报价和逐项参数。</p>
+      </section></div>`;
+
   }
 
   function quoteDetail(row) {
