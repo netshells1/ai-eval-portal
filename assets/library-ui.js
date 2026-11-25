@@ -38,6 +38,10 @@
       add('technology', r, r.企业ID, r.核心技术标签.split('；')[0], r.企业名称,
         '企业技术能力', '企业库工作表', 'capability');
     }
+    for (const r of book.foundations || []) {
+      add('technology', r, r.底座ID, r.技术名称, r.提供方,
+        r.方案领域 || '开源底座', '公开底座与平台', 'foundation');
+    }
     for (const r of book.projects) {
       add('projects', r, r.场景ID, r.场景名称, r.需求单位, r.场景领域, '场景库工作表', 'project');
     }
@@ -172,6 +176,9 @@
       }
       add('评估依据', ['主要挂接指标']);
       reference('代表案例ID', 'technology');
+    } else if (row.kind === 'foundation') {
+      add('方案与技术能力', ['方案/能力名称','核心技术标签','技术路线成熟度','产品线/交付形态','方案领域','细分行业','服务类型']);
+      add('评估依据', ['主要挂接指标','提供方']);
     } else if (row.kind === 'project') {
       groups.push(section('场景需求', note(r['场景描述（痛点）'])));
       add('立项信息', ['需求单位','场景领域','细分领域','所处阶段','拟投资金额（万元）','建设周期起','建设周期止','拟建设地点']);
@@ -237,7 +244,7 @@
     const tabs = Object.entries(labels).map(([key, label]) => `<button type="button" role="tab" id="lib-tab-${key}" aria-controls="lib-tabpanel" data-group="${key}" aria-selected="${state.group === key}" tabindex="${key === state.group ? '0' : '-1'}">${label}<small>${entries[key].length}</small></button>`).join('');
     let context = '';
     if (state.group === 'technology') {
-      context = '按企业能力、案例中的可复用要素和可共享设备检索，每条记录可追溯到原表。';
+      context = '覆盖企业技术能力、开源底座、大模型开放平台、案例复用要素与可共享设备，每条可追溯到来源。';
     } else if (state.group === 'prices') {
       context = '工作表收录 ' + window.ResourceData.prices.length + ' 项设备价格基准，视频会议系统另有 ' +
         conf.quotes.length + ' 条询价凭证。可按分类分开查看。';

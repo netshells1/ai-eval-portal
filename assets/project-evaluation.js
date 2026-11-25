@@ -66,7 +66,7 @@
   var PROJ = (C.bidProjects || []).map(function (b) {
     var s = SCORE[b.id] || { preset: {}, ev: {} };
     return {
-      id: b.id, name: b.name, unit: b.unit, scene: b.scene,
+      id: b.id, name: b.name, unit: b.unit, bidder: b.bidder, scene: b.scene,
       declared: b.declared, price: b.price, verdict: b.verdict, date: b.date,
       preset: s.preset, ev: s.ev
     };

@@ -1,7 +1,7 @@
 window.initPortalPage = function ({ C, $, $$, fine, reduced, pageUrl }) {
   const hero = $('#hero');
   $('#idxList').innerHTML = C.pages.slice(1).map(function (p) {
-    return '<a href="' + pageUrl(p.id) + '" data-id="' + p.id + '"><span class="en">' + p.en + '</span><b>' + p.name + '</b><p>' + p.d + '</p><i aria-hidden="true">→</i></a>';
+    return '<a href="' + pageUrl(p.id) + '" data-id="' + p.id + '"><span class="en">' + p.en + '</span><b>' + (p.nav || p.name) + '</b><p>' + p.d + '</p><i aria-hidden="true">→</i></a>';
   }).join('');
   $('#idxFloatIn').innerHTML = C.pages.slice(1).map(function (p) { return '<img src="' + p.img + '" alt="" data-id="' + p.id + '" loading="lazy">'; }).join('');
   $('#newsGrid').innerHTML = C.news.map(function (col) {
