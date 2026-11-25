@@ -181,7 +181,7 @@
 
   function renderMeta(p) {
     $('#edProjMeta').innerHTML =
-      '<div class="ed-meta-i"><span>申报单位</span><b>' + esc(p.unit) + '</b></div>' +
+      '<div class="ed-meta-i"><span>申报单位</span><b>' + esc(p.bidder || p.unit) + '</b></div>' +
       '<div class="ed-meta-i"><span>申报金额</span><b class="num">' + p.declared + ' <small>万元</small></b></div>' +
       '<div class="ed-meta-i"><span>核定价</span><b class="num">' + p.price + ' <small>万元</small></b></div>' +
       '<div class="ed-meta-i"><span>受理日期</span><b>' + esc(p.date) + '</b></div>';
