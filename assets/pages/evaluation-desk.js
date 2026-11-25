@@ -194,13 +194,15 @@
       /* 正在推进的阶段加 live 标记 */
       var live = (i === phase && running) ? ' live' : '';
       /* 只有已完成的阶段才显示分数；汇总阶段总分最后才出 */
-      var sub = '';
-      if (i < phase) sub = ph.k === 'Z' ? totalScore(curProj).toFixed(1) : dimScore(ph.k, curProj).toFixed(1) + ' 分';
-      else if (ph.k === 'Z' && phase >= PHASES.length - 1) sub = totalScore(curProj).toFixed(1) + ' 分';
+      var scVal = null;
+      if (i < phase) scVal = ph.k === 'Z' ? totalScore(curProj) : dimScore(ph.k, curProj);
+      else if (ph.k === 'Z' && phase >= PHASES.length - 1) scVal = totalScore(curProj);
+      var sub = scVal == null ? '' : (ph.k === 'Z' ? scVal.toFixed(1) : scVal.toFixed(1) + ' 分');
+      var gCls = scVal == null ? '' : ' ' + grade(scVal).c;
       return '<li class="ed-phase ' + st + live + '" data-i="' + i + '">' +
         '<span class="ed-phase-n num">' + (i + 1) + '</span>' +
         '<span class="ed-phase-b"><b>' + esc(ph.n) + '</b><small>' + esc(ph.o) + '</small></span>' +
-        '<span class="ed-phase-s num" data-v="' + i + '">' + (i < phase ? sub : '') + '</span>' +
+        '<span class="ed-phase-s num' + gCls + '" data-v="' + i + '">' + sub + '</span>' +
         '</li>';
     }).join('');
     $$('#edPhases .ed-phase').forEach(function (li) {
@@ -223,9 +225,16 @@
       /* 正在推进的阶段加 live 标记，便于用户点回恢复自动跟随 */
       var live = (i === phase && running) ? ' live' : '';
       /* 未出分的阶段不显示分值；汇总阶段总分最后才出 */
-      var sc = '—';
-      if (i < phase) sc = dimScore(ph.k, curProj).toFixed(1);
-      else if (ph.k === 'Z' && phase >= PHASES.length - 1) sc = totalScore(curProj).toFixed(1);
+      var sc = '—', gCls = '';
+      if (i < phase) {
+        var dv = ph.k === 'Z' ? totalScore(curProj) : dimScore(ph.k, curProj);
+        sc = dv.toFixed(1);
+        gCls = ' ' + grade(dv).c;
+      } else if (ph.k === 'Z' && phase >= PHASES.length - 1) {
+        var tv = totalScore(curProj);
+        sc = tv.toFixed(1);
+        gCls = ' ' + grade(tv).c;
+      }
       /* 左侧以序号 1—6 标识，汇总阶段用 Σ */
       var code = ph.k === 'Z' ? 'Σ' : (i + 1);
       var nm = ph.k === 'Z' ? '汇总出分' : ph.n;
@@ -233,7 +242,7 @@
       return '<button class="ed-nav-i ' + st + live + '" data-i="' + i + '"' + (i > phase ? ' disabled' : '') + '>' +
         '<span class="ed-nav-code">' + code + '</span>' +
         '<span class="ed-nav-b"><b>' + esc(nm) + '</b><small>' + esc(sub) + '</small></span>' +
-        '<span class="ed-nav-s num">' + sc + '</span>' +
+        '<span class="ed-nav-s num' + gCls + '">' + sc + '</span>' +
         '</button>';
     }).join('');
     $$('#edNav .ed-nav-i').forEach(function (b) {
@@ -269,7 +278,7 @@
       '</div>' +
       '<div class="ed-pane-s">' +
         (full
-          ? '<span class="num">' + sc.toFixed(1) + '</span>' +
+          ? '<span class="num ' + g.c + '">' + sc.toFixed(1) + '</span>' +
             '<span class="ed-pane-g ' + g.c + '">' + g.t + '</span>'
           : '<span class="num pend">···</span>' +
             '<span class="ed-pane-pend">已出 ' + shown + ' / ' + items.length + '</span>') +
@@ -310,7 +319,7 @@
           '<span class="ed-item-n">' + esc(it.name) + '</span>' +
           '<span class="ed-item-w">权重 ' + it.w + '</span>' +
           (on ? '<span class="ed-item-a ' + an.c + '">' + an.t + '</span>' +
-                '<span class="ed-item-s num' + (bad ? ' zero' : '') + '">' + s + '</span>' : '') +
+                '<span class="ed-item-s num ' + (bad ? 'zero ' : '') + grade(s).c + '">' + s + '</span>' : '') +
         '</div>' +
         body +
       '</div>';
@@ -359,7 +368,7 @@
     $('#edPaneH').innerHTML =
       '<div class="ed-pane-t"><span class="ed-pane-code">Z</span>' +
       '<div><h3>汇总出分</h3><p>结论出具 · 加权汇总、等级判定与结论生成</p></div></div>' +
-      '<div class="ed-pane-s"><span class="num">' + sc.toFixed(1) + '</span>' +
+      '<div class="ed-pane-s"><span class="num ' + g.c + '">' + sc.toFixed(1) + '</span>' +
       '<span class="ed-pane-g ' + g.c + '">' + g.t + '</span>' +
       '<small>' + TOTAL_ITEMS + ' 项指标加权</small></div>';
     $('#edPaneB').innerHTML =
@@ -380,7 +389,7 @@
           return '<div class="ed-fd"><span class="mono">' + dm.code + '</span>' +
             '<span>' + esc(dm.name) + '</span>' +
             '<div class="ed-fd-bar"><i style="width:' + v.toFixed(1) + '%"></i></div>' +
-            '<span class="num">' + v.toFixed(1) + '</span></div>';
+            '<span class="num ' + grade(v).c + '">' + v.toFixed(1) + '</span></div>';
         }).join('') + '</div>' +
         (worst.length ? '<div class="ed-final-worst"><h5>关键扣分项（按权重 × 失分排序）</h5><ul>' +
           worst.map(function (w) {

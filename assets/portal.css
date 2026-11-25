@@ -430,7 +430,14 @@ ul{list-style:none}
 .ed-item-a.a5{background:rgba(203,249,2,.3);color:#4a6000}
 .ed-item-a.a1{background:rgba(200,90,60,.14);color:#b4622a}
 .ed-item-s{margin-left:auto;font-size:26px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1}
-.ed-item-s.zero{color:#b4622a}
+.ed-item-s.zero{color:#a8332a}
+/* 分数数字按 A—E 档着色（仅改数字颜色） */
+.ed-item-s.g-a,.ed-pane-s .num.g-a,.ed-nav-i .ed-nav-s.g-a,.ed-phase .ed-phase-s.g-a,.ed-fd .num.g-a,.ed-grade-legend .g-a{color:#3f6b00}
+.ed-item-s.g-b,.ed-pane-s .num.g-b,.ed-nav-i .ed-nav-s.g-b,.ed-phase .ed-phase-s.g-b,.ed-fd .num.g-b,.ed-grade-legend .g-b{color:#0d6b5c}
+.ed-item-s.g-c,.ed-pane-s .num.g-c,.ed-nav-i .ed-nav-s.g-c,.ed-phase .ed-phase-s.g-c,.ed-fd .num.g-c,.ed-grade-legend .g-c{color:#9a6b00}
+.ed-item-s.g-d,.ed-pane-s .num.g-d,.ed-nav-i .ed-nav-s.g-d,.ed-phase .ed-phase-s.g-d,.ed-fd .num.g-d,.ed-grade-legend .g-d{color:#b4622a}
+.ed-item-s.g-e,.ed-pane-s .num.g-e,.ed-nav-i .ed-nav-s.g-e,.ed-phase .ed-phase-s.g-e,.ed-fd .num.g-e,.ed-grade-legend .g-e{color:#a8332a}
+.ed-grade-legend .sep{color:var(--mute);margin:0 .35em;font-weight:500}
 .ed-item-basis{display:flex;gap:9px;align-items:flex-start;margin-bottom:8px}
 .ed-basis-l{flex:0 0 auto;font-size:11.5px;font-weight:800;letter-spacing:.08em;color:var(--mute);padding-top:2px}
 .ed-item-basis p{font-size:13.5px;line-height:1.65;color:var(--ink)}
