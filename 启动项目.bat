@@ -5,9 +5,16 @@ rem ÓÃ¶ÀÁ¢µÄä¯ÀÀÆ÷ÅäÖÃÄ¿Â¼È«ÆÁ´ò¿ª index.html£¬¡¸¹Ø±ÕÏîÄ¿¡¹Ö»»á¹ØµôÕâ¸ö´°¿Ú£¬²»Ó
 set "ROOT=%~dp0"
 set "PAGE=%ROOT%index.html"
 set "PROFILE=%TEMP%\ai-eval-portal-show"
-set "URL=file:///%PAGE:\=/%"
 if not exist "%PAGE%" (
-  echo ÕÒ²»µ½ index.html£¬Çë°Ñ±¾ÎÄ¼þºÍ index.html ·ÅÔÚÍ¬Ò»¸öÎÄ¼þ¼ÐÀï¡£
+    echo ÕÒ²»µ½ index.html£¬Çë°Ñ±¾ÎÄ¼þºÍ index.html ·ÅÔÚÍ¬Ò»¸öÎÄ¼þ¼ÐÀï¡£
+  pause
+    goto :eof
+)
+rem Â·¾¶º¬ÖÐÎÄÊ±±ØÐë×ö URL °Ù·ÖºÅ±àÂë£¬·ñÔò Chrome »á°Ñ --app ²ÎÊý½âÎöÊ§°Ü²¢»ØÍËµ½Ä¬ÈÏÐÂ±êÇ©Ò³¡£
+set "URL="
+for /f "usebackq delims=" %%U in (`powershell -NoProfile -Command "[System.Uri]::new('%PAGE%').AbsoluteUri"`) do set "URL=%%U"
+if not defined URL (
+  echo Éú³ÉÑÝÊ¾µØÖ·Ê§°Ü£¬Çë¸ÄÓÃ±¾µØ·þÎñÆ÷·½Ê½Æô¶¯¡£
   pause
   goto :eof
 )
@@ -17,7 +24,7 @@ for %%P in ("%ProgramFiles%\Google\Chrome\Application\chrome.exe" "%ProgramFiles
 )
 if not defined BROWSER (
   echo Ã»ÓÐÕÒµ½ Chrome »ò Edge£¬¸ÄÓÃÏµÍ³Ä¬ÈÏä¯ÀÀÆ÷´ò¿ª¡£´ò¿ªºó°´ F ½øÈëÈ«ÆÁ¡£
-  start "" "%PAGE%"
+  start "" "%URL%"
   timeout /t 3 >nul
   goto :eof
 )
