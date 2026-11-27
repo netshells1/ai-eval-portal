@@ -121,6 +121,9 @@
 
   /* ---------- 阶段条 ---------- */
   function renderPhases() {
+    /* 一票否决前置中未过门槛的项：汇总出分处需划线并标注 */
+    var failedGates = GATES.filter(function (g) { return !g.check(curProj); });
+    var vetoFail = failedGates.length > 0;
     $('#edPhases').innerHTML = PHASES.map(function (ph, i) {
       var st = i < phase ? 'done' : (i === phase ? 'now' : 'wait');
       /* 正在推进的阶段加 live 标记 */
@@ -131,10 +134,15 @@
       else if (ph.k === 'Z' && phase >= PHASES.length - 1) scVal = totalScore(curProj);
       var sub = scVal == null ? '' : (ph.k === 'Z' ? scVal.toFixed(1) : scVal.toFixed(1) + ' 分');
       var gCls = scVal == null ? '' : ' ' + grade(scVal).c;
-      return '<li class="ed-phase ' + st + live + '" data-i="' + i + '">' +
+      /* 汇总阶段存在未过门槛的否决前置：总分划线并标注「未过门槛」 */
+      var zFail = (ph.k === 'Z' && scVal != null && vetoFail);
+      return '<li class="ed-phase ' + st + live + (zFail ? ' veto-fail' : '') + '" data-i="' + i + '">' +
         '<span class="ed-phase-n num">' + (i + 1) + '</span>' +
         '<span class="ed-phase-b"><b>' + esc(ph.n) + '</b><small>' + esc(ph.o) + '</small></span>' +
-        '<span class="ed-phase-s num' + gCls + '" data-v="' + i + '">' + sub + '</span>' +
+        '<span class="ed-phase-s num' + gCls + '" data-v="' + i + '">' +
+        (zFail ? '<s class="ed-veto-strike">' + sub + '</s>' : sub) +
+        (zFail ? '<em class="ed-veto-flag">未过门槛</em>' : '') +
+        '</span>' +
         '</li>';
     }).join('');
     $$('#edPhases .ed-phase').forEach(function (li) {
@@ -297,10 +305,15 @@
     }
 
     /* 汇总阶段：总分在此才最终呈现 */
+    /* 一票否决前置存在未过门槛的项时，总分划线并标注「未过门槛」 */
+    var failedGates = GATES.filter(function (g) { return !g.check(p); });
+    var vetoFail = failedGates.length > 0;
     $('#edPaneH').innerHTML =
       '<div class="ed-pane-t"><span class="ed-pane-code">Z</span>' +
       '<div><h3>汇总出分</h3><p>结论出具 · 加权汇总、等级判定与结论生成</p></div></div>' +
-      '<div class="ed-pane-s"><span class="num ' + g.c + '">' + sc.toFixed(1) + '</span>' +
+      '<div class="ed-pane-s' + (vetoFail ? ' veto-fail' : '') + '">' +
+      (vetoFail ? '<s class="ed-veto-strike num ' + g.c + '">' + sc.toFixed(1) + '</s>' : '<span class="num ' + g.c + '">' + sc.toFixed(1) + '</span>') +
+      (vetoFail ? '<em class="ed-veto-flag">未过门槛</em>' : '') +
       '<span class="ed-pane-g ' + g.c + '">' + g.t + '</span>' +
       '<small>' + TOTAL_ITEMS + ' 项指标加权</small></div>';
     $('#edPaneB').innerHTML =

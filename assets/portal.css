@@ -354,6 +354,14 @@ ul{list-style:none}
   border:1.5px solid var(--lime);opacity:.9;animation:edLive 1.5s var(--ease) infinite}
 .ed-phase.wait{opacity:.5}
 .ed-phase.wait .ed-phase-s{color:var(--mute)}
+/* 一票否决前置未过门槛：汇总总分划线并标注 */
+.ed-veto-strike{text-decoration:line-through;text-decoration-thickness:1.5px;opacity:.6}
+.ed-veto-flag{font-style:normal;font-size:11px;font-weight:700;color:#b4622a;
+  border:1px solid rgba(180,98,42,.45);padding:0 5px;border-radius:3px;margin-left:6px;
+  white-space:nowrap;display:inline-block;vertical-align:middle}
+.ed-phase.now .ed-veto-strike{opacity:.55}
+.ed-phase.now .ed-veto-flag{color:#e8a06a;border-color:rgba(232,160,106,.5)}
+.ed-pane-s.veto-fail .ed-veto-strike{opacity:.65}
 
 /* 分区切换：左导航固定满高 + 右明细独立滚动，不撑长页面 */
 .ed-desk{display:grid;grid-template-columns:minmax(200px,230px) minmax(0,1fr);gap:1px;
